@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тиньков Олег - Data Science Portfolio</title>
+    <!-- Updated: Russian certificate names -->
+
+    <!-- CSS File -->
+    <link rel="stylesheet" href="css/style.css?v=7">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <!-- Style Switcher -->
+    <link rel="stylesheet" href="css/skins/color-1.css" class="alternate-style" title="color-1">
+    <link rel="stylesheet" href="css/skins/color-2.css" class="alternate-style" title="color-2" disabled>
+    <link rel="stylesheet" href="css/skins/color-3.css" class="alternate-style" title="color-3" disabled>
+    <link rel="stylesheet" href="css/skins/color-4.css" class="alternate-style" title="color-4" disabled>
+    <link rel="stylesheet" href="css/skins/color-5.css" class="alternate-style" title="color-5" disabled>
+    <link rel="stylesheet" href="css/style-switcher.css?v=3">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <!-- Замените G-XXXXXXXXXX на ваш Google Analytics ID -->
+    <!--
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
+    -->
+</head>
+
+<body class="dark">
+    <!-- Molecular Animation Background -->
+    <div class="molecular-bg">
+        <!-- Molecules -->
+        <div class="molecule">⚛</div>
+        <div class="molecule">🧬</div>
+        <div class="molecule">⚗</div>
+        <div class="molecule">🧪</div>
+        <div class="molecule">⚛</div>
+        <div class="molecule">🧬</div>
+        <div class="molecule">⚗</div>
+        <div class="molecule">🧪</div>
+        <div class="molecule">⚛</div>
+        <div class="molecule">🧬</div>
+        
+        <!-- Chemical Bonds -->
+        <div class="chemical-bond"></div>
+        <div class="chemical-bond"></div>
+        <div class="chemical-bond"></div>
+        <div class="chemical-bond"></div>
+        <div class="chemical-bond"></div>
+        
+        <!-- DNA Helix -->
+        <div class="dna-helix">🧬</div>
+        <div class="dna-helix">⚛</div>
+        <div class="dna-helix">🧪</div>
+    </div>
+    
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Aside Start -->
+        <div class="aside">
+            <div class="logo">
+                <a href="https://github.com/ovttiras" target="_blank"><span data-ru="Oleg" data-en="Tinkov">Oleg</span><span data-ru="Tinkov" data-en="Oleg">Tinkov</span></a>
+            </div>
+            <div class="nav-toggler">
+                <span></span>
+            </div>
+            <ul class="nav">
+                <li><a href="#home" class="active"><i class="fa fa-home"></i><span data-ru="Главная" data-en="Home">Главная</span></a></li>
+                <li><a href="#about"><i class="fa fa-user"></i><span data-ru="Обо мне" data-en="About">Обо мне</span></a></li>
+                <!-- <li><a href="#services"><i class="fa fa-list"></i>Услуги</a></li> -->
+                <li><a href="#certificate"><i class="fa fa-certificate"></i><span data-ru="Сертификаты" data-en="Certificates">Сертификаты</span></a></li>
+                <li><a href="#portfolio"><i class="fa fa-briefcase"></i><span data-ru="Портфолио" data-en="Portfolio">Портфолио</span></a></li>
+                <li><a href="#contact"><i class="fa fa-comments"></i><span data-ru="Контакты" data-en="Contact">Контакты</span></a></li>
+            </ul>
+            <!-- Language Switcher -->
+            <div class="language-switcher">
+                <button onclick="switchLanguage('ru')" class="lang-btn active" id="ru-btn">RU</button>
+                <button onclick="switchLanguage('en')" class="lang-btn" id="en-btn">EN</button>
+            </div>
+        </div>
+        <!-- Main Contant -->
+        <div class="main-content">
+            <!-- Home Section -->
+            <section class="home active section" id="home">
+                <div class="container">
+                    <div class="row">
+                        <div class="home-info padd-15">
+                            <h3 class="hello"><span data-ru="Привет, меня зовут" data-en="Hello, I'm">Привет, меня зовут</span> <span class="name" data-ru="Олег Тиньков" data-en="Tinkov Oleg">Олег Тиньков</span></h3>
+                            <h3 class="my-profession"><span data-ru="Я" data-en="I am">Я</span> <span class="typing">Data Scientist</span></h3>
+                            <p data-ru="Кандидат наук по хемоинформатике, Data Scientist с более чем 4-летним опытом создания и внедрения моделей машинного обучения (ML) для задач классификации, регрессии и скоринга. Специализируюсь на хемоинформатике, разработке лекарств, финансовой аналитике и моделировании кредитных рисков. Владею Python, SQL и ML-фреймворками. С 2020 года являюсь постоянным рецензентом в авторитетных международных журналах: более 40 научных публикаций, посвященных искусственному интеллекту, машинному обучению для разработки лекарств и решения медицинских задач." data-en="PhD in Cheminformatics, Data Scientist with 4+ years of experience creating and implementing machine learning (ML) models for classification, regression, and scoring tasks. Specialized in cheminformatics, drug discovery, financial analytics, and credit risk modeling. Proficient in Python, SQL, and ML frameworks. Since 2020, I have been a regular reviewer in reputable international journals: more than 40 scientific publications dedicated to artificial intelligence, machine learning for drug development, and solving medical problems.">Кандидат наук по хемоинформатике, Data Scientist с более чем 4-летним опытом создания и внедрения моделей машинного обучения (ML) для задач классификации, регрессии и скоринга. 
+                                Специализируюсь на хемоинформатике, разработке лекарств, финансовой аналитике и моделировании кредитных рисков. 
+                                Владею Python, SQL и ML-фреймворками. С 2020 года являюсь постоянным рецензентом в авторитетных международных журналах: более 40 научных публикаций, посвященных искусственному интеллекту, машинному обучению для разработки лекарств и решения медицинских задач.
+                            </p>
+                            <div class="horizontal-buttons">
+                                <a href="doc/CV_Tinkov.pdf" class="btn" rel="noopener" download><span data-ru="Скачать Резюме" data-en="Download CV">Скачать Резюме</span></a>
+                            </div>
+                        </div>
+                        <div class="home-img padd-15">
+                            <img src="img/hero.jpg" alt="hero">
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- About Section -->
+            <section class="about section" id="about">
+                <div class="container">
+                    <div class="row">
+                        <div class="section-title padd-15">
+                            <h2><span data-ru="Обо мне" data-en="About Me">Обо мне</span></h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="about-content padd-15">
+                            <div class="row">
+                                <div class="about-text padd-15">
+                                    <h3><span data-ru="Кандидат наук, Data Scientist" data-en="PhD, Data Scientist">Кандидат наук, Data Scientist</span></h3>
+                                    <p data-ru="Кандидат химических наук по специальности «органическая химия» с более чем 4-летним опытом в Data Science. Специализируюсь на создании и внедрении ML-моделей для задач классификации, регрессии и скоринга в области хемоинформатики, разработки лекарств и финансовой аналитики. Работаю с Python, SQL, TensorFlow, PyTorch, scikit-learn и другими ML-фреймворками. С 2020 года рецензирую научные публикации в международных журналах: более 40 публикаций, посвященных ИИ, машинному обучению для разработки лекарств и решения медицинских задач." data-en="PhD in Chemistry with 4+ years of experience in Data Science. Specialized in creating and implementing ML models for classification, regression, and scoring tasks in cheminformatics, drug discovery, and financial analytics. Working with Python, SQL, TensorFlow, PyTorch, scikit-learn and other ML frameworks. Since 2020, I have been reviewing scientific publications in international journals: more than 40 publications dedicated to AI, machine learning for drug development, and solving medical problems.">Кандидат химических наук по специальности «органическая химия» с более чем 4-летним опытом в Data Science. 
+                                        Специализируюсь на создании и внедрении ML-моделей для задач классификации, регрессии и скоринга в области хемоинформатики, 
+                                        разработки лекарств и финансовой аналитики. 
+                                        Работаю с Python, SQL, TensorFlow, PyTorch, scikit-learn и другими ML-фреймворками. 
+                                        С 2020 года рецензирую научные публикации в международных журналах: более 40 публикаций, посвященных ИИ, машинному обучению для разработки лекарств и решения медицинских задач.</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="personal-info padd-15">
+                                    <div class="row">
+                                        <div class="info-item padd-15">
+                                            <p><span data-ru="Возраст" data-en="Age">Возраст</span> : <span>41</span></p>
+                                        </div>
+                                        <div class="info-item padd-15">
+                                            <p><span data-ru="Образование" data-en="Education">Образование</span> : <span data-ru="Кандидат наук" data-en="PhD">Кандидат наук</span></p>
+                                        </div>
+                                        <div class="info-item padd-15">
+                                            <p><span data-ru="Телефон" data-en="Phone">Телефон</span> : <a href="tel:+37377745829"><span>+373 777 45829</span></a></p>
+                                        </div>
+                                        <div class="info-item padd-15">
+                                            <p><span data-ru="Email" data-en="Email">Email</span> : <a
+                                                    href="mailto:oleg.tinkov.chem@mail.ru"><span>oleg.tinkov.chem@mail.ru</span></a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="buttons padd-15">
+                                            <!-- <a href="#" class="btn">Download CV</a> -->
+                                            <a href="#contact" data-section-index="1" class="btn hire-me"><span data-ru="Связаться" data-en="Contact Me">Связаться</span></a>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="arrow-down padd-15">
+                                            <span></span>
+                                            <span></span>
+                                            <span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="skills padd-15 ">
+                                    <div class="row">
+                                        <div class="skill-item padd-15">
+                                            <h5>Python</h5>
+                                            <div class="progress">
+                                                <div class="progress-in" style="width: 95%"></div>
+                                                <!-- <div class="skill-percent">95%</div> -->
+                                            </div>
+                                        </div>
+                                        <div class="skill-item padd-15">
+                                            <h5>Machine Learning</h5>
+                                            <div class="progress">
+                                                <div class="progress-in" style="width: 90%"></div>
+                                                <!-- <div class="skill-percent">90%</div> -->
+                                            </div>
+                                        </div>
+                                        <div class="skill-item padd-15">
+                                            <h5>Deep Learning</h5>
+                                            <div class="progress">
+                                                <div class="progress-in" style="width: 85%"></div>
+                                                <!-- <div class="skill-percent">85%</div> -->
+                                            </div>
+                                        </div>
+                                        <div class="skill-item padd-15">
+                                            <h5>Data Analysis</h5>
+                                            <div class="progress">
+                                                <div class="progress-in" style="width: 92%"></div>
+                                                <!-- <div class="skill-percent">92%</div> -->
+                                            </div>
+                                        </div>
+                                        <div class="skill-item padd-15">
+                                            <h5>SQL</h5>
+                                            <div class="progress">
+                                                <div class="progress-in" style="width: 88%"></div>
+                                                <!-- <div class="skill-percent">88%</div> -->
+                                            </div>
+                                        </div>
+                                        <div class="skill-item padd-15">
+                                            <h5>Statistics</h5>
+                                            <div class="progress">
+                                                <div class="progress-in" style="width: 85%"></div>
+                                                <!-- <div class="skill-percent">85%</div> -->
+                                            </div>
+                                        </div>
+                                        <div class="skill-item padd-15">
+                                            <h5>Data Visualization</h5>
+                                            <div class="progress">
+                                                <div class="progress-in" style="width: 90%"></div>
+                                                <!-- <div class="skill-percent">90%</div> -->
+                                            </div>
+                                        </div>
+                                        <!-- <div class="skill-item padd-15">
+                                            <h5>PHP</h5>
+                                            <div class="progress">
+                                                <div class="progress-in" style="width: 59%"></div>
+                                                <div class="skill-percent">59%</div>
+                                            </div>
+                                        </div> -->
+                                        <!-- <div class="skill-item padd-15">
+                                            <h5>GitHub</h5>
+                                            <img align="center"
+                                                src="https://github-readme-stats.vercel.app/api/top-langs/?username=EMIR1HUB&hide=sass,scss&langs_count=10" />
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="education padd-15">
+                                    <h3 class="title"><span data-ru="Образование" data-en="Education">Образование</span></h3>
+                                    <div class="row">
+                                        <div class="timeline-box padd-15">
+                                            <div class="timeline shadow-dark">
+                                                <!-- Timeline item -->
+                                                <div class="timeline-item">
+                                                    <div class="circle-dot"></div>
+                                                    <h3 class="timeline-date">
+                                                        <i class="fa fa-calendar"></i> 2017
+                                                    </h3>
+                                                    <h4 class="timeline-title"><a href="http://www.ipac.ac.ru/diss_sovet/"
+                                                            target="_blank"><span data-ru="Институт физиологически активных соединений Российской академии наук" data-en="Institute of Physiologically Active Compounds of the Russian Academy of Sciences">Институт физиологически активных соединений Российской академии наук</span></a></h4>
+                                                    <p class="timeline-text"><span data-ru="Защита диссертации на соискание ученой степени кандидат химических наук по специальности «органическая химия». РФ, г. Черноголовка." data-en="Defense of dissertation for the degree of Candidate of Chemical Sciences in the specialty «organic chemistry». Russia, Chernogolovka.">Защита диссертации на соискание ученой степени кандидат химических наук по специальности «органическая химия».<br>
+                                                        РФ, г. Черноголовка.</span></p>
+                                                </div>
+                                                <!-- Timeline item -->
+                                                <div class="timeline-item">
+                                                    <div class="circle-dot"></div>
+                                                    <h3 class="timeline-date">
+                                                        <i class="fa fa-calendar"></i> 2004 - 2009
+                                                    </h3>
+                                                    <h4 class="timeline-title"><a href="#"
+                                                            target="_blank"><span data-ru="Тираспольский межрегиональный университет" data-en="Tiraspol Interregional University">Тираспольский межрегиональный университет</span></a></h4>
+                                                    <p class="timeline-text"><span data-ru="Специальность: «фармация». Квалификация: «провизор»" data-en="Specialty: «pharmacy». Qualification: «pharmacist»">Специальность: «фармация»<br>
+                                                        Квалификация: «провизор»</span></p>
+                                                </div>
+                                                <!-- Timeline item -->
+                                                <div class="timeline-item">
+                                                    <div class="circle-dot"></div>
+                                                    <h3 class="timeline-date">
+                                                        <i class="fa fa-calendar"></i> 2001 - 2006
+                                                    </h3>
+                                                    <h4 class="timeline-title"><a href="#"
+                                                            target="_blank"><span data-ru="Приднестровский государственный университет им. Т.Г.Шевченко" data-en="Pridnestrovian State University named after T.G. Shevchenko">Приднестровский государственный университет им. Т.Г.Шевченко</span></a></h4>
+                                                    <p class="timeline-text"><span data-ru="Специальность: «химия». Квалификация: «учитель химии». Согласно решению Министерства образования и науки РФ диплом Приднестровского государственного университета эквивалентен дипломам соответствующих специалистов РФ." data-en="Specialty: «chemistry». Qualification: «chemistry teacher». According to the decision of the Ministry of Education and Science of the Russian Federation, the diploma of Pridnestrovian State University is equivalent to diplomas of corresponding specialists of the Russian Federation.">Специальность: «химия»<br>
+                                                        Квалификация: «учитель химии»<br>
+                                                        Согласно решению Министерства образования и науки РФ диплом Приднестровского государственного университета эквивалентен дипломам соответствующих специалистов РФ.</span></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="experience padd-15">
+                                    <h3 class="title"><span data-ru="Опыт работы" data-en="Work Experience">Опыт работы</span></h3>
+                                    <div class="row">
+                                        <div class="timeline-box padd-15">
+                                            <div class="timeline shadow-dark">
+                                                <!-- Timeline item -->
+                                                <div class="timeline-item">
+                                                    <div class="circle-dot"></div>
+                                                    <h3 class="timeline-date">
+                                                        <i class="fa fa-calendar"></i> <span data-ru="Сентябрь 2020 – Сентябрь 2025" data-en="September 2020 – September 2025">Сентябрь 2020 – Сентябрь 2025</span>
+                                                    </h3>
+                                                    <h4 class="timeline-title"><a href="https://www.researchgate.net/profile/Oleg-Tinkov"
+                                                            target="_blank"><span data-ru="Доцент кафедры фармакологии и фармацевтической химии - ПГУ" data-en="Associate Professor of Pharmacology and Pharmaceutical Chemistry - PSU">Доцент кафедры фармакологии и фармацевтической химии - ПГУ</span></a></h4>
+                                                    <div class="timeline-text">
+                                                        <div class="work-location">
+                                                            <span data-ru="Медицинский факультет Приднестровского Государственного Университета, г. Тирасполь, Приднестровье, Молдова." data-en="Medical Faculty of Pridnestrovian State University, Tiraspol, Pridnestrovia, Moldova.">Медицинский факультет Приднестровского Государственного Университета, г. Тирасполь, Приднестровье, Молдова.</span>
+                                                        </div>
+                                                        <ul class="work-responsibilities">
+                                                            <li><span data-ru="Разработка, валидация, интерпретация моделей машинного обучения при исследовании физиологически активных веществ, прогнозировании ADMET свойств" data-en="Development, validation, interpretation of machine learning models for studying physiologically active substances, predicting ADMET properties">Разработка, валидация, интерпретация моделей машинного обучения при исследовании физиологически активных веществ, прогнозировании ADMET свойств</span></li>
+                                                            <li><span data-ru="Создание веб-приложений для оценки уровня острой токсичности и комплексной оценки противоопухолевых препаратов" data-en="Creation of web applications for assessing acute toxicity levels and comprehensive evaluation of anticancer drugs">Создание веб-приложений для оценки уровня острой токсичности и комплексной оценки противоопухолевых препаратов</span></li>
+                                                            <li><span data-ru="Публикация 35 статей (30 в перечне ВАК РФ), 4 учебно-методических пособия, 39 тезисов" data-en="Publication of 35 articles (30 in the list of Higher Attestation Commission of the Russian Federation), 4 educational and methodological manuals, 39 abstracts">Публикация 35 статей (30 в перечне ВАК РФ), 4 учебно-методических пособия, 39 тезисов</span></li>
+                                                            <li><span data-ru="Чтение лекций и проведение практических занятий по профилю" data-en="Delivering lectures and conducting practical classes in the field">Чтение лекций и проведение практических занятий по профилю</span></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Certificates Section -->
+            <section class="certificate section" id="certificate">
+                <div class="container">
+                    <div class="row">
+                        <div class="section-title padd-15">
+                            <h2><span data-ru="Сертификаты" data-en="Certificates">Сертификаты</span></h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="certificate-item padd-15">
+                            <div class="certificate-item-inner shadow-dark">
+                                <h4><span data-ru="Глубокое обучение в финансах" data-en="Deep Learning in Finance">Глубокое обучение в финансах</span></h4>
+                                <div class="certificate-img">
+                                    <img src="img/certificate/Deep Learning in Finance.png" alt="Deep Learning in Finance">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="certificate-item padd-15">
+                            <div class="certificate-item-inner shadow-dark">
+                                <h4><span data-ru="Объектно-ориентированное программирование на Python" data-en="Object-Oriented Programming in Python">Объектно-ориентированное программирование на Python</span></h4>
+                                <div class="certificate-img">
+                                    <img src="img/certificate/Object-oriented programming in Python.png" alt="Object-oriented programming in Python">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="certificate-item padd-15">
+                            <div class="certificate-item-inner shadow-dark">
+                                <h4><span data-ru="Программирование на Python" data-en="Python Programming">Программирование на Python</span></h4>
+                                <div class="certificate-img">
+                                    <img src="img/certificate/Python Programming.png" alt="Python Programming">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="certificate-item padd-15">
+                            <div class="certificate-item-inner shadow-dark">
+                                <h4><span data-ru="Введение в SQL" data-en="SQL Introduction">Введение в SQL</span></h4>
+                                <div class="certificate-img">
+                                    <img src="img/certificate/SQL Introduction.png" alt="SQL Introduction">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="certificate-item padd-15">
+                            <div class="certificate-item-inner shadow-dark">
+                                <h4><span data-ru="Введение в Data Science и машинное обучение" data-en="Introduction to Data Science and Machine Learning">Введение в Data Science и машинное обучение</span></h4>
+                                <div class="certificate-img">
+                                    <img src="img/certificate/Introduction intro Data Science and Machine Learning.png" alt="Introduction intro Data Science and Machine Learning">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="certificate-item padd-15">
+                            <div class="certificate-item-inner shadow-dark">
+                                <h4><span data-ru="Data Science с Глебом Михайловым" data-en="Data Science with Gleb Mikhailov">Data Science с Глебом Михайловым</span></h4>
+                                <div class="certificate-img">
+                                    <img src="img/certificate/Data Science with Gleb Mikhailov.png" alt="Data Science with Gleb Mikhailov">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="certificate-item padd-15">
+                            <div class="certificate-item-inner shadow-dark">
+                                <h4><span data-ru="Независимый курс программирования на Python" data-en="Independent Python Programming Course">Независимый курс программирования на Python</span></h4>
+                                <div class="certificate-img">
+                                    <img src="img/certificate/Indie Python Programming Course.png" alt="Indie Python Programming Course">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="certificate-item padd-15">
+                            <div class="certificate-item-inner shadow-dark">
+                                <h4><span data-ru="Добрый, добрый Python - обучающий курс от Сергея Балакирева" data-en="Kind, Kind Python - Training Course by Sergey Balakirev">Добрый, добрый Python - обучающий курс от Сергея Балакирева</span></h4>
+                                <div class="certificate-img">
+                                    <img src="img/certificate/Kind, kind Python -a training course from Sergey Balakirev.png" alt="Kind, kind Python - a training course from Sergey Balakirev">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="certificate-item padd-15">
+                            <div class="certificate-item-inner shadow-dark">
+                                <h4><span data-ru="Поколение Python: курс для начинающих" data-en="Python Generation: Course for Beginners">Поколение Python: курс для начинающих</span></h4>
+                                <div class="certificate-img">
+                                    <img src="img/certificate/Python Generation -  course for beginners.png" alt="Python Generation - course for beginners">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="certificate-item padd-15">
+                            <div class="certificate-item-inner shadow-dark">
+                                <h4><span data-ru="Погружение в Data Science и машинное обучение с нуля" data-en="Immersion in Data Science and Machine Learning from Scratch">Погружение в Data Science и машинное обучение с нуля</span></h4>
+                                <div class="certificate-img">
+                                    <img src="img/certificate/Immersion in Data Science and Machine Learning from scratch.png" alt="Immersion in Data Science and Machine Learning from scratch">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="certificate-item padd-15">
+                            <div class="certificate-item-inner shadow-dark">
+                                <h4><span data-ru="Основы статистики" data-en="Basics of Statistics">Основы статистики</span></h4>
+                                <div class="certificate-img">
+                                    <img src="img/certificate/Basics of statistics.png" alt="Basics of statistics">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="certificate-item padd-15">
+                            <div class="certificate-item-inner shadow-dark">
+                                <h4><span data-ru="Анализ данных в R" data-en="Data Analysis in R">Анализ данных в R</span></h4>
+                                <div class="certificate-img">
+                                    <img src="img/certificate/Analysis of data in R.png" alt="Analysis of data in R">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="certificate-item padd-15">
+                            <div class="certificate-item-inner shadow-dark">
+                                <h4><span data-ru="Веб-разработка для начинающих: HTML и CSS" data-en="Web Development for Beginners: HTML and CSS">Веб-разработка для начинающих: HTML и CSS</span></h4>
+                                <div class="certificate-img">
+                                    <img src="img/certificate/Web development for beginners  HTML and CSS.png" alt="Web development for beginners: HTML and CSS">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="certificate-item padd-15">
+                            <div class="certificate-item-inner shadow-dark">
+                                <h4><span data-ru="KARPOV.COURSES: Симулятор SQL" data-en="KARPOV.COURSES: SQL Simulator">KARPOV.COURSES: Симулятор SQL</span></h4>
+                                <div class="certificate-img">
+                                    <img src="img/certificate/Simulator SQL.png" alt="KARPOV.COURSES: Simulator SQL">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="certificate-item padd-15">
+                            <div class="certificate-item-inner shadow-dark">
+                                <h4><span data-ru="Сертификат английского языка" data-en="English Language Certificate">Сертификат английского языка</span></h4>
+                                <div class="certificate-img">
+                                    <img src="img/certificate/english.jpg" alt="English Language Certificate">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Services Section -->
+            <!-- <section class="service section" id="services">
+                <div class="container">
+                    <div class="row">
+                        <div class="section-title padd-15">
+                            <h2>Услуги</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="service-item padd-15">
+                            <div class="service-item-inner">
+                                <div class="icon">
+                                    <i class="fa fa-mobile-alt"></i>
+                                </div>
+                                <h4>Web Developer</h4>
+                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero repudiandae in, ab
+                                    minima eum culpa fuga, id distinctio aliquam assumenda possimus architecto
+                                    perspiciatis unde, iure aut nihil neque asperiores? Natus!
+                                </p>
+                            </div>
+                        </div>
+                        <div class="service-item padd-15">
+                            <div class="service-item-inner">
+                                <div class="icon">
+                                    <i class="fa fa-laptop-code"></i>
+                                </div>
+                                <h4>Web Developer</h4>
+                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero repudiandae in, ab
+                                    minima eum culpa fuga, id distinctio aliquam assumenda possimus architecto
+                                    perspiciatis unde, iure aut nihil neque asperiores? Natus!
+                                </p>
+                            </div>
+                        </div>
+                        <div class="service-item padd-15">
+                            <div class="service-item-inner">
+                                <div class="icon">
+                                    <i class="fa fa-palette"></i>
+                                </div>
+                                <h4>Web Developer</h4>
+                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero repudiandae in, ab
+                                    minima eum culpa fuga, id distinctio aliquam assumenda possimus architecto
+                                    perspiciatis unde, iure aut nihil neque asperiores? Natus!
+                                </p>
+                            </div>
+                        </div>
+                        <div class="service-item padd-15">
+                            <div class="service-item-inner">
+                                <div class="icon">
+                                    <i class="fa fa-code"></i>
+                                </div>
+                                <h4>Web Developer</h4>
+                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero repudiandae in, ab
+                                    minima eum culpa fuga, id distinctio aliquam assumenda possimus architecto
+                                    perspiciatis unde, iure aut nihil neque asperiores? Natus!
+                                </p>
+                            </div>
+                        </div>
+                        <div class="service-item padd-15">
+                            <div class="service-item-inner">
+                                <div class="icon">
+                                    <i class="fa fa-search"></i>
+                                </div>
+                                <h4>Web Developer</h4>
+                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero repudiandae in, ab
+                                    minima eum culpa fuga, id distinctio aliquam assumenda possimus architecto
+                                    perspiciatis unde, iure aut nihil neque asperiores? Natus!
+                                </p>
+                            </div>
+                        </div>
+                        <div class="service-item padd-15">
+                            <div class="service-item-inner">
+                                <div class="icon">
+                                    <i class="fa fa-bullhorn"></i>
+                                </div>
+                                <h4>Web Developer</h4>
+                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero repudiandae in, ab
+                                    minima eum culpa fuga, id distinctio aliquam assumenda possimus architecto
+                                    perspiciatis unde, iure aut nihil neque asperiores? Natus!
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section> -->
+
+
+            <!-- Portfolio Section -->
+            <section class="portfolio section" id="portfolio">
+                <div class="container">
+                    <div class="row">
+                        <div class="section-title padd-15">
+                            <h2><span data-ru="Портфолио" data-en="Portfolio">Портфолио</span></h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="portfolio-heading padd-15">
+                            <h2><span data-ru="Мои проекты :" data-en="My Projects:">Мои проекты :</span></h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!-- portfolio item start -->
+                        <div class="portfolio-item padd-15">
+                            <div class="portfolio-item-inner shadow-dark">
+                                <div class="portfolio-number">01</div>
+                                <div class="portfolio-img">
+                                    <img src="img/portfolio/signature_verification.png" alt="">
+                                </div>
+                                <div class="portfolio-content">
+                                    <h4><i class="fas fa-signature"></i> Signature Verification System</h4>
+                                    <p><span data-ru="Система верификации подписей с использованием машинного обучения. TensorFlow модель для распознавания подлинных и поддельных подписей." data-en="Signature verification system using machine learning. TensorFlow model for recognizing authentic and forged signatures.">Система верификации подписей с использованием машинного обучения. TensorFlow модель для распознавания подлинных и поддельных подписей.</span></p>
+                                    <div class="portfolio-features">
+                                        <span class="feature-tag"><span data-ru="Машинное обучение" data-en="Machine Learning">Машинное обучение</span></span>
+                                        <span class="feature-tag">TensorFlow</span>
+                                        <span class="feature-tag"><span data-ru="Компьютерное зрение" data-en="Computer Vision">Компьютерное зрение</span></span>
+                                        <span class="feature-tag"><span data-ru="Верификация" data-en="Verification">Верификация</span></span>
+                                    </div>
+                                    <div class="portfolio-link">
+                                        <a href="https://deepsign.streamlit.app/" target="_blank"><span data-ru="🌐 Веб-приложение: DeepSign" data-en="🌐 Web Application: DeepSign">🌐 Веб-приложение: DeepSign</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- portfolio item start -->
+                        <div class="portfolio-item padd-15">
+                            <div class="portfolio-item-inner shadow-dark">
+                                <div class="portfolio-number">02</div>
+                                <div class="portfolio-img">
+                                    <img src="img/portfolio/credit_scoring.png" alt="">
+                                </div>
+                                <div class="portfolio-content">
+                                    <h4><i class="fas fa-chart-line"></i> Credit AI Assistant</h4>
+                                    <p><span data-ru="Система кредитного скоринга с использованием машинного обучения. Gradient Boosting модель для предсказания кредитного риска с высокой точностью." data-en="Credit scoring system using machine learning. Gradient Boosting model for predicting credit risk with high accuracy.">Система кредитного скоринга с использованием машинного обучения. Gradient Boosting модель для предсказания кредитного риска с высокой точностью.</span></p>
+                                    <div class="portfolio-features">
+                                        <span class="feature-tag">Gradient Boosting</span>
+                                        <span class="feature-tag"><span data-ru="Кредитный скоринг" data-en="Credit Scoring">Кредитный скоринг</span></span>
+                                        <span class="feature-tag"><span data-ru="Финансовая аналитика" data-en="Financial Analytics">Финансовая аналитика</span></span>
+                                        <span class="feature-tag">AUC-ROC: 0.7826</span>
+                                    </div>
+                                    <div class="portfolio-link">
+                                        <a href="https://credit-ai-assistant.streamlit.app/" target="_blank"><span data-ru="🌐 Веб-приложение: Credit AI Assistant" data-en="🌐 Web Application: Credit AI Assistant">🌐 Веб-приложение: Credit AI Assistant</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- portfolio item start -->
+                        <div class="portfolio-item padd-15">
+                            <div class="portfolio-item-inner shadow-dark">
+                                <div class="portfolio-number">03</div>
+                                <div class="portfolio-img">
+                                    <img src="img/portfolio/credit_scoring.png" alt="">
+                                </div>
+                                <div class="portfolio-content">
+                                    <h4><i class="fas fa-dna"></i> ToxAI_assistant</h4>
+                                    <p><span data-ru="Оценка острой токсичности ксенобиотиков при пероральном и внутривенном введении крысам. Поиск токсичности соединения в базе данных или предсказание уровня опасности с использованием QSAR моделей." data-en="Assessment of acute toxicity of xenobiotics following oral and intravenous administration in rats. Search for compound toxicity in database or prediction of hazard level using QSAR models.">Оценка острой токсичности ксенобиотиков при пероральном и внутривенном введении крысам. Поиск токсичности соединения в базе данных или предсказание уровня опасности с использованием QSAR моделей.</span></p>
+                                    <div class="portfolio-features">
+                                        <span class="feature-tag"><span data-ru="Токсикология" data-en="Toxicology">Токсикология</span></span>
+                                        <span class="feature-tag"><span data-ru="ML модели" data-en="ML Models">ML модели</span></span>
+                                        <span class="feature-tag"><span data-ru="Острая токсичность" data-en="Acute Toxicity">Острая токсичность</span></span>
+                                        <span class="feature-tag"><span data-ru="Веб-приложение" data-en="Web Application">Веб-приложение</span></span>
+                                    </div>
+                                    <div class="portfolio-link">
+                                        <a href="https://tox-ai-assistant.streamlit.app/" target="_blank"><span data-ru="🌐 Веб-приложение: ToxAI Assistant" data-en="🌐 Web Application: ToxAI Assistant">🌐 Веб-приложение: ToxAI Assistant</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- portfolio item start -->
+                        <div class="portfolio-item padd-15">
+                            <div class="portfolio-item-inner shadow-dark">
+                                <div class="portfolio-number">04</div>
+                                <div class="portfolio-img">
+                                    <img src="img/portfolio/qsar_lp.png" alt="">
+                                </div>
+                                <div class="portfolio-content">
+                                    <h4><i class="fas fa-pills"></i> HDAC1 Predictor</h4>
+                                    <p><span data-ru="Интеллектуальная платформа для идентификации перспективных HDAC1 ингибиторов. Комбинирует передовые алгоритмы машинного обучения с глубоким пониманием эпигенетических механизмов для ускорения разработки противоопухолевых препаратов." data-en="Intelligent platform for identifying promising HDAC1 inhibitors. Combines advanced machine learning algorithms with deep understanding of epigenetic mechanisms to accelerate anticancer drug development.">Интеллектуальная платформа для идентификации перспективных HDAC1 ингибиторов. Комбинирует передовые алгоритмы машинного обучения с глубоким пониманием эпигенетических механизмов для ускорения разработки противоопухолевых препаратов.</span></p>
+                                    <div class="portfolio-features">
+                                        <span class="feature-tag"><span data-ru="Эпигенетика" data-en="Epigenetics">Эпигенетика</span></span>
+                                        <span class="feature-tag"><span data-ru="Онкология" data-en="Oncology">Онкология</span></span>
+                                        <span class="feature-tag">Drug Discovery</span>
+                                        <span class="feature-tag"><span data-ru="QSAR модели" data-en="QSAR Models">QSAR модели</span></span>
+                                    </div>
+                                    <div class="portfolio-link">
+                                        <a href="https://ovttiras-hdac1-inhibitors-hdac1-predictor-app-z3mrbr.streamlit.app/" target="_blank"><span data-ru="🌐 Веб-приложение: HDAC1 Predictor" data-en="🌐 Web Application: HDAC1 Predictor">🌐 Веб-приложение: HDAC1 Predictor</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- portfolio item start -->
+                        <div class="portfolio-item padd-15">
+                            <div class="portfolio-item-inner shadow-dark">
+                                <div class="portfolio-number">05</div>
+                                <div class="portfolio-img">
+                                    <img src="img/portfolio/syntelly.png" alt="">
+                                </div>
+                                <div class="portfolio-content">
+                                    <h4><i class="fas fa-database"></i> HDAC2 Scanner</h4>
+                                    <p><span data-ru="Высокоскоростной сканер для быстрого скрининга химических библиотек на предмет HDAC2 ингибирующей активности. Использует инновационные методы виртуального скрининга для эффективного отбора кандидатных соединений." data-en="High-speed scanner for rapid screening of chemical libraries for HDAC2 inhibitory activity. Uses innovative virtual screening methods for efficient selection of candidate compounds.">Высокоскоростной сканер для быстрого скрининга химических библиотек на предмет HDAC2 ингибирующей активности. Использует инновационные методы виртуального скрининга для эффективного отбора кандидатных соединений.</span></p>
+                                    <div class="portfolio-features">
+                                        <span class="feature-tag"><span data-ru="Виртуальный скрининг" data-en="Virtual Screening">Виртуальный скрининг</span></span>
+                                        <span class="feature-tag"><span data-ru="Химические библиотеки" data-en="Chemical Libraries">Химические библиотеки</span></span>
+                                        <span class="feature-tag"><span data-ru="Быстрый отбор" data-en="Rapid Selection">Быстрый отбор</span></span>
+                                        <span class="feature-tag"><span data-ru="Инновации" data-en="Innovation">Инновации</span></span>
+                                    </div>
+                                    <div class="portfolio-link">
+                                        <a href="https://hdac2scan.streamlit.app/" target="_blank"><span data-ru="🌐 Веб-приложение: HDAC2 Scanner" data-en="🌐 Web Application: HDAC2 Scanner">🌐 Веб-приложение: HDAC2 Scanner</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- portfolio item start -->
+                        <div class="portfolio-item padd-15">
+                            <div class="portfolio-item-inner shadow-dark">
+                                <div class="portfolio-number">06</div>
+                                <div class="portfolio-img">
+                                    <img src="img/portfolio/ligand_pro.png" alt="">
+                                </div>
+                                <div class="portfolio-content">
+                                    <h4><i class="fas fa-flask"></i> HDAC3 VS Assistant</h4>
+                                    <p><span data-ru="Умный ассистент для комплексного анализа HDAC3 ингибиторов с интеграцией определения острой токсичности исследуемых соединений. Предоставляет детальную оценку лекарственного потенциала соединений." data-en="Smart assistant for comprehensive analysis of HDAC3 inhibitors with integration of acute toxicity determination of studied compounds. Provides detailed assessment of drug potential of compounds.">Умный ассистент для комплексного анализа HDAC3 ингибиторов с интеграцией определения острой токсичности исследуемых соединений. Предоставляет детальную оценку лекарственного потенциала соединений.</span></p>
+                                    <div class="portfolio-features">
+                                        <span class="feature-tag"><span data-ru="Острая токсичность" data-en="Acute Toxicity">Острая токсичность</span></span>
+                                        <span class="feature-tag"><span data-ru="HDAC3 ингибиторы" data-en="HDAC3 Inhibitors">HDAC3 ингибиторы</span></span>
+                                        <span class="feature-tag"><span data-ru="Комплексный анализ" data-en="Comprehensive Analysis">Комплексный анализ</span></span>
+                                        <span class="feature-tag"><span data-ru="Лекарственный потенциал" data-en="Drug Potential">Лекарственный потенциал</span></span>
+                                    </div>
+                                    <div class="portfolio-link">
+                                        <a href="https://hdac3-vs-assistant-v2.streamlit.app/" target="_blank"><span data-ru="🌐 Веб-приложение: HDAC3 VS Assistant" data-en="🌐 Web Application: HDAC3 VS Assistant">🌐 Веб-приложение: HDAC3 VS Assistant</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- portfolio item start -->
+                        <div class="portfolio-item padd-15">
+                            <div class="portfolio-item-inner shadow-dark">
+                                <div class="portfolio-number">07</div>
+                                <div class="portfolio-img">
+                                    <img src="img/portfolio/credit_scoring.png" alt="">
+                                </div>
+                                <div class="portfolio-content">
+                                    <h4><i class="fas fa-search"></i> HDAC6 Detector</h4>
+                                    <p><span data-ru="Точный детектор для выявления селективных HDAC6 ингибиторов с использованием продвинутых алгоритмов распознавания паттернов. Специализируется на обнаружении соединений с высокой специфичностью к HDAC6 изоформе." data-en="Precise detector for identifying selective HDAC6 inhibitors using advanced pattern recognition algorithms. Specializes in detecting compounds with high specificity to HDAC6 isoform.">Точный детектор для выявления селективных HDAC6 ингибиторов с использованием продвинутых алгоритмов распознавания паттернов. Специализируется на обнаружении соединений с высокой специфичностью к HDAC6 изоформе.</span></p>
+                                    <div class="portfolio-features">
+                                        <span class="feature-tag"><span data-ru="Селективность" data-en="Selectivity">Селективность</span></span>
+                                        <span class="feature-tag"><span data-ru="Паттерн-анализ" data-en="Pattern Analysis">Паттерн-анализ</span></span>
+                                        <span class="feature-tag"><span data-ru="Изоформа HDAC6" data-en="HDAC6 Isoform">Изоформа HDAC6</span></span>
+                                        <span class="feature-tag"><span data-ru="Точность" data-en="Accuracy">Точность</span></span>
+                                    </div>
+                                    <div class="portfolio-link">
+                                        <a href="https://ovttiras-hdac6-detector-hdac6-detector-app-yzh8y5.streamlit.app/" target="_blank"><span data-ru="🌐 Веб-приложение: HDAC6 Detector" data-en="🌐 Web Application: HDAC6 Detector">🌐 Веб-приложение: HDAC6 Detector</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section class="contact section" id="contact">
+                <div class="container">
+                    <div class="row">
+                        <div class="section-title padd-15">
+                            <h2><span data-ru="Связаться со мной" data-en="Contact Me">Связаться со мной</span></h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!-- Contact info item start -->
+                        <div class="contact-info-item padd-15">
+                            <div class="icon"><i class="fas fa-phone"></i></div>
+                            <h4><span data-ru="Телефон" data-en="Phone">Телефон</span></h4>
+                            <a href="tel:+37377745829">
+                                <p>+373 777 45829</p>
+                            </a>
+                        </div>
+                        <!-- Contact info item start -->
+                        <div class="contact-info-item padd-15">
+                            <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
+                            <h4><span data-ru="Город" data-en="City">Город</span></h4>
+                            <p><span data-ru="Тирасполь" data-en="Tiraspol">Тирасполь</span></p>
+                        </div>
+                        <!-- Contact info item start -->
+                        <div class="contact-info-item padd-15">
+                            <div class="icon"><i class="fas fa-envelope"></i></div>
+                            <h4><span data-ru="Email" data-en="Email">Email</span></h4>
+                            <p>oleg.tinkov.chem@mail.ru</p>
+                        </div>
+                        <!-- Contact info item start -->
+                        <div class="contact-info-item padd-15">
+                            <div class="icon"><i class="fab fa-linkedin"></i></div>
+                            <h4><span data-ru="LinkedIn" data-en="LinkedIn">LinkedIn</span></h4>
+                            <a href="https://www.linkedin.com/in/oleg-tinkov-939840245/" target="_blank">
+                                <p><span data-ru="Oleg Tinkov" data-en="Tinkov Oleg">Oleg Tinkov</span></p>
+                            </a>
+                        </div>
+                        <!-- Contact info item start -->
+                        <div class="contact-info-item padd-15">
+                            <div class="icon"><i class="fas fa-id-card"></i></div>
+                            <h4>ORCID</h4>
+                            <a href="https://orcid.org/0000-0003-4702-6825" target="_blank">
+                                <p>0000-0003-4702-6825</p>
+                            </a>
+                        </div>
+                        <!-- Contact info item start -->
+                        <div class="contact-info-item padd-15">
+                            <div class="icon"><i class="fas fa-graduation-cap"></i></div>
+                            <h4>Web of Science</h4>
+                            <a href="https://www.webofscience.com/wos/author/record/Q-4699-2017" target="_blank">
+                                <p>Q-4699-2017</p>
+                            </a>
+                        </div>
+                        <!-- Contact info item start -->
+                        <div class="contact-info-item padd-15">
+                            <div class="icon"><i class="fas fa-user-graduate"></i></div>
+                            <h4>ResearchGate</h4>
+                            <a href="https://www.researchgate.net/profile/Oleg-Tinkov" target="_blank">
+                                <p><span data-ru="Oleg Tinkov" data-en="Tinkov Oleg">Oleg Tinkov</span></p>
+                            </a>
+                        </div>
+                        <!-- Contact info item start -->
+                        <div class="contact-info-item padd-15">
+                            <div class="icon"><i class="fab fa-github"></i></div>
+                            <h4>GitHub</h4>
+                            <a href="https://github.com/ovttiras" target="_blank">
+                                <p>ovttiras</p>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Map Section -->
+                    <div class="row">
+                        <div class="padd-15">
+                            <h3 style="text-align: center; margin-bottom: 30px; color: var(--text-black-900);"><span data-ru="Местоположение" data-en="Location">Местоположение</span></h3>
+                            <div style="width: 100%; height: 400px; border-radius: 10px; overflow: hidden; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);">
+                                <iframe 
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2808.5!2d29.6317!3d46.8375!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40c97c3628b769a1%3A0x8b9a8b9a8b9a8b9a!2z0KLQuNGC0LDQv9C-0LvQuNC70LgsINCR0L7Qu9C-0YHRgtC-0L_Qu9C-0LvRjNGB0LrQuNC5!5e0!3m2!1sru!2s!4v1234567890123!5m2!1sru!2s"
+                                    width="100%" 
+                                    height="400" 
+                                    style="border:0;" 
+                                    allowfullscreen="" 
+                                    loading="lazy" 
+                                    referrerpolicy="no-referrer-when-downgrade">
+                                </iframe>
+                            </div>
+                            <p style="text-align: center; margin-top: 15px; color: var(--text-black-700); font-size: 14px;">
+                                <span data-ru="Приднестровский государственный университет им. Т.Г. Шевченко, г. Тирасполь" data-en="Pridnestrovian State University named after T.G. Shevchenko, Tiraspol">Приднестровский государственный университет им. Т.Г. Шевченко, г. Тирасполь</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+
+    <!-- Style Switcher -->
+    <div class="style-switcher">
+        <div class="style-switcher-toggler s-icon">
+            <i class="fas fa-cog fa-spin"></i>
+        </div>
+        <div class="day-night s-icon">
+            <i class="fas"></i>
+        </div>
+        <h4>Цвет темы</h4>
+        <div class="colors">
+            <span class="color-1" onclick="setActiveStyle('color-1')"></span>
+            <span class="color-2" onclick="setActiveStyle('color-2')"></span>
+            <span class="color-3" onclick="setActiveStyle('color-3')"></span>
+            <span class="color-4" onclick="setActiveStyle('color-4')"></span>
+            <span class="color-5" onclick="setActiveStyle('color-5')"></span>
+        </div>
+    </div>
+
+    <!-- JS File -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"
+        referrerpolicy="no-referrer"></script>
+    <script src="js/script.js"></script>
+    <script src="js/style-switcher.js"></script>
+    <script>
+        // Make setActiveStyle function globally available
+        function setActiveStyle(color) {
+            console.log("Switching to color:", color);
+            const alternateStyle = document.querySelectorAll(".alternate-style");
+            console.log("Found stylesheets:", alternateStyle.length);
+            
+            alternateStyle.forEach((style) => {
+                const title = style.getAttribute("title");
+                console.log("Processing stylesheet:", title);
+                
+                if (color === title) {
+                    console.log("Activating:", title);
+                    style.removeAttribute("disabled");
+                }
+                else {
+                    console.log("Disabling:", title);
+                    style.setAttribute("disabled", "true");
+                }
+            })
+        }
+        
+        // Test function to verify color-3 works
+        function testColor3() {
+            console.log("Testing color-3...");
+            setActiveStyle('color-3');
+        }
+        
+        // Language switching functionality
+        function switchLanguage(lang) {
+            // Update button states
+            document.getElementById('ru-btn').classList.toggle('active', lang === 'ru');
+            document.getElementById('en-btn').classList.toggle('active', lang === 'en');
+            
+            // Update all elements with data attributes
+            const elements = document.querySelectorAll('[data-ru][data-en]');
+            elements.forEach(element => {
+                if (lang === 'ru') {
+                    element.textContent = element.getAttribute('data-ru');
+                } else {
+                    element.textContent = element.getAttribute('data-en');
+                }
+            });
+            
+            // Update typing animation
+            if (lang === 'ru') {
+                typed.strings = ["", "Data Scientist", "Machine Learning Engineer", "Data Analyst"];
+            } else {
+                typed.strings = ["", "Data Scientist", "Machine Learning Engineer", "Data Analyst"];
+            }
+            typed.reset();
+        }
+    </script>
+</body>
+
+</html>
