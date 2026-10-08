@@ -383,3 +383,72 @@
     background: var(--skin-color);
     color: #ffffff;
 }
+
+/* Grouped competencies */
+.about .about-content .personal-info {
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+
+.about .about-content .skills.skills-grouped {
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-top: 20px;
+}
+
+.skill-group {
+    flex: 0 0 50%;
+    max-width: 50%;
+    margin-bottom: 30px;
+}
+
+.skill-group-inner {
+    background-color: var(--bg-black-100);
+    border: 1px solid var(--bg-black-50);
+    border-radius: 10px;
+    padding: 25px 22px;
+    height: 100%;
+}
+
+.skill-group-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--bg-black-50);
+    color: var(--skin-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    font-size: 20px;
+}
+
+.skill-group-inner h4 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-black-900);
+    margin-bottom: 16px;
+}
+
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.skill-tag {
+    background: var(--bg-black-50);
+    color: var(--text-black-700);
+    padding: 6px 12px;
+    border-radius: 16px;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+@media (max-width: 767px) {
+    .skill-group {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}

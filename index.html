@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -9,7 +9,7 @@
     <!-- Updated: Russian certificate names -->
 
     <!-- CSS File -->
-    <link rel="stylesheet" href="css/style.css?v=7">
+    <link rel="stylesheet" href="css/style.css?v=8">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <!-- Style Switcher -->
     <link rel="stylesheet" href="css/skins/color-1.css" class="alternate-style" title="color-1">
@@ -81,8 +81,8 @@
             </ul>
             <!-- Language Switcher -->
             <div class="language-switcher">
-                <button onclick="switchLanguage('ru')" class="lang-btn active" id="ru-btn">RU</button>
-                <button onclick="switchLanguage('en')" class="lang-btn" id="en-btn">EN</button>
+                <button onclick="switchLanguage('ru')" class="lang-btn" id="ru-btn">RU</button>
+                <button onclick="switchLanguage('en')" class="lang-btn active" id="en-btn">EN</button>
             </div>
         </div>
         <!-- Main Contant -->
@@ -126,7 +126,7 @@
                                 <div class="personal-info padd-15">
                                     <div class="row">
                                         <div class="info-item padd-15">
-                                            <p><span data-ru="Возраст" data-en="Age">Age</span> : <span>41</span></p>
+                                            <p><span data-ru="Возраст" data-en="Age">Age</span> : <span>42</span></p>
                                         </div>
                                         <div class="info-item padd-15">
                                             <p><span data-ru="Образование" data-en="Education">Education</span> : <span data-ru="Кандидат наук" data-en="PhD">PhD</span></p>
@@ -143,77 +143,70 @@
                                             <a href="#contact" data-section-index="1" class="btn hire-me"><span data-ru="Связаться" data-en="Contact Me">Contact Me</span></a>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="arrow-down padd-15">
-                                            <span></span>
-                                            <span></span>
-                                            <span></span>
-                                        </div>
-                                    </div>
                                 </div>
-                                <div class="skills padd-15 ">
+                            </div>
+                            <div class="row">
+                                <div class="skills skills-grouped padd-15">
+                                    <h3 class="title"><span data-ru="Компетенции" data-en="Skills">Skills</span></h3>
                                     <div class="row">
-                                        <div class="skill-item padd-15">
-                                            <h5>Python</h5>
-                                            <div class="progress">
-                                                <div class="progress-in" style="width: 95%"></div>
-                                                <!-- <div class="skill-percent">95%</div> -->
+                                        <div class="skill-group padd-15">
+                                            <div class="skill-group-inner shadow-dark">
+                                                <div class="skill-group-icon"><i class="fas fa-robot"></i></div>
+                                                <h4><span data-ru="Прикладной ИИ" data-en="Applied AI">Applied AI</span></h4>
+                                                <div class="skill-tags">
+                                                    <span class="skill-tag">RAG / LLM</span>
+                                                    <span class="skill-tag"><span data-ru="Корпоративные чат-боты" data-en="Corporate Chatbots">Corporate Chatbots</span></span>
+                                                    <span class="skill-tag">OCR</span>
+                                                    <span class="skill-tag"><span data-ru="Валидация документов" data-en="Document Validation">Document Validation</span></span>
+                                                    <span class="skill-tag"><span data-ru="Речевая аналитика" data-en="Speech Analytics">Speech Analytics</span></span>
+                                                    <span class="skill-tag"><span data-ru="AI-агенты" data-en="AI Agents">AI Agents</span></span>
+                                                    <span class="skill-tag"><span data-ru="Закрытый контур" data-en="On-premise AI">On-premise AI</span></span>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="skill-item padd-15">
-                                            <h5>Machine Learning</h5>
-                                            <div class="progress">
-                                                <div class="progress-in" style="width: 90%"></div>
-                                                <!-- <div class="skill-percent">90%</div> -->
+                                        <div class="skill-group padd-15">
+                                            <div class="skill-group-inner shadow-dark">
+                                                <div class="skill-group-icon"><i class="fas fa-brain"></i></div>
+                                                <h4><span data-ru="Машинное обучение" data-en="Machine Learning">Machine Learning</span></h4>
+                                                <div class="skill-tags">
+                                                    <span class="skill-tag">Python</span>
+                                                    <span class="skill-tag">scikit-learn</span>
+                                                    <span class="skill-tag">TensorFlow</span>
+                                                    <span class="skill-tag">PyTorch</span>
+                                                    <span class="skill-tag">Deep Learning</span>
+                                                    <span class="skill-tag"><span data-ru="Компьютерное зрение" data-en="Computer Vision">Computer Vision</span></span>
+                                                    <span class="skill-tag">QSAR / ADMET</span>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="skill-item padd-15">
-                                            <h5>Deep Learning</h5>
-                                            <div class="progress">
-                                                <div class="progress-in" style="width: 85%"></div>
-                                                <!-- <div class="skill-percent">85%</div> -->
+                                        <div class="skill-group padd-15">
+                                            <div class="skill-group-inner shadow-dark">
+                                                <div class="skill-group-icon"><i class="fas fa-flask"></i></div>
+                                                <h4><span data-ru="Хемоинформатика" data-en="Cheminformatics">Cheminformatics</span></h4>
+                                                <div class="skill-tags">
+                                                    <span class="skill-tag"><span data-ru="Разработка лекарств" data-en="Drug Discovery">Drug Discovery</span></span>
+                                                    <span class="skill-tag"><span data-ru="Прогнозирование активности" data-en="Activity Prediction">Activity Prediction</span></span>
+                                                    <span class="skill-tag"><span data-ru="Токсикология" data-en="Toxicology">Toxicology</span></span>
+                                                    <span class="skill-tag"><span data-ru="Ингибиторы KRAS" data-en="KRAS Inhibitors">KRAS Inhibitors</span></span>
+                                                    <span class="skill-tag"><span data-ru="Молекулярный скрининг" data-en="Virtual Screening">Virtual Screening</span></span>
+                                                    <span class="skill-tag"><span data-ru="Научные публикации" data-en="Scientific Publishing">Scientific Publishing</span></span>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="skill-item padd-15">
-                                            <h5>Data Analysis</h5>
-                                            <div class="progress">
-                                                <div class="progress-in" style="width: 92%"></div>
-                                                <!-- <div class="skill-percent">92%</div> -->
+                                        <div class="skill-group padd-15">
+                                            <div class="skill-group-inner shadow-dark">
+                                                <div class="skill-group-icon"><i class="fas fa-chart-line"></i></div>
+                                                <h4><span data-ru="Данные и аналитика" data-en="Data & Analytics">Data & Analytics</span></h4>
+                                                <div class="skill-tags">
+                                                    <span class="skill-tag">SQL</span>
+                                                    <span class="skill-tag"><span data-ru="Анализ данных" data-en="Data Analysis">Data Analysis</span></span>
+                                                    <span class="skill-tag"><span data-ru="Статистика" data-en="Statistics">Statistics</span></span>
+                                                    <span class="skill-tag"><span data-ru="Визуализация данных" data-en="Data Visualization">Data Visualization</span></span>
+                                                    <span class="skill-tag"><span data-ru="Кредитный скоринг" data-en="Credit Scoring">Credit Scoring</span></span>
+                                                    <span class="skill-tag">Streamlit</span>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="skill-item padd-15">
-                                            <h5>SQL</h5>
-                                            <div class="progress">
-                                                <div class="progress-in" style="width: 88%"></div>
-                                                <!-- <div class="skill-percent">88%</div> -->
-                                            </div>
-                                        </div>
-                                        <div class="skill-item padd-15">
-                                            <h5>Statistics</h5>
-                                            <div class="progress">
-                                                <div class="progress-in" style="width: 85%"></div>
-                                                <!-- <div class="skill-percent">85%</div> -->
-                                            </div>
-                                        </div>
-                                        <div class="skill-item padd-15">
-                                            <h5>Data Visualization</h5>
-                                            <div class="progress">
-                                                <div class="progress-in" style="width: 90%"></div>
-                                                <!-- <div class="skill-percent">90%</div> -->
-                                            </div>
-                                        </div>
-                                        <!-- <div class="skill-item padd-15">
-                                            <h5>PHP</h5>
-                                            <div class="progress">
-                                                <div class="progress-in" style="width: 59%"></div>
-                                                <div class="skill-percent">59%</div>
-                                            </div>
-                                        </div> -->
-                                        <!-- <div class="skill-item padd-15">
-                                            <h5>GitHub</h5>
-                                            <img align="center"
-                                                src="https://github-readme-stats.vercel.app/api/top-langs/?username=EMIR1HUB&hide=sass,scss&langs_count=10" />
-                                        </div> -->
                                     </div>
                                 </div>
                             </div>
@@ -266,6 +259,46 @@
                                     <div class="row">
                                         <div class="timeline-box padd-15">
                                             <div class="timeline shadow-dark">
+                                                <!-- Timeline item -->
+                                                <div class="timeline-item">
+                                                    <div class="circle-dot"></div>
+                                                    <h3 class="timeline-date">
+                                                        <i class="fa fa-calendar"></i> <span data-ru="Ноябрь 2025 – настоящее время" data-en="November 2025 – Present">November 2025 – Present</span>
+                                                    </h3>
+                                                    <h4 class="timeline-title"><a href="https://www.agroprombank.com/"
+                                                            target="_blank"><span data-ru="AI-инженер — Агропромбанк" data-en="AI Engineer — Agroprombank">AI Engineer — Agroprombank</span></a></h4>
+                                                    <div class="timeline-text">
+                                                        <div class="work-location">
+                                                            <span data-ru="Агропромбанк, г. Тирасполь." data-en="Agroprombank, Tiraspol.">Agroprombank, Tiraspol.</span>
+                                                        </div>
+                                                        <ul class="work-responsibilities">
+                                                            <li><span data-ru="Разработка чат-бота на основе RAG для корпоративной базы знаний" data-en="Development of a RAG-based chatbot for the corporate knowledge base">Development of a RAG-based chatbot for the corporate knowledge base</span></li>
+                                                            <li><span data-ru="Внедрение OCR-системы валидации паспортных данных клиентов" data-en="Implementation of an OCR system for client passport validation">Implementation of an OCR system for client passport validation</span></li>
+                                                            <li><span data-ru="Построение речевой аналитики звонков колл-центра" data-en="Development of speech analytics for call-center conversations">Development of speech analytics for call-center conversations</span></li>
+                                                            <li><span data-ru="Создание ИИ-агента для автоматического Code Review" data-en="Creation of an AI Code Review agent">Creation of an AI Code Review agent</span></li>
+                                                            <li><span data-ru="Все решения развёрнуты во внутреннем контуре банка без обращения к внешним сервисам" data-en="All solutions run in the bank's internal perimeter without external API calls">All solutions run in the bank's internal perimeter without external API calls</span></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <!-- Timeline item -->
+                                                <div class="timeline-item">
+                                                    <div class="circle-dot"></div>
+                                                    <h3 class="timeline-date">
+                                                        <i class="fa fa-calendar"></i> <span data-ru="Август 2025 – Декабрь 2025" data-en="August 2025 – December 2025">August 2025 – December 2025</span>
+                                                    </h3>
+                                                    <h4 class="timeline-title"><a href="https://ligandpro.ru/"
+                                                            target="_blank"><span data-ru="Хемоинформатик — LigandPro" data-en="Cheminformatician — LigandPro">Cheminformatician — LigandPro</span></a></h4>
+                                                    <div class="timeline-text">
+                                                        <div class="work-location">
+                                                            <span data-ru="LigandPro, Москва, Сколково." data-en="LigandPro, Moscow, Skolkovo.">LigandPro, Moscow, Skolkovo.</span>
+                                                        </div>
+                                                        <ul class="work-responsibilities">
+                                                            <li><span data-ru="Разработка моделей машинного обучения для прогнозирования биологической активности и токсичности лекарственных соединений" data-en="Development of machine learning models for predicting drug activity and toxicity">Development of machine learning models for predicting drug activity and toxicity</span></li>
+                                                            <li><span data-ru="Публикация научной статьи по противоопухолевым препаратам" data-en="Publication of a scientific paper on anticancer compounds">Publication of a scientific paper on anticancer compounds</span></li>
+                                                            <li><span data-ru="Разработка веб-приложения для комплексного анализа ингибиторов KRAS" data-en="Development of a web application for comprehensive analysis of KRAS inhibitors">Development of a web application for comprehensive analysis of KRAS inhibitors</span></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
                                                 <!-- Timeline item -->
                                                 <div class="timeline-item">
                                                     <div class="circle-dot"></div>
@@ -429,7 +462,7 @@
                             <div class="certificate-item-inner shadow-dark">
                                 <h4><span data-ru="PRO C#. Основы программирования" data-en="PRO C#. Programming Basics">PRO C#. Programming Basics</span></h4>
                                 <div class="certificate-img">
-                                    <img src="img/certificate/Basics of C# programming.png" alt="PRO C#. Programming Basics">
+                                    <img src="img/certificate/Basics of C%23 programming.png" alt="PRO C#. Programming Basics">
                                 </div>
                             </div>
                         </div>
@@ -867,9 +900,9 @@
             typed.reset();
         }
         
-        // Set Russian as default language on page load
+        // Set English as default language on page load
         document.addEventListener('DOMContentLoaded', function() {
-            switchLanguage('ru');
+            switchLanguage('en');
         });
     </script>
 </body>
