@@ -22,6 +22,7 @@ plugins:
 # Exclude from processing
 exclude:
   - README.md
+  - rag/
   - Gemfile
   - Gemfile.lock
   - node_modules

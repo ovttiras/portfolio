@@ -61,3 +61,8 @@ node_modules/
 # Personal notes
 notes.txt
 todo.txt
+# RAG
+rag/.env
+**/__pycache__/
+.pytest_cache/
+.venv/

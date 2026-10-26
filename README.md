@@ -21,6 +21,12 @@ Hello! I'm Oleg Tinkov, PhD in Cheminformatics, Data Scientist with 4+ years of 
 - Smooth scrolling navigation
 - Professional color schemes
 
+### 🤖 AI Assistant (RAG)
+- Chat widget that answers visitors' questions about blog posts, projects and experience
+- Retrieval-Augmented Generation with LangChain, Gemini API (Google AI Studio) and source citations
+- Streaming answers, RU/EN, conversation memory
+- Backend and setup guide: [`rag/README.md`](rag/README.md)
+
 ### 📱 Responsive Layout
 - Mobile-first design approach
 - Optimized for tablets and desktops

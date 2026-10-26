@@ -1,0 +1,9 @@
+.git
+img
+css
+js
+php
+**/__pycache__
+**/.pytest_cache
+rag/.env
+rag/tests
