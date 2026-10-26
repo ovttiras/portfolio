@@ -1,5 +1,6 @@
 // ================================ typing animation
-var typed = new Typed(".typing",{
+// на главной анимации может не быть — тогда typed = null
+var typed = document.querySelector(".typing") && new Typed(".typing",{
     strings:["", "Data Scientist", "Machine Learning Engineer", "Data Analyst"],
     typeSpeed:100,
     BackSpeed:60,

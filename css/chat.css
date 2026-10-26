@@ -2,312 +2,264 @@
 .home.section {
     display: block;
     padding: 0 30px;
+    background:
+        radial-gradient(ellipse 70% 45% at 50% 0%, color-mix(in srgb, var(--skin-color) 12%, transparent), transparent 70%),
+        var(--bg-black-900);
 }
 
 .chat-home {
     display: flex;
     flex-direction: column;
-    height: 100vh;
-    max-width: 920px;
+    justify-content: center;
+    min-height: 100vh;
+    max-width: 1000px;
     margin: 0 auto;
-    padding: 30px 0 16px;
-}
-
-/* ---------- Шапка: аватар, имя, кнопки */
-.chat-hero {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    grid-template-areas:
-        "avatar info"
-        "avatar actions";
-    column-gap: 24px;
-    align-items: center;
-    padding-bottom: 18px;
+    padding: 60px 0;
+    text-align: center;
     color: var(--text-black-900);
-    transition: all 0.3s ease;
 }
 
-.chat-hero-avatar {
-    grid-area: avatar;
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 4px solid var(--skin-color);
-    box-shadow: 0 10px 30px var(--bg-shadow);
-    transition: all 0.3s ease;
-}
-
-.chat-hero .home-info {
-    grid-area: info;
+.chat-home .home-info {
     flex: none;
     max-width: none;
 }
 
-.chat-hero h3.hello {
-    margin: 0;
-    font-size: 24px;
+/* ---------- Заголовок */
+.chat-home .home-info .chat-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 22px;
+    padding: 5px 14px;
+    border: 1px solid var(--skin-color);
+    border-radius: 50px;
+    font: 13px 'JetBrains Mono', monospace;
+    color: var(--skin-color);
 }
 
-.chat-hero h3.my-profession {
-    margin: 2px 0 6px;
-    font-size: 24px;
+.chat-eyebrow i {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--skin-color);
+    animation: rag-pulse 2s ease-in-out infinite;
 }
 
-.chat-hero .home-info .chat-hero-tagline {
-    max-width: 640px;
-    margin-bottom: 0;
-    font-size: 15px;
+@keyframes rag-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+.chat-title {
+    font: 400 clamp(34px, 4.6vw, 58px)/1.15 'Instrument Serif', Georgia, serif;
+    letter-spacing: -0.5px;
+    color: var(--text-black-900);
+}
+
+.chat-home .home-info .chat-subtitle {
+    max-width: 820px;
+    margin: 18px auto 30px;
+    font-size: 16px;
     line-height: 1.6;
     color: var(--text-black-700);
 }
 
-.chat-hero-actions {
-    grid-area: actions;
+/* ---------- Поле ввода */
+.rag-chat {
+    font-family: 'Poppins', sans-serif;
+}
+
+.rag-chat-inputbox {
+    border: 1px solid var(--bg-black-50);
+    border-radius: 18px;
+    background: var(--bg-black-100);
+    box-shadow: 0 10px 40px var(--bg-shadow);
+    text-align: left;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.rag-chat-inputbox:focus-within {
+    border-color: var(--skin-color);
+    box-shadow: 0 10px 40px var(--bg-shadow), 0 0 0 3px color-mix(in srgb, var(--skin-color) 18%, transparent);
+}
+
+.rag-chat-input {
+    display: block;
+    width: 100%;
+    min-height: 64px;
+    max-height: 200px;
+    padding: 16px 20px 8px;
+    border: none;
+    resize: none;
+    background: transparent;
+    color: var(--text-black-900);
+    font: 16px 'Poppins', sans-serif;
+    line-height: 1.5;
+}
+
+.rag-chat-input::placeholder {
+    color: var(--text-black-700);
+    opacity: 0.6;
+}
+
+.rag-chat-bar {
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-top: 12px;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 12px 10px 20px;
+    border-top: 1px solid var(--bg-black-50);
 }
 
-.chat-hero-actions .btn {
-    padding: 8px 22px;
-    font-size: 14px;
-}
-
-.chat-hero-icon {
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
+.rag-chat-model {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    border: 1px solid var(--bg-black-50);
-    background: var(--bg-black-100);
-    color: var(--text-black-900);
-    font-size: 17px;
-    transition: all 0.2s ease;
-}
-
-.chat-hero-icon:hover {
-    color: #ffffff;
-    background: var(--skin-color);
-    border-color: var(--skin-color);
-}
-
-/* Во время диалога шапка сжимается в одну строку */
-.chat-home.chat-active .chat-hero {
-    grid-template-areas: "avatar info actions";
-    grid-template-columns: auto 1fr auto;
-    column-gap: 14px;
-    padding-bottom: 12px;
-    border-bottom: 1px solid var(--bg-black-50);
-}
-
-.chat-home.chat-active .chat-hero-avatar {
-    width: 52px;
-    height: 52px;
-    border-width: 2px;
-}
-
-.chat-home.chat-active .chat-hero h3.hello {
-    font-size: 18px;
-}
-
-.chat-home.chat-active .chat-hero h3.my-profession {
-    margin: 0;
-    font-size: 15px;
-}
-
-.chat-home.chat-active .chat-hero-tagline,
-.chat-home.chat-active .chat-hero-actions .btn {
-    display: none;
-}
-
-.chat-home.chat-active .chat-hero-actions {
-    margin-top: 0;
-}
-
-/* ---------- Чат */
-.rag-chat {
-    flex: 1;
-    min-height: 0;
-    display: flex;
-    flex-direction: column;
-    font-family: 'Poppins', sans-serif;
-}
-
-.rag-chat-messages {
-    flex: 1;
-    min-height: 0;
-    overflow-y: auto;
-    padding: 18px 4px;
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-}
-
-/* Пустое состояние: приглашение и карточки-подсказки */
-.rag-empty {
-    margin: auto 0;
-    text-align: center;
-    animation: rag-fade-in 0.4s ease;
-}
-
-.rag-empty-title {
-    font-size: 30px;
-    font-weight: 700;
-    color: var(--text-black-900);
-}
-
-.rag-empty-text {
-    max-width: 560px;
-    margin: 8px auto 26px;
-    font-size: 15px;
+    gap: 10px;
+    min-width: 0;
+    font: 13px 'JetBrains Mono', monospace;
     color: var(--text-black-700);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
+.rag-dot {
+    flex: 0 0 8px;
+    height: 8px;
+    border: 2px solid var(--skin-color);
+    border-radius: 50%;
+}
+
+.rag-chat-send {
+    flex: 0 0 64px;
+    height: 38px;
+    border: none;
+    border-radius: 50px;
+    background: var(--skin-color);
+    color: #ffffff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.rag-chat-send:hover {
+    transform: scale(1.06);
+}
+
+.rag-chat-send:disabled {
+    opacity: 0.5;
+    cursor: default;
+    transform: none;
+}
+
+/* ---------- Типичные вопросы */
 .rag-suggestions {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-    text-align: left;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 22px;
 }
 
-.rag-suggestion {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    grid-template-areas:
-        "icon label"
-        "icon text";
-    column-gap: 14px;
+.rag-chip {
+    display: inline-flex;
     align-items: center;
-    padding: 14px 16px;
+    gap: 8px;
+    padding: 8px 16px;
     border: 1px solid var(--bg-black-50);
-    border-radius: 14px;
+    border-radius: 50px;
     background: var(--bg-black-100);
     color: var(--text-black-900);
-    font-family: 'Poppins', sans-serif;
-    text-align: left;
+    font: 13px 'Poppins', sans-serif;
     cursor: pointer;
     transition: all 0.2s ease;
 }
 
-.rag-suggestion:hover {
+.rag-chip i {
+    color: var(--skin-color);
+}
+
+.rag-chip:hover {
     border-color: var(--skin-color);
-    box-shadow: 0 6px 20px var(--bg-shadow);
     transform: translateY(-2px);
 }
 
-.rag-suggestion i {
-    grid-area: icon;
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--bg-black-50);
-    color: var(--skin-color);
-    font-size: 17px;
+/* ---------- Ответ (на экране всегда только последний) */
+.rag-answer {
+    margin-top: 26px;
+    padding: 20px 24px;
+    border: 1px solid var(--bg-black-50);
+    border-radius: 18px;
+    background: var(--bg-black-100);
+    text-align: left;
+    animation: rag-fade-in 0.3s ease;
 }
 
-.rag-suggestion-label {
-    grid-area: label;
-    font-size: 14px;
-    font-weight: 600;
+.rag-answer[hidden] {
+    display: none;
 }
 
-.rag-suggestion-text {
-    grid-area: text;
-    font-size: 13px;
-    line-height: 1.4;
+.rag-answer-question {
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--bg-black-50);
+    font: 14px 'JetBrains Mono', monospace;
     color: var(--text-black-700);
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
 }
 
-/* Сообщения */
-.rag-msg {
-    display: flex;
-    gap: 12px;
-    animation: rag-fade-in 0.25s ease;
+.rag-answer-question::before {
+    content: "› ";
+    color: var(--skin-color);
 }
 
-.rag-msg-user {
-    justify-content: flex-end;
-}
-
-.rag-msg-avatar {
-    flex: 0 0 34px;
-    width: 34px;
-    height: 34px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid var(--skin-color);
-}
-
-.rag-msg-body {
-    min-width: 0;
-    max-width: 85%;
-}
-
-.rag-msg-bubble {
+.rag-answer-bubble {
     font-size: 15px;
-    line-height: 1.65;
+    line-height: 1.7;
     color: var(--text-black-900);
     overflow-wrap: anywhere;
 }
 
-.rag-msg-assistant .rag-msg-bubble {
-    padding-top: 5px;
-}
-
-.rag-msg-user .rag-msg-bubble {
-    padding: 10px 16px;
-    border-radius: 18px 18px 4px 18px;
-    background: var(--skin-color);
-    color: #ffffff;
-    white-space: pre-wrap;
-}
-
-.rag-msg-bubble p + p,
-.rag-msg-bubble p + ul,
-.rag-msg-bubble p + ol,
-.rag-msg-bubble ul + p,
-.rag-msg-bubble ol + p {
+.rag-answer-bubble p + p,
+.rag-answer-bubble p + ul,
+.rag-answer-bubble p + ol,
+.rag-answer-bubble ul + p,
+.rag-answer-bubble ol + p {
     margin-top: 10px;
 }
 
-.rag-msg-bubble ul,
-.rag-msg-bubble ol {
+.rag-answer-bubble ul,
+.rag-answer-bubble ol {
     margin-top: 4px;
     padding-left: 22px;
 }
 
-.rag-msg-bubble ul {
+.rag-answer-bubble ul {
     list-style: disc;
 }
 
-.rag-msg-bubble ol {
+.rag-answer-bubble ol {
     list-style: decimal;
 }
 
-.rag-msg-bubble li + li {
+.rag-answer-bubble li + li {
     margin-top: 3px;
 }
 
-.rag-msg-bubble a {
+.rag-answer-bubble a {
     color: var(--skin-color);
     text-decoration: underline;
 }
 
-.rag-msg-bubble code {
+.rag-answer-bubble code {
     font-size: 13px;
     padding: 1px 5px;
     border-radius: 4px;
     background: var(--bg-black-50);
 }
 
-.rag-msg-bubble pre {
+.rag-answer-bubble pre {
     margin: 8px 0;
     padding: 12px;
     border-radius: 8px;
@@ -315,12 +267,12 @@
     overflow-x: auto;
 }
 
-.rag-msg-bubble pre code {
+.rag-answer-bubble pre code {
     padding: 0;
     background: none;
 }
 
-.rag-msg-bubble .rag-cite {
+.rag-answer-bubble .rag-cite {
     display: inline-block;
     min-width: 18px;
     height: 18px;
@@ -336,12 +288,20 @@
     vertical-align: text-top;
 }
 
+.rag-answer-footer {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 14px;
+}
+
 .rag-sources {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     gap: 6px;
-    margin-top: 10px;
+    min-width: 0;
     font-size: 12px;
 }
 
@@ -355,7 +315,6 @@
     padding: 3px 10px;
     border: 1px solid var(--bg-black-50);
     border-radius: 50px;
-    background: var(--bg-black-100);
     color: var(--text-black-700);
     white-space: nowrap;
     overflow: hidden;
@@ -370,6 +329,20 @@
 a.rag-source:hover {
     border-color: var(--skin-color);
     color: var(--text-black-900);
+}
+
+.rag-chat-clear {
+    flex: none;
+    border: none;
+    background: none;
+    color: var(--text-black-700);
+    font: 12px 'Poppins', sans-serif;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.rag-chat-clear:hover {
+    color: var(--skin-color);
 }
 
 .rag-typing {
@@ -399,98 +372,14 @@ a.rag-source:hover {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Поле ввода */
-.rag-chat-form {
-    padding-top: 8px;
-}
-
-.rag-chat-inputbox {
-    display: flex;
-    align-items: flex-end;
-    gap: 10px;
-    padding: 8px 8px 8px 20px;
-    border: 1px solid var(--bg-black-50);
-    border-radius: 26px;
-    background: var(--bg-black-100);
-    box-shadow: 0 8px 30px var(--bg-shadow);
-    transition: border-color 0.2s ease;
-}
-
-.rag-chat-inputbox:focus-within {
-    border-color: var(--skin-color);
-}
-
-.rag-chat-input {
-    flex: 1;
-    resize: none;
-    max-height: 160px;
-    padding: 9px 0;
-    border: none;
-    background: transparent;
-    color: var(--text-black-900);
-    font: 15px 'Poppins', sans-serif;
-    line-height: 1.5;
-}
-
-.rag-chat-input::placeholder {
+.rag-footnote {
+    margin-top: 26px;
+    font: 13px/1.6 'JetBrains Mono', monospace;
     color: var(--text-black-700);
-    opacity: 0.7;
+    opacity: 0.8;
 }
 
-.rag-chat-send {
-    flex: 0 0 42px;
-    height: 42px;
-    border: none;
-    border-radius: 50%;
-    background: var(--skin-color);
-    color: #ffffff;
-    font-size: 16px;
-    cursor: pointer;
-    transition: transform 0.2s ease, opacity 0.2s ease;
-}
-
-.rag-chat-send:hover {
-    transform: scale(1.08);
-}
-
-.rag-chat-send:disabled {
-    opacity: 0.5;
-    cursor: default;
-    transform: none;
-}
-
-.rag-chat-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    padding: 8px 10px 0;
-    font-size: 12px;
-    color: var(--text-black-700);
-}
-
-.rag-chat-disclaimer {
-    opacity: 0.75;
-}
-
-.rag-chat-clear {
-    border: none;
-    background: none;
-    color: var(--text-black-700);
-    font: 12px 'Poppins', sans-serif;
-    cursor: pointer;
-    white-space: nowrap;
-}
-
-.rag-chat-clear:hover {
-    color: var(--skin-color);
-}
-
-.chat-home:not(.chat-active) .rag-chat-clear {
-    visibility: hidden;
-}
-
-/* Кнопка «Спросить AI» на остальных разделах */
+/* ---------- Кнопка «Спросить AI» на остальных разделах */
 .rag-chat-launcher {
     position: fixed;
     right: 25px;
@@ -525,7 +414,7 @@ a.rag-source:hover {
 /* ---------- Адаптивность */
 @media (max-width: 1199px) {
     .chat-home {
-        padding-top: 75px;
+        padding-top: 90px;
     }
 }
 
@@ -535,72 +424,49 @@ a.rag-source:hover {
     }
 
     .chat-home {
-        padding-bottom: 10px;
+        justify-content: flex-start;
+        padding-bottom: 30px;
     }
 
-    .chat-hero {
-        grid-template-columns: auto 1fr;
-        grid-template-areas:
-            "avatar info"
-            "actions actions";
-        column-gap: 14px;
-        /* справа фиксированные кнопки переключателя темы */
-        padding-right: 50px;
+    .chat-home {
+        padding-top: 100px;
     }
 
-    .chat-hero-avatar {
-        width: 72px;
-        height: 72px;
-        border-width: 3px;
+    /* справа сверху фиксированные кнопки переключателя темы — плашку прижимаем влево */
+    .chat-home .home-info .chat-eyebrow {
+        display: flex;
+        width: fit-content;
+        max-width: calc(100% - 56px);
+        margin-right: auto;
+        font-size: 11px;
+        text-align: left;
     }
 
-    .chat-hero h3.hello,
-    .chat-hero h3.my-profession {
-        font-size: 18px;
+    .chat-home .home-info .chat-subtitle {
+        font-size: 14px;
     }
 
-    .chat-hero .chat-hero-tagline {
-        display: none;
+    .rag-chat-model {
+        font-size: 11px;
     }
 
-    .chat-home.chat-active .chat-hero {
-        grid-template-areas: "avatar info";
-        grid-template-columns: auto 1fr;
+    .rag-chip {
+        font-size: 12px;
+        padding: 7px 12px;
+        text-align: left;
     }
 
-    .chat-home.chat-active .chat-hero-actions {
-        display: none;
+    .rag-answer {
+        padding: 16px;
     }
 
-    .rag-empty-title {
-        font-size: 22px;
+    .rag-answer-footer {
+        flex-direction: column;
+        align-items: flex-start;
     }
 
-    .rag-suggestions {
-        grid-template-columns: 1fr;
-        gap: 8px;
-    }
-
-    .rag-suggestion {
-        padding: 10px 12px;
-    }
-
-    .rag-suggestion i {
-        width: 34px;
-        height: 34px;
-        font-size: 15px;
-    }
-
-    .rag-msg-body {
-        max-width: 100%;
-    }
-
-    .rag-chat-disclaimer {
-        display: none;
-    }
-
-    .rag-chat-footer {
-        justify-content: center;
+    .rag-footnote {
+        font-size: 11px;
     }
 
     .rag-chat-launcher {
