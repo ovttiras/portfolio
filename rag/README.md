@@ -1,10 +1,10 @@
 # AI-ассистент портфолио (RAG на LangChain)
 
-Чат-виджет на сайте отвечает посетителям на вопросы по статьям блога, проектам, опыту и навыкам,
+Чат на главной странице сайта отвечает посетителям на вопросы по статьям блога, проектам, опыту и навыкам,
 опираясь только на ваши материалы, и показывает ссылки на источники `[1]`, `[2]`.
 
 ```
-GitHub Pages (index.html + js/chat-widget.js)
+GitHub Pages (index.html + js/chat.js)
         │  POST /api/chat/stream (SSE)
         ▼
 FastAPI (rag/app/main.py)
@@ -98,7 +98,7 @@ gcloud run deploy portfolio-rag --image REGION-docker.pkg.dev/PROJECT/repo/portf
 После деплоя укажите адрес сервиса в `index.html`:
 
 ```html
-<script src="js/chat-widget.js?v=1" data-api-url="https://portfolio-rag.onrender.com"></script>
+<script src="js/chat.js?v=1" data-api-url="https://portfolio-rag.onrender.com"></script>
 ```
 
 ## Безопасность и расходы

@@ -1,53 +1,55 @@
-// ================================ AI-ассистент (RAG по блогу и портфолио)
+// ================================ AI-ассистент (RAG по блогу и портфолио) — главный экран сайта
 // Адрес бэкенда задаётся атрибутом data-api-url у тега <script>.
 (function () {
     const script = document.currentScript;
     const API_URL = ((script && script.dataset.apiUrl) || "http://localhost:8000").replace(/\/$/, "");
     const STORAGE_KEY = "rag-chat-history";
     const MAX_HISTORY = 12;
+    const AVATAR = "img/hero.jpg";
 
     const i18n = {
         en: {
-            open: "Ask my AI",
-            title: "AI assistant",
-            subtitle: "Answers based on Oleg's blog & portfolio",
-            welcome: "Hi! I'm Oleg's AI assistant. Ask me about his blog posts, projects, experience or skills.",
-            placeholder: "Ask a question…",
+            launcher: "Ask my AI",
+            emptyTitle: "What would you like to know?",
+            emptyText: "I'm Oleg's AI assistant. I answer based on his blog, projects and CV, with links to the sources.",
+            placeholder: "Ask anything about Oleg…",
             send: "Send",
-            clear: "Clear chat",
-            close: "Close",
+            clear: "New chat",
             sources: "Sources",
             error: "Sorry, the assistant is unavailable right now. You can contact Oleg at oleg.tinkov.chem@mail.ru.",
             rateLimit: "Too many questions — please wait a minute.",
             disclaimer: "AI can make mistakes. Check the sources.",
             suggestions: [
-                "What is Oleg's experience with RAG and LLMs?",
-                "Which drug discovery projects has he built?",
-                "What does he write about in his blog?",
-                "How can I contact Oleg?"
+                ["fa-robot", "RAG & LLM", "What is Oleg's experience with RAG and LLMs?"],
+                ["fa-flask", "Drug discovery", "Which drug discovery projects has he built?"],
+                ["fa-pen-nib", "Blog", "What does he write about in his blog?"],
+                ["fa-briefcase", "Career", "Where does Oleg work now and what does he do?"]
             ]
         },
         ru: {
-            open: "Спросить AI",
-            title: "AI-ассистент",
-            subtitle: "Отвечает по блогу и портфолио Олега",
-            welcome: "Привет! Я AI-ассистент Олега. Спросите меня о его статьях в блоге, проектах, опыте или навыках.",
-            placeholder: "Задайте вопрос…",
+            launcher: "Спросить AI",
+            emptyTitle: "Что вы хотите узнать?",
+            emptyText: "Я AI-ассистент Олега. Отвечаю по его блогу, проектам и резюме — со ссылками на источники.",
+            placeholder: "Спросите что угодно об Олеге…",
             send: "Отправить",
-            clear: "Очистить чат",
-            close: "Закрыть",
+            clear: "Новый чат",
             sources: "Источники",
             error: "Извините, ассистент сейчас недоступен. Связаться с Олегом можно по адресу oleg.tinkov.chem@mail.ru.",
             rateLimit: "Слишком много вопросов — подождите минуту.",
             disclaimer: "AI может ошибаться. Проверяйте источники.",
             suggestions: [
-                "Какой у Олега опыт с RAG и LLM?",
-                "Какие проекты по разработке лекарств он сделал?",
-                "О чём он пишет в блоге?",
-                "Как связаться с Олегом?"
+                ["fa-robot", "RAG и LLM", "Какой у Олега опыт с RAG и LLM?"],
+                ["fa-flask", "Разработка лекарств", "Какие проекты по разработке лекарств он сделал?"],
+                ["fa-pen-nib", "Блог", "О чём он пишет в блоге?"],
+                ["fa-briefcase", "Карьера", "Где сейчас работает Олег и чем занимается?"]
             ]
         }
     };
+
+    const root = document.getElementById("rag-chat");
+    if (!root) return;
+    const home = root.closest(".chat-home");
+    const homeSection = document.getElementById("home");
 
     let history = loadHistory();
     let busy = false;
@@ -127,107 +129,102 @@
     }
 
     // ---------------------------------------------------------------- Разметка
-    const root = document.createElement("div");
-    root.className = "rag-chat";
     root.innerHTML = `
-        <button type="button" class="rag-chat-launcher" aria-expanded="false" aria-controls="rag-chat-panel">
-            <i class="fas fa-robot"></i><span class="rag-chat-launcher-label"></span>
-        </button>
-        <div class="rag-chat-panel" id="rag-chat-panel" role="dialog" aria-modal="false" hidden>
-            <div class="rag-chat-header">
-                <div class="rag-chat-avatar"><i class="fas fa-robot"></i></div>
-                <div class="rag-chat-heading">
-                    <h4 class="rag-chat-title"></h4>
-                    <p class="rag-chat-subtitle"></p>
-                </div>
-                <button type="button" class="rag-chat-icon-btn rag-chat-clear"><i class="fas fa-trash-alt"></i></button>
-                <button type="button" class="rag-chat-icon-btn rag-chat-close"><i class="fas fa-times"></i></button>
-            </div>
-            <div class="rag-chat-messages" aria-live="polite"></div>
-            <div class="rag-chat-suggestions"></div>
-            <form class="rag-chat-form">
+        <div class="rag-chat-messages" aria-live="polite"></div>
+        <form class="rag-chat-form">
+            <div class="rag-chat-inputbox">
                 <textarea class="rag-chat-input" rows="1" maxlength="1000"></textarea>
-                <button type="submit" class="rag-chat-send"><i class="fas fa-paper-plane"></i></button>
-            </form>
-            <p class="rag-chat-disclaimer"></p>
-        </div>`;
-    document.body.appendChild(root);
+                <button type="submit" class="rag-chat-send"><i class="fas fa-arrow-up"></i></button>
+            </div>
+            <div class="rag-chat-footer">
+                <span class="rag-chat-disclaimer"></span>
+                <button type="button" class="rag-chat-clear"><i class="fas fa-plus"></i> <span></span></button>
+            </div>
+        </form>`;
+
+    const launcher = document.createElement("button");
+    launcher.type = "button";
+    launcher.className = "rag-chat-launcher";
+    launcher.innerHTML = '<i class="fas fa-robot"></i><span></span>';
+    document.body.appendChild(launcher);
 
     const $ = (sel) => root.querySelector(sel);
-    const launcher = $(".rag-chat-launcher");
-    const panel = $(".rag-chat-panel");
     const messagesEl = $(".rag-chat-messages");
-    const suggestionsEl = $(".rag-chat-suggestions");
     const form = $(".rag-chat-form");
     const input = $(".rag-chat-input");
     const sendBtn = $(".rag-chat-send");
+    const clearBtn = $(".rag-chat-clear");
 
     function applyLanguage() {
-        $(".rag-chat-launcher-label").textContent = t("open");
-        launcher.setAttribute("aria-label", t("open"));
-        $(".rag-chat-title").textContent = t("title");
-        $(".rag-chat-subtitle").textContent = t("subtitle");
-        $(".rag-chat-clear").title = t("clear");
-        $(".rag-chat-clear").setAttribute("aria-label", t("clear"));
-        $(".rag-chat-close").title = t("close");
-        $(".rag-chat-close").setAttribute("aria-label", t("close"));
+        launcher.querySelector("span").textContent = t("launcher");
+        launcher.setAttribute("aria-label", t("launcher"));
+        clearBtn.querySelector("span").textContent = t("clear");
         $(".rag-chat-disclaimer").textContent = t("disclaimer");
         input.placeholder = t("placeholder");
         sendBtn.setAttribute("aria-label", t("send"));
-        panel.setAttribute("aria-label", t("title"));
         renderAll();
+    }
+
+    function renderEmptyState() {
+        const empty = document.createElement("div");
+        empty.className = "rag-empty";
+        empty.innerHTML = `
+            <h2 class="rag-empty-title">${escapeHtml(t("emptyTitle"))}</h2>
+            <p class="rag-empty-text">${escapeHtml(t("emptyText"))}</p>
+            <div class="rag-suggestions"></div>`;
+        const grid = empty.querySelector(".rag-suggestions");
+        t("suggestions").forEach(([icon, label, question]) => {
+            const card = document.createElement("button");
+            card.type = "button";
+            card.className = "rag-suggestion";
+            card.innerHTML = `<i class="fas ${icon}"></i><span class="rag-suggestion-label">${escapeHtml(label)}</span>`
+                + `<span class="rag-suggestion-text">${escapeHtml(question)}</span>`;
+            card.addEventListener("click", () => ask(question));
+            grid.appendChild(card);
+        });
+        messagesEl.appendChild(empty);
     }
 
     function addMessage(role, text, sources) {
         const el = document.createElement("div");
         el.className = `rag-msg rag-msg-${role}`;
-        const bubble = document.createElement("div");
-        bubble.className = "rag-msg-bubble";
-        el.appendChild(bubble);
+        el.innerHTML = (role === "assistant" ? `<img class="rag-msg-avatar" src="${AVATAR}" alt="">` : "")
+            + '<div class="rag-msg-body"><div class="rag-msg-bubble"></div></div>';
         messagesEl.appendChild(el);
         updateMessage(el, role, text, sources || []);
         return el;
     }
 
     function updateMessage(el, role, text, sources) {
+        const body = el.querySelector(".rag-msg-body");
         const bubble = el.querySelector(".rag-msg-bubble");
         if (role === "user") bubble.textContent = text;
         else bubble.innerHTML = text ? renderMarkdown(text, sources) : '<span class="rag-typing"><i></i><i></i><i></i></span>';
 
         let list = el.querySelector(".rag-sources");
         if (list) list.remove();
-        // Показываем только источники, на которые модель сослалась (или все, если ссылок нет)
+        // Показываем источники, на которые модель сослалась (или все, если ссылок нет)
         const cited = sources.filter((s) => text.includes(`[${s.n}]`));
         const shown = cited.length ? cited : (text && !busy ? sources : []);
         if (role === "assistant" && shown.length) {
             list = document.createElement("div");
             list.className = "rag-sources";
             list.innerHTML = `<span class="rag-sources-title">${t("sources")}:</span>` + shown.map((s) => {
-                const label = `${s.n}. ${escapeHtml(s.title)}${s.date ? ` <small>${escapeHtml(s.date)}</small>` : ""}`;
+                const label = `<b>${s.n}</b> ${escapeHtml(s.title)}`;
                 return s.url
-                    ? `<a href="${escapeHtml(s.url)}" target="_blank" rel="noopener">${label}</a>`
-                    : `<span>${label}</span>`;
+                    ? `<a class="rag-source" href="${escapeHtml(s.url)}" target="_blank" rel="noopener">${label}</a>`
+                    : `<span class="rag-source">${label}</span>`;
             }).join("");
-            el.appendChild(list);
+            body.appendChild(list);
         }
         messagesEl.scrollTop = messagesEl.scrollHeight;
     }
 
     function renderAll() {
         messagesEl.innerHTML = "";
-        addMessage("assistant", t("welcome"));
+        if (home) home.classList.toggle("chat-active", history.length > 0);
+        if (!history.length) renderEmptyState();
         history.forEach((m) => addMessage(m.role, m.content, m.sources));
-        suggestionsEl.innerHTML = "";
-        if (!history.length) {
-            t("suggestions").forEach((q) => {
-                const chip = document.createElement("button");
-                chip.type = "button";
-                chip.className = "rag-chip";
-                chip.textContent = q;
-                chip.addEventListener("click", () => ask(q));
-                suggestionsEl.appendChild(chip);
-            });
-        }
     }
 
     // ---------------------------------------------------------------- Запрос
@@ -236,11 +233,14 @@
         if (!question || busy) return;
         busy = true;
         sendBtn.disabled = true;
-        suggestionsEl.innerHTML = "";
         input.value = "";
         autoGrow();
 
         const payloadHistory = history.slice(-MAX_HISTORY).map(({ role, content }) => ({ role, content }));
+        if (!history.length) {
+            messagesEl.innerHTML = "";
+            if (home) home.classList.add("chat-active");
+        }
         history.push({ role: "user", content: question });
         addMessage("user", question);
         const reply = { role: "assistant", content: "", sources: [] };
@@ -294,28 +294,32 @@
     }
 
     // ---------------------------------------------------------------- События
-    function toggle(open) {
-        panel.hidden = !open;
-        root.classList.toggle("open", open);
-        launcher.setAttribute("aria-expanded", String(open));
-        if (open) {
-            messagesEl.scrollTop = messagesEl.scrollHeight;
-            input.focus();
-        }
-    }
-
     function autoGrow() {
         input.style.height = "auto";
-        input.style.height = Math.min(input.scrollHeight, 120) + "px";
+        input.style.height = Math.min(input.scrollHeight, 160) + "px";
     }
 
-    launcher.addEventListener("click", () => toggle(panel.hidden));
-    $(".rag-chat-close").addEventListener("click", () => toggle(false));
-    $(".rag-chat-clear").addEventListener("click", () => {
+    // Кнопка «Спросить AI» видна на остальных разделах и возвращает на главную с чатом
+    function syncLauncher() {
+        launcher.classList.toggle("visible", !homeSection.classList.contains("active"));
+    }
+    launcher.addEventListener("click", () => {
+        // Переключаем раздел сами: клик по пункту меню на мобильных ещё и открывает боковую панель
+        document.querySelectorAll(".section").forEach((s) => s.classList.remove("active", "back-section"));
+        homeSection.classList.add("active");
+        document.querySelectorAll(".nav a").forEach((a) => {
+            a.classList.toggle("active", a.getAttribute("href") === "#home");
+        });
+        input.focus();
+    });
+    new MutationObserver(syncLauncher).observe(homeSection, { attributes: true, attributeFilter: ["class"] });
+
+    clearBtn.addEventListener("click", () => {
         if (busy) return;
         history = [];
         saveHistory();
         renderAll();
+        input.focus();
     });
     form.addEventListener("submit", (e) => {
         e.preventDefault();
@@ -328,12 +332,10 @@
             ask(input.value);
         }
     });
-    document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && !panel.hidden) toggle(false);
-    });
     document.querySelectorAll(".lang-btn").forEach((btn) => btn.addEventListener("click", () => {
         if (!busy) applyLanguage();
     }));
 
     applyLanguage();
+    syncLauncher();
 })();

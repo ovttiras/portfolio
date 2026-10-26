@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="css/skins/color-4.css" class="alternate-style" title="color-4" disabled>
     <link rel="stylesheet" href="css/skins/color-5.css" class="alternate-style" title="color-5" disabled>
     <link rel="stylesheet" href="css/style-switcher.css?v=3">
-    <link rel="stylesheet" href="css/chat-widget.css?v=1">
+    <link rel="stylesheet" href="css/chat.css?v=1">
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <!-- Замените G-XXXXXXXXXX на ваш Google Analytics ID -->
@@ -88,23 +88,24 @@
         </div>
         <!-- Main Contant -->
         <div class="main-content">
-            <!-- Home Section -->
+            <!-- Home Section: AI-чат — главный элемент сайта -->
             <section class="home active section" id="home">
-                <div class="container">
-                    <div class="row">
-                        <div class="home-info padd-15">
+                <div class="chat-home">
+                    <header class="chat-hero">
+                        <img class="chat-hero-avatar" src="img/hero.jpg" alt="Oleg Tinkov">
+                        <div class="home-info">
                             <h3 class="hello"><span data-ru="Привет, меня зовут" data-en="Hello, I'm">Hello, I'm</span> <span class="name" data-ru="Олег Тиньков" data-en="Tinkov Oleg">Tinkov Oleg</span></h3>
                             <h3 class="my-profession"><span data-ru="Я" data-en="I am">I am</span> <span class="typing">Data Scientist</span></h3>
-                            <p data-ru="Кандидат наук по хемоинформатике, Data Scientist с более чем 4-летним опытом создания и внедрения моделей машинного обучения (ML) для задач классификации, регрессии и скоринга. Специализируюсь на хемоинформатике, разработке лекарств, финансовой аналитике и моделировании кредитных рисков. Владею Python, SQL и ML-фреймворками. С 2020 года являюсь постоянным рецензентом в авторитетных международных журналах: более 40 научных публикаций, посвященных искусственному интеллекту, машинному обучению для разработки лекарств и решения медицинских задач." data-en="PhD in Cheminformatics, Data Scientist with 4+ years of experience creating and implementing machine learning (ML) models for classification, regression, and scoring tasks. Specialized in cheminformatics, drug discovery, financial analytics, and credit risk modeling. Proficient in Python, SQL, and ML frameworks. Since 2020, I have been a regular reviewer in reputable international journals: more than 40 scientific publications dedicated to artificial intelligence, machine learning for drug development, and solving medical problems.">PhD in Cheminformatics, Data Scientist with 4+ years of experience creating and implementing machine learning (ML) models for classification, regression, and scoring tasks. Specialized in cheminformatics, drug discovery, financial analytics, and credit risk modeling. Proficient in Python, SQL, and ML frameworks. Since 2020, I have been a regular reviewer in reputable international journals: more than 40 scientific publications dedicated to artificial intelligence, machine learning for drug development, and solving medical problems.
-                            </p>
-                            <div class="horizontal-buttons">
-                                <a href="doc/CV_Tinkov.pdf" class="btn" rel="noopener" download><span data-ru="Скачать Резюме" data-en="Download CV">Download CV</span></a>
-                            </div>
+                            <p class="chat-hero-tagline" data-ru="Кандидат наук по хемоинформатике, AI-инженер и Data Scientist: RAG и LLM, машинное обучение для разработки лекарств и финансовой аналитики. Спросите моего AI-ассистента об опыте, проектах и статьях блога." data-en="PhD in Cheminformatics, AI Engineer and Data Scientist: RAG and LLMs, machine learning for drug discovery and financial analytics. Ask my AI assistant about my experience, projects and blog posts.">PhD in Cheminformatics, AI Engineer and Data Scientist: RAG and LLMs, machine learning for drug discovery and financial analytics. Ask my AI assistant about my experience, projects and blog posts.</p>
                         </div>
-                        <div class="home-img padd-15">
-                            <img src="img/hero.jpg" alt="hero">
+                        <div class="chat-hero-actions">
+                            <a href="doc/CV_Tinkov.pdf" class="btn" rel="noopener" download><i class="fas fa-download"></i> <span data-ru="Резюме" data-en="CV">CV</span></a>
+                            <a href="https://github.com/ovttiras" class="chat-hero-icon" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            <a href="https://www.linkedin.com/in/oleg-tinkov-939840245/" class="chat-hero-icon" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                            <a href="mailto:oleg.tinkov.chem@mail.ru" class="chat-hero-icon" aria-label="Email"><i class="fas fa-envelope"></i></a>
                         </div>
-                    </div>
+                    </header>
+                    <div class="rag-chat" id="rag-chat"></div>
                 </div>
             </section>
             <!-- About Section -->
@@ -849,7 +850,7 @@
     <script src="js/script.js"></script>
     <script src="js/style-switcher.js"></script>
     <!-- AI-ассистент: укажите в data-api-url адрес развернутого бэкенда из папки rag/ -->
-    <script src="js/chat-widget.js?v=1" data-api-url="http://localhost:8000"></script>
+    <script src="js/chat.js?v=1" data-api-url="http://localhost:8000"></script>
     <script>
         // Make setActiveStyle function globally available
         function setActiveStyle(color) {

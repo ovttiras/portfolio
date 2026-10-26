@@ -22,7 +22,7 @@ Hello! I'm Oleg Tinkov, PhD in Cheminformatics, Data Scientist with 4+ years of 
 - Professional color schemes
 
 ### 🤖 AI Assistant (RAG)
-- Chat widget that answers visitors' questions about blog posts, projects and experience
+- Chat-first home page: the AI assistant answers visitors' questions about blog posts, projects and experience
 - Retrieval-Augmented Generation with LangChain, Gemini API (Google AI Studio) and source citations
 - Streaming answers, RU/EN, conversation memory
 - Backend and setup guide: [`rag/README.md`](rag/README.md)

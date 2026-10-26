@@ -256,6 +256,7 @@ def load_profile(html_path: Path, site_url: str) -> list[Document]:
     for lang, soup in _page_versions(html_path).items():
         parts = [
             soup.select_one(".home-info"),
+            soup.select_one(".about-text"),
             soup.select_one(".personal-info"),
             soup.select_one(".experience .timeline-item"),
             soup.select_one(".contact-info-item"),
