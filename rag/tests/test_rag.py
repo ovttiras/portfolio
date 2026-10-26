@@ -13,7 +13,7 @@ from langchain_core.language_models.fake_chat_models import FakeListChatModel
 from app import ingest, main
 from app.chain import RagAssistant, format_context
 from app.config import settings
-from app.loaders import load_cv, load_markdown_posts, load_site_sections
+from app.loaders import load_cv, load_markdown_posts, load_profile, load_site_sections
 
 POST = """---
 title: Как я построил RAG для банка
@@ -66,9 +66,30 @@ def test_site_and_cv():
     sections = load_site_sections(settings.site_html, settings.site_url)
     ids = {d.metadata["url"].rsplit("#", 1)[1] for d in sections}
     assert {"home", "about", "portfolio", "contact"} <= ids
-    about = next(d for d in sections if d.metadata["url"].endswith("#about"))
-    assert "Agroprombank" in about.page_content
+    assert any("Agroprombank" in d.page_content for d in sections)
+    assert any("Агропромбанк" in d.page_content for d in sections)
     assert load_cv(settings.cv_pdf, settings.site_url)[0].page_content
+
+
+def test_short_facts_get_their_own_block_in_both_languages():
+    sections = load_site_sections(settings.site_html, settings.site_url)
+    personal = [d for d in sections if "Age : 42" in d.page_content or "Возраст : 42" in d.page_content]
+    assert {d.metadata["lang"] for d in personal} == {"en", "ru"}
+    # отдельный короткий блок, а не хвост большого чанка с навыками
+    assert all(len(d.page_content) < 300 for d in personal)
+    assert len({d.metadata["doc_id"] for d in personal}) == 1
+
+
+async def test_profile_is_always_in_context(test_settings, fake_providers):
+    store = ingest.build_index(test_settings)
+    profile = load_profile(settings.site_html, settings.site_url)
+    assert all("42" in d.page_content for d in profile)
+    assistant = RagAssistant(store, FakeListChatModel(responses=["42 [1]"]), test_settings, pinned_docs=profile)
+    events = [e async for e in assistant.astream("Сколько Олегу лет?")]
+    sources = events[0]["sources"]
+    # обе языковые версии справки — один источник, и он первый
+    assert sources[0]["title"] == profile[0].metadata["title"]
+    assert sum(s["title"] == profile[1].metadata["title"] for s in sources) == 0
 
 
 def test_build_and_reload_index(test_settings, fake_providers):

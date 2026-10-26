@@ -82,8 +82,8 @@ class Settings:
     )
     chunk_size: int = field(default_factory=lambda: int(_env("CHUNK_SIZE", "1000")))
     chunk_overlap: int = field(default_factory=lambda: int(_env("CHUNK_OVERLAP", "150")))
-    retriever_k: int = field(default_factory=lambda: int(_env("RETRIEVER_K", "5")))
-    retriever_fetch_k: int = field(default_factory=lambda: int(_env("RETRIEVER_FETCH_K", "20")))
+    retriever_k: int = field(default_factory=lambda: int(_env("RETRIEVER_K", "6")))
+    retriever_fetch_k: int = field(default_factory=lambda: int(_env("RETRIEVER_FETCH_K", "25")))
 
     # --- HTTP API -----------------------------------------------------------
     allowed_origins: list[str] = field(

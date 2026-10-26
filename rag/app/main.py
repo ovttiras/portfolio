@@ -24,6 +24,7 @@ from pydantic import BaseModel, Field
 from .chain import RagAssistant
 from .config import settings
 from .ingest import load_index, meta_path
+from .loaders import load_profile
 from .providers import get_llm
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s %(name)s: %(message)s")
@@ -62,7 +63,8 @@ class RateLimiter:
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     store = load_index(settings)
-    app.state.assistant = RagAssistant(store, get_llm(settings), settings)
+    profile = load_profile(settings.site_html, settings.site_url)
+    app.state.assistant = RagAssistant(store, get_llm(settings), settings, pinned_docs=profile)
     log.info("RAG-ассистент готов: LLM=%s/%s", settings.llm_provider, settings.llm_model)
     yield
 

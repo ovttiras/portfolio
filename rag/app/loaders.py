@@ -164,39 +164,121 @@ def load_page_posts(urls: list[str]) -> list[Document]:
 
 # --------------------------------------------------------------------- портфолио
 
+# Смысловые блоки страницы: каждый индексируется отдельным документом, чтобы короткие факты
+# («Возраст: 42») не растворялись в длинных чанках со списком навыков.
+SITE_BLOCKS = ".home-info, .about-text, .personal-info, .skills, .education, .experience, .portfolio-item"
+# Подписи для блоков без собственного заголовка: (ru, en)
+BLOCK_LABELS = {
+    "home": ("Главная", "Home"),
+    "home-info": ("Кратко об Олеге", "Summary"),
+    "personal-info": ("Личные данные: возраст, образование, email", "Personal details: age, education, email"),
+}
+
+
+def _page_versions(html_path: Path) -> dict[str, BeautifulSoup]:
+    """Две версии страницы — английская (как в HTML) и русская (тексты из data-ru), как это делает
+    переключатель языка на сайте. Так русские вопросы находят русский текст и наоборот."""
+    html = html_path.read_text(encoding="utf-8")
+    versions = {"en": BeautifulSoup(html, "html.parser"), "ru": BeautifulSoup(html, "html.parser")}
+    for el in versions["ru"].select("[data-ru][data-en]"):
+        el.string = el["data-ru"]
+    for soup in versions.values():
+        for tag in soup(["script", "style", "iframe"]):
+            tag.decompose()
+        # Изображения сертификатов несут название в alt — сохраняем его как текст
+        for img in soup.find_all("img"):
+            img.replace_with(img.get("alt", ""))
+    return versions
+
+
+def _block_text(el) -> str:
+    """Текст блока по строкам исходной разметки: «<span>Age</span> : <span>42</span>» → «Age : 42»."""
+    lines = (re.sub(r"\s+", " ", line).strip() for line in el.get_text().splitlines())
+    return "\n".join(line for line in lines if line)
+
+
+def _block_title(section, block, lang: str) -> str:
+    heading = section.find("h2")
+    parts = [heading.get_text(" ", strip=True) if heading else BLOCK_LABELS["home"][lang == "en"]]
+    if block is not section:
+        key = next((c for c in block.get("class", []) if c in BLOCK_LABELS), None)
+        sub = block.find(["h3", "h4"])
+        if key:
+            parts.append(BLOCK_LABELS[key][lang == "en"])
+        elif sub:
+            parts.append(sub.get_text(" ", strip=True))
+    return " — ".join(parts)
+
 
 def load_site_sections(html_path: Path, site_url: str) -> list[Document]:
-    """Разделы index.html (Главная, Обо мне, Сертификаты, Портфолио, Контакты) — по документу на раздел."""
+    """Разделы index.html, разбитые на смысловые блоки, на русском и английском."""
     if not html_path.is_file():
         return []
 
-    soup = BeautifulSoup(html_path.read_text(encoding="utf-8"), "html.parser")
     docs: list[Document] = []
-    for section in soup.select("section.section[id]"):
-        for tag in section(["script", "style", "iframe"]):
-            tag.decompose()
-        # Изображения сертификатов несут название в alt — сохраняем его как текст
-        for img in section.find_all("img"):
-            img.replace_with(img.get("alt", ""))
-        heading = section.find("h2")
-        title = heading.get_text(" ", strip=True) if heading else section["id"].title()
-        text = re.sub(r"\n{2,}", "\n", section.get_text("\n", strip=True))
+    for lang, soup in _page_versions(html_path).items():
+        for section in soup.select("section.section[id]"):
+            blocks = section.select(SITE_BLOCKS) or [section]
+            for i, block in enumerate(blocks):
+                text = _block_text(block)
+                if not text:
+                    continue
+                title = _block_title(section, block, lang)
+                docs.append(
+                    Document(
+                        page_content=text if text.startswith(title) else f"{title}\n{text}",
+                        metadata={
+                            "source_type": "site",
+                            "title": title,
+                            "url": f"{site_url.rstrip('/')}/#{section['id']}",
+                            "date": "",
+                            "tags": "",
+                            "lang": lang,
+                            # общий id у русской и английской версии — в ответе это один источник
+                            "doc_id": f"site:{section['id']}:{i}",
+                            "source": html_path.name,
+                        },
+                    )
+                )
+    log.info("Блоки сайта: %d", len(docs))
+    return docs
+
+
+def load_profile(html_path: Path, site_url: str) -> list[Document]:
+    """Короткая справка (кто, возраст, образование, текущая работа, город, контакты).
+
+    Добавляется в контекст каждого запроса, поэтому базовые факты об Олеге доступны всегда,
+    даже если поиск их не нашёл."""
+    if not html_path.is_file():
+        return []
+
+    docs: list[Document] = []
+    for lang, soup in _page_versions(html_path).items():
+        parts = [
+            soup.select_one(".home-info"),
+            soup.select_one(".personal-info"),
+            soup.select_one(".experience .timeline-item"),
+            soup.select_one(".contact-info-item"),
+        ]
+        text = "\n".join(_block_text(p) for p in parts if p)
         if not text:
             continue
+        title = "Олег Тиньков — краткая справка" if lang == "ru" else "Oleg Tinkov — profile summary"
         docs.append(
             Document(
-                page_content=text,
+                page_content=f"{title}\n{text}",
                 metadata={
                     "source_type": "site",
-                    "title": f"Портфолио — {title}",
-                    "url": f"{site_url.rstrip('/')}/#{section['id']}",
+                    "title": title,
+                    "url": f"{site_url.rstrip('/')}/#about",
                     "date": "",
                     "tags": "",
+                    "lang": lang,
+                    "doc_id": "site:profile",
                     "source": html_path.name,
                 },
             )
         )
-    log.info("Разделы сайта: %d", len(docs))
     return docs
 
 

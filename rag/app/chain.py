@@ -49,12 +49,12 @@ class Source:
 
 def format_context(docs: Sequence[Document]) -> tuple[str, list[Source]]:
     """Нумерует фрагменты; фрагменты одного документа получают общий номер источника."""
-    numbers: dict[tuple[str, str], int] = {}
+    numbers: dict[object, int] = {}
     sources: list[Source] = []
     blocks: list[str] = []
     for doc in docs:
         m = doc.metadata
-        key = (m.get("url", ""), m.get("title", ""))
+        key = m.get("doc_id") or (m.get("url", ""), m.get("title", ""))
         if key not in numbers:
             numbers[key] = len(numbers) + 1
             sources.append(
@@ -85,8 +85,17 @@ def to_messages(history: Sequence[dict], max_turns: int) -> list[BaseMessage]:
 
 
 class RagAssistant:
-    def __init__(self, store: VectorStore, llm: BaseChatModel, s: Settings):
+    def __init__(
+        self,
+        store: VectorStore,
+        llm: BaseChatModel,
+        s: Settings,
+        pinned_docs: Sequence[Document] = (),
+    ):
         self.settings = s
+        # Документы, которые попадают в контекст всегда (краткая справка об Олеге)
+        self.pinned_docs = list(pinned_docs)
+        self.pinned_ids = {d.metadata.get("doc_id") for d in self.pinned_docs}
         self.retriever = store.as_retriever(
             search_type="mmr",
             search_kwargs={"k": s.retriever_k, "fetch_k": s.retriever_fetch_k},
@@ -116,7 +125,8 @@ class RagAssistant:
         """Поток событий: сначала {"type": "sources"}, затем {"type": "token"}…"""
         messages = to_messages(history, self.settings.max_history_turns)
         query = await self._standalone_question(question, messages)
-        docs = await self.retriever.ainvoke(query)
+        retrieved = await self.retriever.ainvoke(query)
+        docs = self.pinned_docs + [d for d in retrieved if d.metadata.get("doc_id") not in self.pinned_ids]
         context, sources = format_context(docs)
         yield {"type": "sources", "sources": [s.__dict__ for s in sources]}
 
