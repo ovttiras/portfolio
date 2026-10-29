@@ -165,13 +165,12 @@ def load_page_posts(urls: list[str]) -> list[Document]:
 # --------------------------------------------------------------------- портфолио
 
 # Смысловые блоки страницы: каждый индексируется отдельным документом, чтобы короткие факты
-# («Возраст: 42») не растворялись в длинных чанках со списком навыков.
-SITE_BLOCKS = ".home-info, .about-text, .personal-info, .skills, .education, .experience, .portfolio-item"
+# не растворялись в длинных чанках со списком навыков.
+SITE_BLOCKS = ".home-info, .about-text, .skills, .education, .experience, .portfolio-item"
 # Подписи для блоков без собственного заголовка: (ru, en)
 BLOCK_LABELS = {
     "home": ("Главная", "Home"),
     "home-info": ("Кратко об Олеге", "Summary"),
-    "personal-info": ("Личные данные: возраст, образование, email", "Personal details: age, education, email"),
 }
 
 
@@ -245,7 +244,7 @@ def load_site_sections(html_path: Path, site_url: str) -> list[Document]:
 
 
 def load_profile(html_path: Path, site_url: str) -> list[Document]:
-    """Короткая справка (кто, возраст, образование, текущая работа, город, контакты).
+    """Короткая справка (кто, образование, текущая работа, контакты).
 
     Добавляется в контекст каждого запроса, поэтому базовые факты об Олеге доступны всегда,
     даже если поиск их не нашёл."""
@@ -257,9 +256,8 @@ def load_profile(html_path: Path, site_url: str) -> list[Document]:
         parts = [
             soup.select_one(".home-info"),
             soup.select_one(".about-text"),
-            soup.select_one(".personal-info"),
             soup.select_one(".experience .timeline-item"),
-            soup.select_one(".contact-info-item"),
+            *soup.select(".contact-info-item"),
         ]
         text = "\n".join(_block_text(p) for p in parts if p)
         if not text:
