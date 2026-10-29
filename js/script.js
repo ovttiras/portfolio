@@ -6,6 +6,32 @@ var typed = document.querySelector(".typing") && new Typed(".typing",{
     BackSpeed:60,
     loop:true
 })
+// ================================ печатающееся имя на главной
+var typedName = null;
+function setHeroName(lang)
+{
+    const el = document.querySelector(".hero-name-typed");
+    if (!el) return;
+    const name = el.getAttribute(lang === "ru" ? "data-name-ru" : "data-name-en");
+    el.closest(".hero-name").setAttribute("aria-label", name);
+    if (typedName) typedName.destroy();
+    typedName = null;
+    // без библиотеки или при отключённой анимации просто показываем имя
+    if (typeof Typed === "undefined" || window.matchMedia("(prefers-reduced-motion: reduce)").matches)
+    {
+        el.textContent = name;
+        return;
+    }
+    el.textContent = "";
+    typedName = new Typed(el, {
+        strings: [name],
+        typeSpeed: 110,
+        backSpeed: 60,
+        startDelay: 300,
+        backDelay: 4000,
+        loop: true
+    });
+}
 // ================================ Acide
 const nav = document.querySelector(".nav"),
     navList = nav.querySelectorAll("li"),

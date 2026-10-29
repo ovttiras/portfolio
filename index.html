@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="css/skins/color-5.css" class="alternate-style" title="color-5" disabled>
     <link rel="stylesheet" href="css/style-switcher.css?v=3">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
-    <link rel="stylesheet" href="css/chat.css?v=5">
+    <link rel="stylesheet" href="css/chat.css?v=6">
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <!-- Замените G-XXXXXXXXXX на ваш Google Analytics ID -->
@@ -93,7 +93,7 @@
             <section class="home active section" id="home">
                 <div class="chat-home">
                     <div class="home-info">
-                        <h1 class="hero-name"><span data-ru="Олег Тиньков" data-en="Oleg Tinkov">Oleg Tinkov</span></h1>
+                        <h1 class="hero-name" aria-label="Oleg Tinkov"><span class="hero-name-typed" aria-hidden="true" data-name-ru="Олег Тиньков" data-name-en="Oleg Tinkov">Oleg Tinkov</span></h1>
                         <p class="hero-lead"><span class="hero-accent" data-ru="Кандидат наук" data-en="PhD">PhD</span><span data-ru=", создающий " data-en=" building "> building </span><span class="hero-accent" data-ru="корпоративные AI-системы" data-en="enterprise AI systems">enterprise AI systems</span>.</p>
                         <p class="hero-text"><span data-ru="Соединяю научную строгость и продуктовую разработку: от рецензируемых исследований до AI-решений, работающих в банке." data-en="I combine scientific rigor with product engineering: from peer-reviewed research to AI solutions running in production at a bank.">I combine scientific rigor with product engineering: from peer-reviewed research to AI solutions running in production at a bank.</span></p>
                         <div class="hero-duo">
@@ -858,7 +858,7 @@
     <!-- JS File -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"
         referrerpolicy="no-referrer"></script>
-    <script src="js/script.js?v=2"></script>
+    <script src="js/script.js?v=3"></script>
     <script src="js/style-switcher.js?v=2"></script>
     <!-- AI-ассистент: укажите в data-api-url адрес развернутого бэкенда из папки rag/ -->
     <script src="js/chat.js?v=3" data-api-url="http://localhost:8000"></script>
@@ -906,6 +906,9 @@
                 }
             });
             
+            // Печатающееся имя на главной
+            setHeroName(lang);
+
             // Update typing animation
             if (!typed) return;
             if (lang === 'ru') {

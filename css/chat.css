@@ -78,6 +78,12 @@
     color: var(--text-black-900);
 }
 
+.hero-name .typed-cursor {
+    margin-left: 2px;
+    font-weight: 300;
+    color: var(--skin-color);
+}
+
 .chat-home .home-info .hero-lead {
     margin-top: 14px;
     font: 600 clamp(20px, 2.4vw, 28px)/1.3 var(--hero-font);
