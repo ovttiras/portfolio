@@ -21,7 +21,8 @@
             suggestions: [
                 ["fa-robot", "What is Oleg's experience with RAG and LLMs?"],
                 ["fa-flask", "Which drug discovery projects has he built?"],
-                ["fa-pen-nib", "What does he write about in his blog?"],
+                ["fa-building-columns", "Which fintech applications has he built?"],
+                ["fa-layer-group", "What tech stack does he use?"],
                 ["fa-envelope", "How can I contact Oleg?"]
             ]
         },
@@ -39,7 +40,8 @@
             suggestions: [
                 ["fa-robot", "Какой у Олега опыт с RAG и LLM?"],
                 ["fa-flask", "Какие проекты по разработке лекарств он сделал?"],
-                ["fa-pen-nib", "О чём он пишет в блоге?"],
+                ["fa-building-columns", "Какие приложения он разработал в финтехе?"],
+                ["fa-layer-group", "Какой стек технологий он использует?"],
                 ["fa-envelope", "Как связаться с Олегом?"]
             ]
         }

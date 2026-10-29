@@ -64,7 +64,6 @@
 .chat-home .home-info > :nth-child(2) { animation-delay: 0.06s; }
 .chat-home .home-info > :nth-child(3) { animation-delay: 0.12s; }
 .chat-home .home-info > :nth-child(4) { animation-delay: 0.18s; }
-.chat-home .home-info > :nth-child(5) { animation-delay: 0.22s; }
 .chat-home .rag-chat { animation-delay: 0.26s; }
 
 @keyframes hero-rise {
@@ -105,29 +104,6 @@
     font-size: 16px;
     line-height: 1.6;
     color: var(--text-black-700);
-}
-
-.hero-cv {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    margin-top: 18px;
-    padding: 8px 16px;
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    background: var(--surface);
-    color: var(--text-black-900);
-    font-size: 14px;
-    font-weight: 500;
-    transition: border-color 0.2s ease, color 0.2s ease;
-}
-
-.hero-cv i {
-    color: var(--skin-color);
-}
-
-.hero-cv:hover {
-    border-color: var(--skin-color);
 }
 
 /* ---------- Наука + Продукт */
