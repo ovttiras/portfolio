@@ -464,5 +464,6 @@
 .about .about-content .about-text p + p{margin-top:15px}
 .about .about-content .about-actions{margin-top:30px}
 .about .about-content .about-actions .btn i{margin-right:8px}
-.about .about-content .about-text p.about-age{margin-bottom:15px;color:var(--text-black-700)}
-.about .about-content .about-text p.about-age b{color:var(--text-black-900);font-weight:600}
+.about .about-content .about-meta{flex:0 0 100%;max-width:100%;margin-top:40px}
+.about .about-content p.about-age{padding-top:20px;border-top:1px solid var(--bg-black-50);font-size:16px;color:var(--text-black-700)}
+.about .about-content p.about-age b{color:var(--text-black-900);font-weight:600}

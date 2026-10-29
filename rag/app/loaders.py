@@ -244,7 +244,7 @@ def load_site_sections(html_path: Path, site_url: str) -> list[Document]:
 
 
 def load_profile(html_path: Path, site_url: str) -> list[Document]:
-    """Короткая справка (кто, образование, текущая работа, контакты).
+    """Короткая справка (кто, возраст, образование, текущая работа, контакты).
 
     Добавляется в контекст каждого запроса, поэтому базовые факты об Олеге доступны всегда,
     даже если поиск их не нашёл."""
@@ -256,6 +256,7 @@ def load_profile(html_path: Path, site_url: str) -> list[Document]:
         parts = [
             soup.select_one(".home-info"),
             soup.select_one(".about-text"),
+            soup.select_one(".about-meta"),
             soup.select_one(".experience .timeline-item"),
             *soup.select(".contact-info-item"),
         ]

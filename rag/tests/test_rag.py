@@ -73,8 +73,7 @@ def test_site_and_cv():
 
 def test_about_text_gets_its_own_block_in_both_languages():
     sections = load_site_sections(settings.site_html, settings.site_url)
-    about = [d for d in sections if "Agroprombank" in d.page_content or "Агропромбанке" in d.page_content]
-    about = [d for d in about if "LLM" in d.page_content and "OCR" in d.page_content]
+    about = [d for d in sections if "LLM" in d.page_content and "OCR" in d.page_content]
     assert {d.metadata["lang"] for d in about} >= {"en", "ru"}
     # отдельный блок, а не хвост большого чанка со списком навыков
     assert all(len(d.page_content) < 1200 for d in about)
@@ -84,6 +83,7 @@ async def test_profile_is_always_in_context(test_settings, fake_providers):
     store = ingest.build_index(test_settings)
     profile = load_profile(settings.site_html, settings.site_url)
     assert all("oleg.tinkov.chem@mail.ru" in d.page_content for d in profile)
+    assert all("42" in d.page_content for d in profile)
     assistant = RagAssistant(store, FakeListChatModel(responses=["Email [1]"]), test_settings, pinned_docs=profile)
     events = [e async for e in assistant.astream("Как связаться с Олегом?")]
     sources = events[0]["sources"]
