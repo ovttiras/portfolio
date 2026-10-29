@@ -10,13 +10,14 @@
         en: {
             launcher: "Ask my AI",
             placeholder: "Ask anything about Oleg…",
-            model: "Gemini · LangChain RAG · blog, projects & CV",
+            label: "Ask my AI assistant about my research, products and experience",
+            model: "Assistant online · Gemini + RAG",
             send: "Send",
             clear: "New question",
             sources: "Sources",
             error: "Sorry, the assistant is unavailable right now. You can contact Oleg at oleg.tinkov.chem@mail.ru.",
             rateLimit: "Too many questions — please wait a minute.",
-            footnote: "† Gemini via Google AI Studio + LangChain RAG over Oleg's blog, projects and CV — answers cite their sources. AI can make mistakes.",
+            footnote: "Answers are generated from Oleg's blog, projects and CV, with links to the sources. AI can make mistakes.",
             suggestions: [
                 ["fa-robot", "What is Oleg's experience with RAG and LLMs?"],
                 ["fa-flask", "Which drug discovery projects has he built?"],
@@ -27,13 +28,14 @@
         ru: {
             launcher: "Спросить AI",
             placeholder: "Спросите что угодно об Олеге…",
-            model: "Gemini · LangChain RAG · блог, проекты и резюме",
+            label: "Спросите AI-ассистента о моих исследованиях, продуктах и опыте",
+            model: "Ассистент онлайн · Gemini + RAG",
             send: "Отправить",
             clear: "Новый вопрос",
             sources: "Источники",
             error: "Извините, ассистент сейчас недоступен. Связаться с Олегом можно по адресу oleg.tinkov.chem@mail.ru.",
             rateLimit: "Слишком много вопросов — подождите минуту.",
-            footnote: "† Gemini через Google AI Studio + LangChain RAG по блогу, проектам и резюме Олега — ответы со ссылками на источники. AI может ошибаться.",
+            footnote: "Ответы формируются по блогу, проектам и резюме Олега — со ссылками на источники. AI может ошибаться.",
             suggestions: [
                 ["fa-robot", "Какой у Олега опыт с RAG и LLM?"],
                 ["fa-flask", "Какие проекты по разработке лекарств он сделал?"],
@@ -129,6 +131,7 @@
     // ---------------------------------------------------------------- Разметка
     root.innerHTML = `
         <form class="rag-chat-form">
+            <div class="rag-chat-label"><i class="fas fa-wand-magic-sparkles"></i><span></span></div>
             <div class="rag-chat-inputbox">
                 <textarea class="rag-chat-input" rows="2" maxlength="1000"></textarea>
                 <div class="rag-chat-bar">
@@ -166,6 +169,7 @@
         launcher.querySelector("span").textContent = t("launcher");
         launcher.setAttribute("aria-label", t("launcher"));
         $(".rag-chat-model span").textContent = t("model");
+        $(".rag-chat-label span").textContent = t("label");
         $(".rag-footnote").textContent = t("footnote");
         clearBtn.querySelector("span").textContent = t("clear");
         input.placeholder = t("placeholder");

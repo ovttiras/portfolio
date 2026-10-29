@@ -1,20 +1,45 @@
-/* ================================ Главная: AI-чат как основной элемент */
+/* ================================ Главная: наука + продукт и AI-чат */
 .home.section {
+    --hero-font: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --line: var(--bg-black-50);
+    --surface: color-mix(in srgb, var(--bg-black-100) 85%, transparent);
+    --accent-soft: color-mix(in srgb, var(--skin-color) 14%, transparent);
     display: block;
     padding: 0 30px;
-    background:
-        radial-gradient(ellipse 70% 45% at 50% 0%, color-mix(in srgb, var(--skin-color) 12%, transparent), transparent 70%),
-        var(--bg-black-900);
+    background: var(--bg-black-900);
+    font-family: var(--hero-font);
+}
+
+/* Точечная сетка и мягкое свечение в цвете темы */
+.home.section::before,
+.home.section::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.home.section::before {
+    background-image: radial-gradient(color-mix(in srgb, var(--text-black-900) 14%, transparent) 1px, transparent 1px);
+    background-size: 26px 26px;
+    -webkit-mask-image: radial-gradient(ellipse 75% 60% at 50% 30%, #000 30%, transparent 80%);
+    mask-image: radial-gradient(ellipse 75% 60% at 50% 30%, #000 30%, transparent 80%);
+}
+
+.home.section::after {
+    background: radial-gradient(ellipse 55% 40% at 50% 0%, color-mix(in srgb, var(--skin-color) 16%, transparent), transparent 70%);
 }
 
 .chat-home {
+    position: relative;
+    z-index: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
     min-height: 100vh;
-    max-width: 1000px;
+    max-width: 980px;
     margin: 0 auto;
-    padding: 60px 0;
+    padding: 56px 0;
     text-align: center;
     color: var(--text-black-900);
 }
@@ -24,52 +49,192 @@
     max-width: none;
 }
 
+/* сброс старого правила .home .home-info p из style.css */
+.chat-home .home-info p {
+    margin-bottom: 0;
+    font-size: inherit;
+}
+
+/* Плавное появление */
+.chat-home .home-info > *,
+.chat-home .rag-chat {
+    animation: hero-rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.chat-home .home-info > :nth-child(2) { animation-delay: 0.06s; }
+.chat-home .home-info > :nth-child(3) { animation-delay: 0.12s; }
+.chat-home .home-info > :nth-child(4) { animation-delay: 0.18s; }
+.chat-home .rag-chat { animation-delay: 0.26s; }
+
+@keyframes hero-rise {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: none; }
+}
+
 /* ---------- Заголовок */
-.chat-title {
-    font: 400 clamp(34px, 4.6vw, 58px)/1.15 'Instrument Serif', Georgia, serif;
-    letter-spacing: -0.5px;
+.hero-name {
+    font: 800 clamp(40px, 6vw, 72px)/1.02 var(--hero-font);
+    letter-spacing: -0.045em;
     color: var(--text-black-900);
 }
 
-.chat-home .home-info .chat-subtitle {
-    max-width: 820px;
-    margin: 16px auto 30px;
-    font-size: 18px;
+.chat-home .home-info .hero-lead {
+    margin-top: 14px;
+    font: 600 clamp(20px, 2.4vw, 28px)/1.3 var(--hero-font);
+    letter-spacing: -0.02em;
+    color: var(--text-black-900);
+}
+
+.hero-accent {
+    background: linear-gradient(90deg, var(--skin-color), color-mix(in srgb, var(--skin-color) 55%, #ffd36b));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.chat-home .home-info .hero-text {
+    max-width: 620px;
+    margin: 14px auto 0;
+    font-size: 16px;
     line-height: 1.6;
     color: var(--text-black-700);
 }
 
+/* ---------- Наука + Продукт */
+.hero-duo {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    margin: 36px 0 34px;
+    text-align: left;
+}
+
+.duo-card {
+    height: 100%;
+    padding: 20px 22px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: var(--surface);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    transition: border-color 0.25s ease, transform 0.25s ease;
+}
+
+.duo-card:hover {
+    border-color: color-mix(in srgb, var(--skin-color) 45%, var(--line));
+    transform: translateY(-2px);
+}
+
+.duo-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-black-900);
+}
+
+.duo-head i {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent-soft);
+    color: var(--skin-color);
+    font-size: 14px;
+}
+
+.chat-home .home-info .duo-text {
+    margin: 12px 0 16px;
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--text-black-700);
+}
+
+.duo-stats {
+    display: flex;
+    gap: 28px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+}
+
+.duo-stats b {
+    display: block;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text-black-900);
+}
+
+.duo-stats span {
+    font-size: 12px;
+    color: var(--text-black-700);
+}
+
+.duo-join {
+    position: relative;
+    z-index: 1;
+    width: 34px;
+    height: 34px;
+    margin: 0 -8px;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-black-900);
+    color: var(--skin-color);
+    font-size: 18px;
+    font-weight: 600;
+}
+
 /* ---------- Поле ввода */
 .rag-chat {
-    font-family: 'Poppins', sans-serif;
+    font-family: var(--hero-font);
+}
+
+.rag-chat-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    font-size: 13px;
+    color: var(--text-black-700);
+}
+
+.rag-chat-label i {
+    color: var(--skin-color);
 }
 
 .rag-chat-inputbox {
-    border: 1px solid var(--bg-black-50);
-    border-radius: 18px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
     background: var(--bg-black-100);
-    box-shadow: 0 10px 40px var(--bg-shadow);
+    box-shadow: 0 12px 40px var(--bg-shadow);
     text-align: left;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .rag-chat-inputbox:focus-within {
     border-color: var(--skin-color);
-    box-shadow: 0 10px 40px var(--bg-shadow), 0 0 0 3px color-mix(in srgb, var(--skin-color) 18%, transparent);
+    box-shadow: 0 12px 40px var(--bg-shadow), 0 0 0 4px var(--accent-soft);
 }
 
 .rag-chat-input {
     display: block;
     width: 100%;
-    min-height: 64px;
+    min-height: 60px;
     max-height: 200px;
-    padding: 16px 20px 8px;
+    padding: 16px 20px 6px;
     border: none;
     resize: none;
     background: transparent;
     color: var(--text-black-900);
-    font: 16px 'Poppins', sans-serif;
-    line-height: 1.5;
+    font: 16px/1.5 var(--hero-font);
 }
 
 .rag-chat-input::placeholder {
@@ -82,43 +247,44 @@
     align-items: center;
     justify-content: space-between;
     gap: 12px;
-    padding: 10px 12px 10px 20px;
-    border-top: 1px solid var(--bg-black-50);
+    padding: 8px 10px 10px 20px;
 }
 
 .rag-chat-model {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     min-width: 0;
-    font: 13px 'JetBrains Mono', monospace;
+    font-size: 12px;
     color: var(--text-black-700);
+    opacity: 0.85;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
 .rag-dot {
-    flex: 0 0 8px;
-    height: 8px;
-    border: 2px solid var(--skin-color);
+    flex: 0 0 7px;
+    height: 7px;
     border-radius: 50%;
+    background: #22c55e;
+    box-shadow: 0 0 0 3px color-mix(in srgb, #22c55e 25%, transparent);
 }
 
 .rag-chat-send {
-    flex: 0 0 64px;
-    height: 38px;
+    flex: 0 0 40px;
+    height: 40px;
     border: none;
-    border-radius: 50px;
+    border-radius: 12px;
     background: var(--skin-color);
     color: #ffffff;
-    font-size: 16px;
+    font-size: 15px;
     cursor: pointer;
     transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
 .rag-chat-send:hover {
-    transform: scale(1.06);
+    transform: translateY(-1px);
 }
 
 .rag-chat-send:disabled {
@@ -132,42 +298,43 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 10px;
-    margin-top: 22px;
+    gap: 8px;
+    margin-top: 16px;
 }
 
 .rag-chip {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 8px 16px;
-    border: 1px solid var(--bg-black-50);
-    border-radius: 50px;
-    background: var(--bg-black-100);
-    color: var(--text-black-900);
-    font: 13px 'Poppins', sans-serif;
+    padding: 8px 14px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--surface);
+    color: var(--text-black-700);
+    font: 13px var(--hero-font);
     cursor: pointer;
     transition: all 0.2s ease;
 }
 
 .rag-chip i {
     color: var(--skin-color);
+    font-size: 12px;
 }
 
 .rag-chip:hover {
     border-color: var(--skin-color);
-    transform: translateY(-2px);
+    color: var(--text-black-900);
 }
 
 /* ---------- Ответ (на экране всегда только последний) */
 .rag-answer {
-    margin-top: 26px;
+    margin-top: 24px;
     padding: 20px 24px;
-    border: 1px solid var(--bg-black-50);
-    border-radius: 18px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
     background: var(--bg-black-100);
     text-align: left;
-    animation: rag-fade-in 0.3s ease;
+    animation: hero-rise 0.35s ease both;
 }
 
 .rag-answer[hidden] {
@@ -177,16 +344,12 @@
 .rag-answer-question {
     margin-bottom: 12px;
     padding-bottom: 12px;
-    border-bottom: 1px solid var(--bg-black-50);
-    font: 14px 'JetBrains Mono', monospace;
-    color: var(--text-black-700);
+    border-bottom: 1px solid var(--line);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-black-900);
     white-space: pre-wrap;
     overflow-wrap: anywhere;
-}
-
-.rag-answer-question::before {
-    content: "› ";
-    color: var(--skin-color);
 }
 
 .rag-answer-bubble {
@@ -253,10 +416,11 @@
     height: 18px;
     margin: 0 1px;
     padding: 0 4px;
-    border-radius: 9px;
-    background: var(--skin-color);
-    color: #ffffff;
+    border-radius: 6px;
+    background: var(--accent-soft);
+    color: var(--skin-color);
     font-size: 11px;
+    font-weight: 600;
     line-height: 18px;
     text-align: center;
     text-decoration: none;
@@ -288,8 +452,8 @@
 .rag-source {
     max-width: 100%;
     padding: 3px 10px;
-    border: 1px solid var(--bg-black-50);
-    border-radius: 50px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
     color: var(--text-black-700);
     white-space: nowrap;
     overflow: hidden;
@@ -311,7 +475,7 @@ a.rag-source:hover {
     border: none;
     background: none;
     color: var(--text-black-700);
-    font: 12px 'Poppins', sans-serif;
+    font: 12px var(--hero-font);
     cursor: pointer;
     white-space: nowrap;
 }
@@ -342,16 +506,12 @@ a.rag-source:hover {
     40% { opacity: 1; transform: scale(1); }
 }
 
-@keyframes rag-fade-in {
-    from { opacity: 0; transform: translateY(8px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
 .rag-footnote {
-    margin-top: 26px;
-    font: 13px/1.6 'JetBrains Mono', monospace;
+    margin-top: 22px;
+    font-size: 12px;
+    line-height: 1.6;
     color: var(--text-black-700);
-    opacity: 0.8;
+    opacity: 0.65;
 }
 
 /* ---------- Кнопка «Спросить AI» на остальных разделах */
@@ -363,15 +523,15 @@ a.rag-source:hover {
     display: none;
     align-items: center;
     gap: 10px;
-    padding: 14px 22px;
+    padding: 13px 20px;
     border: none;
-    border-radius: 50px;
+    border-radius: 14px;
     background: var(--skin-color);
     color: #ffffff;
-    font: 500 15px 'Poppins', sans-serif;
+    font: 600 14px 'Inter', system-ui, sans-serif;
     cursor: pointer;
-    box-shadow: 0 8px 25px var(--bg-shadow);
-    transition: transform 0.3s ease;
+    box-shadow: 0 10px 30px var(--bg-shadow);
+    transition: transform 0.25s ease;
 }
 
 .rag-chat-launcher.visible {
@@ -379,11 +539,19 @@ a.rag-source:hover {
 }
 
 .rag-chat-launcher:hover {
-    transform: scale(1.05);
+    transform: translateY(-2px);
 }
 
 .rag-chat-launcher i {
-    font-size: 18px;
+    font-size: 17px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .chat-home .home-info > *,
+    .chat-home .rag-chat,
+    .rag-answer {
+        animation: none;
+    }
 }
 
 /* ---------- Адаптивность */
@@ -400,16 +568,55 @@ a.rag-source:hover {
 
     .chat-home {
         justify-content: flex-start;
-        padding-bottom: 30px;
+        padding: 96px 0 30px;
     }
 
-    /* справа сверху фиксированные кнопки переключателя темы — заголовок начинается ниже них */
-    .chat-home {
-        padding-top: 165px;
+    /* справа сверху фиксированные кнопки темы — имя не должно до них доходить */
+    .hero-name {
+        font-size: 36px;
     }
 
-    .chat-home .home-info .chat-subtitle {
+    .chat-home .home-info .hero-text {
         font-size: 15px;
+    }
+
+    /* на телефоне карточки компактные: заголовок и цифры, чтобы чат был ближе */
+    .hero-duo {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin: 24px 0 24px;
+    }
+
+    .duo-join,
+    .chat-home .home-info .duo-text {
+        display: none;
+    }
+
+    .duo-card {
+        padding: 14px;
+    }
+
+    .duo-head {
+        font-size: 11px;
+    }
+
+    .duo-head i {
+        width: 26px;
+        height: 26px;
+        font-size: 12px;
+    }
+
+    .duo-stats {
+        flex-direction: column;
+        gap: 8px;
+        margin-top: 12px;
+        padding-top: 12px;
+    }
+
+    .duo-stats b {
+        display: inline;
+        margin-right: 6px;
+        font-size: 18px;
     }
 
     .rag-chat-model {
@@ -418,7 +625,6 @@ a.rag-source:hover {
 
     .rag-chip {
         font-size: 12px;
-        padding: 7px 12px;
         text-align: left;
     }
 
@@ -438,8 +644,8 @@ a.rag-source:hover {
     .rag-chat-launcher {
         right: 15px;
         bottom: 15px;
-        width: 56px;
-        height: 56px;
+        width: 54px;
+        height: 54px;
         padding: 0;
         justify-content: center;
     }

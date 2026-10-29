@@ -18,8 +18,8 @@
     <link rel="stylesheet" href="css/skins/color-4.css" class="alternate-style" title="color-4" disabled>
     <link rel="stylesheet" href="css/skins/color-5.css" class="alternate-style" title="color-5" disabled>
     <link rel="stylesheet" href="css/style-switcher.css?v=3">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=JetBrains+Mono:wght@400;500&display=swap">
-    <link rel="stylesheet" href="css/chat.css?v=3">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="css/chat.css?v=4">
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <!-- Замените G-XXXXXXXXXX на ваш Google Analytics ID -->
@@ -93,8 +93,28 @@
             <section class="home active section" id="home">
                 <div class="chat-home">
                     <div class="home-info">
-                        <h1 class="chat-title"><span data-ru="Олег Тиньков" data-en="Oleg Tinkov">Oleg Tinkov</span> — <span data-ru="AI-инженер и исследователь." data-en="AI engineer &amp; researcher.">AI engineer &amp; researcher.</span></h1>
-                        <p class="chat-subtitle"><span data-ru="Кандидат наук, создающий корпоративные AI-системы." data-en="PhD building enterprise AI systems.">PhD building enterprise AI systems.</span></p>
+                        <h1 class="hero-name"><span data-ru="Олег Тиньков" data-en="Oleg Tinkov">Oleg Tinkov</span></h1>
+                        <p class="hero-lead"><span class="hero-accent" data-ru="Кандидат наук" data-en="PhD">PhD</span><span data-ru=", создающий " data-en=" building "> building </span><span class="hero-accent" data-ru="корпоративные AI-системы" data-en="enterprise AI systems">enterprise AI systems</span>.</p>
+                        <p class="hero-text"><span data-ru="Соединяю научную строгость и продуктовую разработку: от рецензируемых исследований до AI-решений, работающих в банке." data-en="I combine scientific rigor with product engineering: from peer-reviewed research to AI solutions running in production at a bank.">I combine scientific rigor with product engineering: from peer-reviewed research to AI solutions running in production at a bank.</span></p>
+                        <div class="hero-duo">
+                            <article class="duo-card">
+                                <div class="duo-head"><i class="fas fa-graduation-cap"></i><span data-ru="Наука" data-en="Research">Research</span></div>
+                                <p class="duo-text"><span data-ru="Кандидат химических наук, доцент, рецензент международных журналов по AI в разработке лекарств." data-en="PhD in Chemistry, associate professor, reviewer for international journals on AI in drug discovery.">PhD in Chemistry, associate professor, reviewer for international journals on AI in drug discovery.</span></p>
+                                <div class="duo-stats">
+                                    <div><b>35</b><span data-ru="научных статей" data-en="scientific papers">scientific papers</span></div>
+                                    <div><b data-ru="5 лет" data-en="5 years">5 years</b><span data-ru="преподавания" data-en="of teaching">of teaching</span></div>
+                                </div>
+                            </article>
+                            <div class="duo-join" aria-hidden="true">+</div>
+                            <article class="duo-card">
+                                <div class="duo-head"><i class="fas fa-layer-group"></i><span data-ru="Продукт" data-en="Product">Product</span></div>
+                                <p class="duo-text"><span data-ru="AI-инженер в Агропромбанке: RAG-ассистент, OCR, речевая аналитика и AI code review — в закрытом контуре." data-en="AI Engineer at Agroprombank: RAG assistant, OCR, speech analytics and AI code review — fully on-premise.">AI Engineer at Agroprombank: RAG assistant, OCR, speech analytics and AI code review — fully on-premise.</span></p>
+                                <div class="duo-stats">
+                                    <div><b>4+</b><span data-ru="года в ML" data-en="years in ML">years in ML</span></div>
+                                    <div><b>7</b><span data-ru="ML-приложений" data-en="ML web apps">ML web apps</span></div>
+                                </div>
+                            </article>
+                        </div>
                     </div>
                     <div class="rag-chat" id="rag-chat"></div>
                 </div>
@@ -841,7 +861,7 @@
     <script src="js/script.js?v=2"></script>
     <script src="js/style-switcher.js?v=2"></script>
     <!-- AI-ассистент: укажите в data-api-url адрес развернутого бэкенда из папки rag/ -->
-    <script src="js/chat.js?v=2" data-api-url="http://localhost:8000"></script>
+    <script src="js/chat.js?v=3" data-api-url="http://localhost:8000"></script>
     <script>
         // Make setActiveStyle function globally available
         function setActiveStyle(color) {
