@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="css/style-switcher.css?v=3">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
     <link rel="stylesheet" href="css/chat.css?v=8">
-    <link rel="stylesheet" href="css/research.css?v=4">
+    <link rel="stylesheet" href="css/research.css?v=6">
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <!-- Замените G-XXXXXXXXXX на ваш Google Analytics ID -->
@@ -379,7 +379,7 @@
                     <div class="research-body">
                         <div class="research-tabs" role="tablist">
                             <button type="button" class="research-tab active" role="tab" aria-selected="true" data-panel="publications"><i class="fas fa-file-lines"></i><span data-ru="Публикации" data-en="Publications">Publications</span><b class="research-count" data-count="publications"></b></button>
-                            <button type="button" class="research-tab" role="tab" aria-selected="false" data-panel="talks"><i class="fas fa-person-chalkboard"></i><span data-ru="Доклады" data-en="Talks">Talks</span></button>
+                            <button type="button" class="research-tab" role="tab" aria-selected="false" data-panel="talks"><i class="fas fa-person-chalkboard"></i><span data-ru="Доклады" data-en="Talks">Talks</span><b class="research-count" data-count="talks"></b></button>
                             <button type="button" class="research-tab" role="tab" aria-selected="false" data-panel="reviews"><i class="fas fa-magnifying-glass-chart"></i><span data-ru="Рецензии" data-en="Peer review">Peer review</span><b class="research-count" data-count="reviews"></b></button>
                         </div>
 
@@ -394,8 +394,13 @@
                         </div>
 
                         <div class="research-panel" id="research-talks" role="tabpanel" hidden>
+                            <div class="pub-stats talk-stats"></div>
                             <p class="rev-intro talk-intro"></p>
-                            <ol class="talk-list"></ol>
+                            <div class="pub-toolbar">
+                                <label class="pub-search"><i class="fas fa-magnifying-glass"></i><input type="search" class="talk-search-input"></label>
+                            </div>
+                            <ol class="pub-list talk-list"></ol>
+                            <p class="pub-empty talk-empty" hidden></p>
                         </div>
 
                         <div class="research-panel" id="research-reviews" role="tabpanel" hidden>
@@ -927,7 +932,7 @@
     <script src="js/script.js?v=4"></script>
     <script src="js/style-switcher.js?v=2"></script>
     <!-- AI-ассистент: укажите в data-api-url адрес развернутого бэкенда из папки rag/ -->
-    <script src="js/research.js?v=3"></script>
+    <script src="js/research.js?v=5"></script>
     <script src="js/chat.js?v=5" data-api-url="http://localhost:8000"></script>
     <script>
         // Make setActiveStyle function globally available

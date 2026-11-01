@@ -314,12 +314,18 @@ def load_publications(json_path: Path) -> list[Document]:
     docs: list[Document] = []
     for pub in json.loads(json_path.read_text(encoding="utf-8")):
         venue = ", ".join(part for part in (pub["venue"], pub.get("details", "")) if part)
-        lines = [
-            pub["title"],
-            f"Авторы / Authors: {', '.join(pub['authors'])}",
-            f"Издание / Venue: {venue} ({pub['year']})",
-            f"DOI: {pub['doi']}",
-        ]
+        if pub.get("authors"):
+            authors = f"Авторы / Authors: {', '.join(pub['authors'])}"
+        else:
+            # порядок авторов неизвестен — только соавторы Олега
+            authors = f"Авторы / Authors: Тиньков О.В. (Tinkov O.V.); соавторы: {', '.join(pub.get('coauthors', []))}"
+        lines = [pub["title"], authors, f"Издание / Venue: {venue} ({pub['year']})"]
+        if pub.get("type") == "textbook":
+            lines.append("Тип: учебное пособие / Textbook")
+        if pub.get("index"):
+            lines.append(f"Индексация / Indexed in: {', '.join(pub['index'])}")
+        if pub.get("doi"):
+            lines.append(f"DOI: {pub['doi']}")
         if pub.get("app"):
             lines.append(f"Веб-приложение / Web app: {pub['app']['name']} — {pub['app']['url']}")
         if pub.get("abstract"):
@@ -330,7 +336,7 @@ def load_publications(json_path: Path) -> list[Document]:
                 metadata={
                     "source_type": "publication",
                     "title": pub["title"],
-                    "url": f"https://doi.org/{pub['doi']}",
+                    "url": f"https://doi.org/{pub['doi']}" if pub.get("doi") else "",
                     "date": str(pub["year"]),
                     "tags": ", ".join(pub.get("topics", [])),
                     "doc_id": f"pub:{pub['id']}",
@@ -377,30 +383,41 @@ def load_reviews(json_path: Path, site_url: str) -> list[Document]:
 
 
 def load_talks(json_path: Path, site_url: str) -> list[Document]:
-    """Доклады на конференциях: один документ со списком последних выступлений."""
+    """Доклады и тезисы на конференциях: документы по годам, чтобы длинный список не обрезался при нарезке."""
     if not json_path.is_file():
         return []
     import json
 
-    lines = ["Доклады на научных конференциях (последние) / Recent conference talks:"]
+    def ru(value):
+        return value.get("ru", "") if isinstance(value, dict) else (value or "")
+
+    by_year: dict[int, list[str]] = {}
     for talk in json.loads(json_path.read_text(encoding="utf-8")):
-        for lang in ("ru", "en"):
-            when = ", ".join(part for part in (talk["place"][lang], talk["date"][lang]) if part)
-            lines.append(f"- {talk['name'][lang]}" + (f" ({when})" if when else ""))
-    return [
-        Document(
-            page_content="\n".join(lines),
-            metadata={
-                "source_type": "site",
-                "title": "Научная работа — Доклады",
-                "url": f"{site_url.rstrip('/')}/#research",
-                "date": "",
-                "tags": "",
-                "doc_id": "site:talks",
-                "source": json_path.name,
-            },
+        when = ", ".join(part for part in (ru(talk.get("place")), ru(talk.get("date"))) if part)
+        title = f"«{talk['title']}» — " if talk.get("title") else ""
+        line = f"- {title}{ru(talk['event'])}" + (f" ({when})" if when else "")
+        if talk.get("coauthors"):
+            line += f"; соавторы: {', '.join(talk['coauthors'])}"
+        by_year.setdefault(talk["year"], []).append(line)
+
+    docs = []
+    for year in sorted(by_year, reverse=True):
+        docs.append(
+            Document(
+                page_content=f"Доклады и тезисы Олега Тинькова на научных конференциях, {year} год "
+                f"(conference talks and abstracts, {year}):\n" + "\n".join(by_year[year]),
+                metadata={
+                    "source_type": "site",
+                    "title": f"Научная работа — Доклады, {year}",
+                    "url": f"{site_url.rstrip('/')}/#research",
+                    "date": str(year),
+                    "tags": "",
+                    "doc_id": "site:talks",
+                    "source": json_path.name,
+                },
+            )
         )
-    ]
+    return docs
 
 
 def load_all(s: Settings) -> list[Document]:

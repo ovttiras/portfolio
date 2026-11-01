@@ -4,7 +4,9 @@
     const section = document.getElementById("research");
     if (!section) return;
 
-    const OWNER = /^Tinkov\b/;
+    // фамилия владельца сайта: выделяется в списке авторов
+    const OWNER = /^(Tinkov|Тиньков)(\s|$)/;
+    const OWNER_NAME = { en: "Tinkov O.V.", ru: "Тиньков О.В." };
     const i18n = {
         en: {
             search: "Search by title, author or keyword…",
@@ -14,9 +16,15 @@
                 toxicity: "Toxicology",
                 kras: "KRAS",
                 antiviral: "SARS-CoV-2",
-                methods: "Methods & descriptors"
+                methods: "Methods & descriptors",
+                other: "Other",
+                teaching: "Textbooks"
             },
-            stats: [["publications", "publications"], ["first", "as first author"], ["venues", "journals & venues"], ["years", "years"]],
+            featured: "Selected",
+            stats: [["articles", "research papers"], ["indexed", "in Scopus / Web of Science"], ["vak", "in the VAK list"], ["textbooks", "textbooks"]],
+            indexNames: { scopus: "Scopus", wos: "WoS", vak: "VAK", rinc: "RSCI" },
+            types: { conference: "Conference paper", proceedings: "Proceedings", textbook: "Textbook" },
+            coauthors: "co-authors:",
             abstract: "Abstract",
             journal: "Journal",
             app: "Web app",
@@ -30,9 +38,12 @@
             revIntro: "Peer reviewer for international journals in cheminformatics, QSAR modelling, toxicology, bioinformatics and drug discovery.",
             revCount: (n) => `${n} ${n === 1 ? "review" : "reviews"}`,
             revSource: "Verified in",
-            talkIntro: "Recent conference talks.",
-            scope: { international: "International", "national-intl": "All-Russian, with international participation" },
-            dateTbd: "Date to be added"
+            talkIntro: "Talks and abstracts at scientific conferences.",
+            talkSearch: "Search by topic, conference or city…",
+            talkStats: [["talks", "talks & abstracts"], ["intl", "international or with international participation"], ["cities", "cities"], ["years", "years"]],
+            intl: { full: "International", partial: "With international participation" },
+            talkCoauthors: "Co-authors:",
+            talkNoTitle: "Talk title to be added"
         },
         ru: {
             search: "Поиск по названию, автору или ключевому слову…",
@@ -42,9 +53,15 @@
                 toxicity: "Токсикология",
                 kras: "KRAS",
                 antiviral: "SARS-CoV-2",
-                methods: "Методы и дескрипторы"
+                methods: "Методы и дескрипторы",
+                other: "Другое",
+                teaching: "Учебные издания"
             },
-            stats: [["publications", "публикаций"], ["first", "первым автором"], ["venues", "журналов и изданий"], ["years", "годы"]],
+            featured: "Избранные",
+            stats: [["articles", "научных статей"], ["indexed", "в Scopus / Web of Science"], ["vak", "в перечне ВАК"], ["textbooks", "учебных пособия"]],
+            indexNames: { scopus: "Scopus", wos: "WoS", vak: "ВАК", rinc: "РИНЦ" },
+            types: { conference: "Конференция", proceedings: "Сборник трудов", textbook: "Учебное пособие" },
+            coauthors: "соавторы:",
             abstract: "Абстракт",
             journal: "Журнал",
             app: "Веб-приложение",
@@ -58,9 +75,12 @@
             revIntro: "Рецензент международных журналов по хемоинформатике, QSAR-моделированию, токсикологии, биоинформатике и разработке лекарств.",
             revCount: (n) => `${n} ${plural(n, "рецензия", "рецензии", "рецензий")}`,
             revSource: "Подтверждено в",
-            talkIntro: "Последние выступления на научных конференциях.",
-            scope: { international: "Международная", "national-intl": "Всероссийская с международным участием" },
-            dateTbd: "Дата уточняется"
+            talkIntro: "Доклады и тезисы на научных конференциях.",
+            talkSearch: "Поиск по теме, конференции или городу…",
+            talkStats: [["talks", "докладов и тезисов"], ["intl", "международных и с международным участием"], ["cities", "городов"], ["years", "годы"]],
+            intl: { full: "Международная", partial: "С международным участием" },
+            talkCoauthors: "Соавторы:",
+            talkNoTitle: "Тема доклада уточняется"
         }
     };
 
@@ -77,6 +97,7 @@
     let talks = [];
     let topic = "all";
     let query = "";
+    let talkQuery = "";
 
     function lang() {
         const ru = document.getElementById("ru-btn");
@@ -84,6 +105,17 @@
     }
     const t = (key) => i18n[lang()][key];
     const $ = (sel) => section.querySelector(sel);
+
+    // поле может быть строкой или {ru, en}
+    function loc(value) {
+        if (value && typeof value === "object") return value[lang()] || value.ru || value.en || "";
+        return value || "";
+    }
+
+    // порядок авторов известен не для всех работ: тогда показываем «Тиньков О.В.; соавторы: …»
+    function authorList(pub) {
+        return pub.authors || [OWNER_NAME[pub.lang === "en" ? "en" : "ru"], ...(pub.coauthors || [])];
+    }
 
     function escapeHtml(text) {
         return String(text).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
@@ -103,17 +135,19 @@
 
     // ---------------------------------------------------------------- BibTeX
     function bibtex(pub) {
-        const key = `${pub.authors[0].split(" ")[0].toLowerCase()}${pub.year}${pub.title.split(/\W+/)[0].toLowerCase()}`;
-        const authors = pub.authors.map((a) => a.replace(/^(\S+)\s+(.+)$/, "$1, $2")).join(" and ");
+        const list = authorList(pub).filter((a) => !/^(и др|et al)/.test(a));
+        const key = `tinkov${pub.year}${(pub.title.match(/[A-Za-z0-9]+/) || ["work"])[0].toLowerCase()}`;
+        const authors = list.map((a) => a.replace(/^(\S+)\s+(.+)$/, "$1, $2")).join(" and ");
+        const inBook = pub.type === "conference" || pub.type === "proceedings";
         const fields = [
             ["author", authors],
             ["title", pub.title],
-            [pub.type === "conference" ? "booktitle" : "journal", pub.venue],
-            ["year", pub.year],
-            ["doi", pub.doi]
+            [pub.type === "textbook" ? "publisher" : inBook ? "booktitle" : "journal", pub.venue],
+            ["year", pub.year]
         ];
+        if (pub.doi) fields.push(["doi", pub.doi]);
         if (pub.details) fields.push(["note", pub.details]);
-        const entry = pub.type === "conference" ? "inproceedings" : "article";
+        const entry = pub.type === "textbook" ? "book" : inBook ? "inproceedings" : "article";
         return `@${entry}{${key},\n` + fields.map(([k, v]) => `  ${k} = {${v}}`).join(",\n") + "\n}";
     }
 
@@ -139,12 +173,12 @@
 
     // ---------------------------------------------------------------- Отрисовка
     function renderStats() {
-        const years = pubs.map((p) => p.year);
+        const index = (p) => p.index || [];
         const values = {
-            publications: pubs.length,
-            first: pubs.filter((p) => OWNER.test(p.authors[0])).length,
-            venues: new Set(pubs.map((p) => p.venue)).size,
-            years: `${Math.min(...years)}–${Math.max(...years)}`
+            articles: pubs.filter((p) => p.type !== "textbook").length,
+            indexed: pubs.filter((p) => index(p).includes("scopus") || index(p).includes("wos")).length,
+            vak: pubs.filter((p) => index(p).includes("vak")).length,
+            textbooks: pubs.filter((p) => p.type === "textbook").length
         };
         $(".pub-stats").innerHTML = t("stats")
             .map(([key, label]) => `<div class="pub-stat"><b>${values[key]}</b><span>${label}</span></div>`)
@@ -155,7 +189,9 @@
     function renderFilters() {
         const counts = {};
         pubs.forEach((p) => p.topics.forEach((tp) => { counts[tp] = (counts[tp] || 0) + 1; }));
+        const featured = pubs.filter((p) => p.featured).length;
         const items = [["all", t("all"), pubs.length]]
+            .concat(featured ? [["featured", t("featured"), featured]] : [])
             .concat(Object.keys(t("topics")).filter((k) => counts[k]).map((k) => [k, t("topics")[k], counts[k]]));
         const box = $(".pub-filters");
         box.innerHTML = items
@@ -169,27 +205,29 @@
     }
 
     function matches(pub) {
-        if (topic !== "all" && !pub.topics.includes(topic)) return false;
+        if (topic === "featured" ? !pub.featured : topic !== "all" && !pub.topics.includes(topic)) return false;
         if (!query) return true;
-        const haystack = [pub.title, pub.venue, pub.authors.join(" "), pub.abstract || "", pub.year].join(" ").toLowerCase();
+        const haystack = [pub.title, pub.venue, authorList(pub).join(" "), pub.abstract || "", pub.year].join(" ").toLowerCase();
         return query.split(/\s+/).every((word) => haystack.includes(word));
     }
 
     function card(pub) {
+        const mark = (a) => (OWNER.test(a) ? `<b>${escapeHtml(a)}</b>` : escapeHtml(a));
         const authors = pub.authors
-            .map((a) => (OWNER.test(a) ? `<b>${escapeHtml(a)}</b>` : escapeHtml(a)))
-            .join(", ");
+            ? pub.authors.map(mark).join(", ")
+            : `${mark(authorList(pub)[0])}${pub.coauthors && pub.coauthors.length ? `<span class="pub-coauth">; ${t("coauthors")}</span> ${pub.coauthors.map(escapeHtml).join(", ")}` : ""}`;
         const online = /advance online/i.test(pub.details || "");
         const details = (pub.details || "").replace(/\.?\s*Advance online publication/i, "").trim();
         const badges = [
             online ? `<span class="pub-badge">${t("online")}</span>` : "",
-            pub.type === "conference" ? `<span class="pub-badge">${t("conference")}</span>` : ""
+            t("types")[pub.type] ? `<span class="pub-badge">${t("types")[pub.type]}</span>` : "",
+            ...(pub.index || []).map((ix) => `<span class="pub-index pub-index-${ix}">${t("indexNames")[ix] || ix}</span>`)
         ].join("");
         const topics = pub.topics.map((tp) => `<span class="pub-topic">${escapeHtml(t("topics")[tp] || tp)}</span>`).join("");
-        const doiUrl = `https://doi.org/${pub.doi}`;
+        const doiUrl = pub.doi ? `https://doi.org/${pub.doi}` : "";
         const actions = [
             pub.abstract ? `<button type="button" class="pub-action pub-toggle" aria-expanded="false"><i class="fas fa-align-left"></i><span>${t("abstract")}</span><i class="fas fa-chevron-down pub-chevron"></i></button>` : "",
-            `<a class="pub-action" href="${doiUrl}" target="_blank" rel="noopener"><i class="fas fa-arrow-up-right-from-square"></i><span>${t("journal")}</span></a>`,
+            doiUrl ? `<a class="pub-action" href="${doiUrl}" target="_blank" rel="noopener"><i class="fas fa-arrow-up-right-from-square"></i><span>${t("journal")}</span></a>` : "",
             pub.app ? `<a class="pub-action pub-action-accent" href="${escapeHtml(pub.app.url)}" target="_blank" rel="noopener"><i class="fas fa-flask"></i><span>${t("app")}</span></a>` : "",
             `<button type="button" class="pub-action pub-cite"><i class="fas fa-quote-right"></i><span>${t("cite")}</span></button>`
         ].join("");
@@ -199,13 +237,13 @@
         li.innerHTML = `
             <article class="pub-card">
                 <div class="pub-meta"><span class="pub-venue">${escapeHtml(pub.venue)}</span>${details ? `<span class="pub-details">${escapeHtml(details)}</span>` : ""}${badges}</div>
-                <h3 class="pub-title"><a href="${doiUrl}" target="_blank" rel="noopener">${escapeHtml(pub.title)}</a></h3>
+                <h3 class="pub-title">${doiUrl ? `<a href="${doiUrl}" target="_blank" rel="noopener">${escapeHtml(pub.title)}</a>` : escapeHtml(pub.title)}</h3>
                 <p class="pub-authors">${authors}</p>
                 <div class="pub-footer">
                     <div class="pub-actions">${actions}</div>
                     <div class="pub-topics">${topics}</div>
                 </div>
-                ${pub.abstract ? `<div class="pub-abstract" hidden><p>${escapeHtml(pub.abstract)}</p><span class="pub-doi">DOI: <a href="${doiUrl}" target="_blank" rel="noopener">${escapeHtml(pub.doi)}</a></span></div>` : ""}
+                ${pub.abstract ? `<div class="pub-abstract" hidden><p>${escapeHtml(pub.abstract)}</p>${doiUrl ? `<span class="pub-doi">DOI: <a href="${doiUrl}" target="_blank" rel="noopener">${escapeHtml(pub.doi)}</a></span>` : ""}</div>` : ""}
             </article>`;
 
         const toggle = li.querySelector(".pub-toggle");
@@ -263,21 +301,52 @@
     }
 
     function renderTalks() {
-        const l = lang();
         $(".talk-intro").textContent = t("talkIntro");
-        $(".talk-list").innerHTML = talks
-            .map((talk) => {
-                const when = [talk.date[l], talk.place[l]].filter(Boolean).join(" · ");
-                const scope = t("scope")[talk.scope];
-                return `<li class="talk">
-                    <div class="talk-dot"><i class="fas fa-microphone-lines"></i></div>
+        $(".talk-search-input").placeholder = t("talkSearch");
+        if (!talks.length) return;
+
+        // «с международным участием» — отдельная метка, не путаем с международной конференцией
+        const intlKind = (talk) => {
+            const name = loc(talk.event);
+            if (/с международным участием|with international participation/i.test(name)) return "partial";
+            return /международн|international/i.test(name) ? "full" : "";
+        };
+        const intl = (talk) => Boolean(intlKind(talk));
+        const years = talks.map((x) => x.year);
+        const values = {
+            talks: talks.length,
+            intl: talks.filter(intl).length,
+            cities: new Set(talks.map((x) => loc(x.place)).filter((c) => c && c !== "онлайн" && c !== "online")).size,
+            years: `${Math.min(...years)}–${Math.max(...years)}`
+        };
+        $(".talk-stats").innerHTML = t("talkStats")
+            .map(([key, label]) => `<div class="pub-stat"><b>${values[key]}</b><span>${escapeHtml(label)}</span></div>`)
+            .join("");
+        section.querySelector('[data-count="talks"]').textContent = talks.length;
+
+        const shown = talks.filter((x) => {
+            if (!talkQuery) return true;
+            const haystack = [x.title, loc(x.event), loc(x.place), x.year, (x.coauthors || []).join(" ")].join(" ").toLowerCase();
+            return talkQuery.split(/\s+/).every((word) => haystack.includes(word));
+        });
+        let year = null;
+        $(".talk-list").innerHTML = shown
+            .map((x) => {
+                const heading = x.year !== year ? `<li class="pub-year" aria-hidden="true">${(year = x.year)}</li>` : "";
+                const when = [loc(x.date), loc(x.place)].filter(Boolean).join(" · ");
+                return `${heading}<li class="pub talk">
                     <article class="pub-card talk-card">
-                        <div class="pub-meta">${when ? `<span class="talk-when"><i class="far fa-calendar"></i>${escapeHtml(when)}</span>` : `<span class="talk-when talk-tbd">${escapeHtml(t("dateTbd"))}</span>`}${scope ? `<span class="pub-badge">${escapeHtml(scope)}</span>` : ""}</div>
-                        <h3 class="pub-title">${escapeHtml(talk.name[l])}</h3>
+                        <div class="pub-meta">${when ? `<span class="talk-when"><i class="far fa-calendar"></i>${escapeHtml(when)}</span>` : ""}${intlKind(x) ? `<span class="pub-badge">${t("intl")[intlKind(x)]}</span>` : ""}</div>
+                        <h3 class="pub-title">${x.title ? escapeHtml(x.title) : `<span class="talk-tbd">${escapeHtml(t("talkNoTitle"))}</span>`}</h3>
+                        <p class="talk-event"><i class="fas fa-person-chalkboard"></i>${escapeHtml(loc(x.event))}</p>
+                        ${x.coauthors && x.coauthors.length ? `<p class="pub-authors">${escapeHtml(t("talkCoauthors"))} ${x.coauthors.map(escapeHtml).join(", ")}</p>` : ""}
                     </article>
                 </li>`;
             })
             .join("");
+        const empty = $(".talk-empty");
+        empty.hidden = shown.length > 0;
+        empty.textContent = t("empty");
     }
 
     function renderAll() {
@@ -294,6 +363,10 @@
         query = e.target.value.trim().toLowerCase();
         renderList();
     });
+    $(".talk-search-input").addEventListener("input", (e) => {
+        talkQuery = e.target.value.trim().toLowerCase();
+        renderTalks();
+    });
     document.querySelectorAll(".lang-btn").forEach((btn) => btn.addEventListener("click", renderAll));
 
     fetch("data/publications.json")
@@ -302,6 +375,7 @@
             return resp.json();
         })
         .then((data) => {
+            // сортировка устойчивая: внутри года сохраняется порядок из файла (избранные — первыми)
             pubs = data.slice().sort((a, b) => b.year - a.year);
             renderAll();
         })

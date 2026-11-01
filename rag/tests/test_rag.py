@@ -98,6 +98,8 @@ def test_publications_become_separate_sources():
     krasava = next(d for d in docs if "KRASAVA" in d.page_content)
     assert krasava.metadata["url"] == "https://doi.org/10.3390/ijms27010120"
     assert "Tinkov O.V." in krasava.page_content
+    textbook = next(d for d in docs if "Общая токсикологическая химия" in d.page_content)
+    assert textbook.metadata["url"] == "" and "соавторы: Люленова В.В." in textbook.page_content
 
 
 def test_reviews_summary():
@@ -106,8 +108,9 @@ def test_reviews_summary():
 
 
 def test_talks_summary():
-    [doc] = load_talks(settings.talks_json, settings.site_url)
-    assert "Курск" in doc.page_content and "Kursk" in doc.page_content
+    docs = load_talks(settings.talks_json, settings.site_url)
+    text = "\n".join(d.page_content for d in docs)
+    assert len(docs) > 5 and "Курск" in text and "ToxAI".lower() in text.lower()
 
 
 def test_build_and_reload_index(test_settings, fake_providers):
