@@ -85,6 +85,19 @@ GitHub Pages отдаёт только статику, поэтому бэкен
 построить локально и закоммитить `rag/data/index/`: тогда сервер стартует без пересчёта
 эмбеддингов (если файла нет, индекс строится при запуске).
 
+**Hugging Face Spaces** — бесплатно и без банковской карты (рекомендуется):
+
+```bash
+pip install huggingface_hub
+huggingface-cli login                       # токен с правом write
+python deploy/hf_space.py --space <логин>/portfolio-rag
+```
+
+Скрипт создаёт Docker-Space, загружает код, данные и готовый индекс, передаёт `GOOGLE_API_KEY`
+(секретом) и `ALLOWED_ORIGINS`. Через 2–5 минут API доступен по адресу
+`https://<логин>-portfolio-rag.hf.space`. Бесплатный Space засыпает после 48 часов без запросов
+и просыпается при первом обращении (около минуты).
+
 **Render** (бесплатный план, засыпает без трафика):
 New → Web Service → репозиторий `ovttiras/portfolio` → Runtime *Docker*,
 Dockerfile Path `rag/Dockerfile`, Docker Build Context `.` → переменные `GOOGLE_API_KEY`,
