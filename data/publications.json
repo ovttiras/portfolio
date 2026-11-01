@@ -1,0 +1,991 @@
+[
+  {
+    "id": "hdac8-assistant-2026",
+    "year": 2026,
+    "title": "HDAC8 Assistant: a QSAR-guided molecular generation platform for de novo design and virtual screening of HDAC8 inhibitors",
+    "authors": [
+      "Tinkov O.V.",
+      "Grigorev V.Y."
+    ],
+    "venue": "SAR and QSAR in Environmental Research",
+    "details": "Advance online publication",
+    "type": "article",
+    "doi": "10.1080/1062936X.2026.2741359",
+    "topics": [
+      "hdac"
+    ],
+    "abstract": "",
+    "index": [
+      "scopus",
+      "wos"
+    ],
+    "featured": true,
+    "lang": "en",
+    "app": {
+      "name": "HDAC8 Assistant",
+      "url": "https://hdac8-assistant.streamlit.app/"
+    }
+  },
+  {
+    "id": "krasava-2025",
+    "year": 2026,
+    "title": "KRASAVA — An Expert System for Virtual Screening of KRAS G12D Inhibitors",
+    "authors": [
+      "Tinkov O.V.",
+      "Gurevich P.E.",
+      "Nikolenko S.A.",
+      "Kadyrov S.D.",
+      "Bogatyreva N.S.",
+      "Grigorev V.Y.",
+      "Ivankov D.N.",
+      "Pak M.A."
+    ],
+    "venue": "International Journal of Molecular Sciences",
+    "details": "27(1), 120",
+    "type": "article",
+    "doi": "10.3390/ijms27010120",
+    "topics": [
+      "kras"
+    ],
+    "abstract": "",
+    "index": [
+      "vak",
+      "scopus",
+      "wos"
+    ],
+    "featured": true,
+    "lang": "en"
+  },
+  {
+    "id": "toxai-assistant-2025",
+    "year": 2025,
+    "title": "ToxAI_assistant: a web platform for a comprehensive study of the acute toxicity of xenobiotics following oral and intravenous administration in rats",
+    "authors": [
+      "Tinkov O.V.",
+      "Grigorev V.Y."
+    ],
+    "venue": "SAR and QSAR in Environmental Research",
+    "details": "36(7), 555–582",
+    "type": "article",
+    "doi": "10.1080/1062936X.2025.2535606",
+    "topics": [
+      "toxicity"
+    ],
+    "app": {
+      "name": "ToxAI Assistant",
+      "url": "https://tox-ai-assistant.streamlit.app/"
+    },
+    "abstract": "",
+    "index": [
+      "vak",
+      "scopus",
+      "wos"
+    ],
+    "featured": true,
+    "lang": "en"
+  },
+  {
+    "id": "shannon-entropy-2025",
+    "year": 2025,
+    "title": "Calculation and Properties of a 3D-Molecular Shannon Entropy Using Interatomic Distance Histograms",
+    "authors": [
+      "Grigorev V.Y.",
+      "Grigoreva L.D.",
+      "Tinkov O.V."
+    ],
+    "venue": "Moscow University Chemistry Bulletin",
+    "details": "80(2), 89–99",
+    "type": "article",
+    "doi": "10.3103/S0027131425700051",
+    "topics": [
+      "methods"
+    ],
+    "abstract": "",
+    "index": [
+      "vak",
+      "scopus",
+      "wos"
+    ],
+    "featured": true,
+    "lang": "en"
+  },
+  {
+    "id": "hdac3-vs-assistant-2024",
+    "year": 2025,
+    "title": "HDAC3_VS_assistant: cheminformatics-driven discovery of histone deacetylase 3 inhibitors",
+    "authors": [
+      "Tinkov O.V.",
+      "Grigorev V.Y."
+    ],
+    "venue": "Molecular Diversity",
+    "details": "29, 3165–3187",
+    "type": "article",
+    "doi": "10.1007/s11030-024-11066-6",
+    "topics": [
+      "hdac"
+    ],
+    "app": {
+      "name": "HDAC3 VS Assistant",
+      "url": "https://hdac3-vs-assistant-v2.streamlit.app/"
+    },
+    "abstract": "",
+    "index": [
+      "vak",
+      "scopus",
+      "wos"
+    ],
+    "featured": true,
+    "lang": "en"
+  },
+  {
+    "id": "ht-predict-2024",
+    "year": 2024,
+    "title": "HT_PREDICT: a machine learning-based computational open-source tool for screening HDAC6 inhibitors",
+    "authors": [
+      "Tinkov O.V.",
+      "Osipov V.N.",
+      "Kolotaev A.V.",
+      "Khachatryan D.S.",
+      "Grigorev V.Y."
+    ],
+    "venue": "SAR and QSAR in Environmental Research",
+    "details": "35(6), 505–530",
+    "type": "article",
+    "doi": "10.1080/1062936X.2024.2371155",
+    "topics": [
+      "hdac"
+    ],
+    "abstract": "",
+    "index": [
+      "vak",
+      "scopus",
+      "wos"
+    ],
+    "featured": true,
+    "lang": "en",
+    "app": {
+      "name": "HT_PREDICT",
+      "url": "https://htpredict.streamlit.app/"
+    }
+  },
+  {
+    "id": "hdac2-scan-2023",
+    "year": 2023,
+    "title": "HDAC2 SCAN: An Expert System for Virtual Screening of Histone Deacetylase 2 Inhibitors",
+    "authors": [
+      "Tinkov O.V.",
+      "Grigoreva L.D.",
+      "Grigorev V.Y."
+    ],
+    "venue": "Russian Journal of General Chemistry",
+    "details": "93(Suppl 2), S426–S437",
+    "type": "article",
+    "doi": "10.1134/S1070363223150021",
+    "topics": [
+      "hdac"
+    ],
+    "app": {
+      "name": "HDAC2 Scanner",
+      "url": "https://hdac2scan.streamlit.app/"
+    },
+    "abstract": "",
+    "index": [
+      "vak",
+      "scopus"
+    ],
+    "featured": true,
+    "lang": "en"
+  },
+  {
+    "id": "hdac6-detector-2023",
+    "year": 2023,
+    "title": "HDAC6 detector: online application for evaluating compounds as potential histone deacetylase 6 inhibitors",
+    "authors": [
+      "Tinkov O.V.",
+      "Grigorev V.Y.",
+      "Grigoreva L.D.",
+      "Osipov V.N.",
+      "Kolotaev A.V.",
+      "Khachatryan D.S."
+    ],
+    "venue": "SAR and QSAR in Environmental Research",
+    "details": "34(8), 619–637",
+    "type": "article",
+    "doi": "10.1080/1062936X.2023.2244419",
+    "topics": [
+      "hdac"
+    ],
+    "app": {
+      "name": "HDAC6 Detector",
+      "url": "https://ovttiras-hdac6-detector-hdac6-detector-app-yzh8y5.streamlit.app/"
+    },
+    "abstract": "",
+    "index": [
+      "vak",
+      "scopus",
+      "wos"
+    ],
+    "featured": true,
+    "lang": "en"
+  },
+  {
+    "id": "hdac2-qsar-2023",
+    "year": 2023,
+    "title": "QSAR моделирование ингибиторов HDAC2",
+    "authors": null,
+    "coauthors": [
+      "Люленова В.В.",
+      "Самко Г.Н.",
+      "Григорьева Л.Д.",
+      "Григорьев В.Ю."
+    ],
+    "venue": "Современные проблемы естественных наук и фармации: сборник статей Всероссийской научной конференции (Йошкар-Ола)",
+    "details": "С. 372–375",
+    "type": "proceedings",
+    "topics": [
+      "hdac"
+    ],
+    "index": [
+      "rinc"
+    ],
+    "lang": "ru",
+    "abstract": ""
+  },
+  {
+    "id": "suture-2023",
+    "year": 2023,
+    "title": "Актуальная параметрическая оценка шовного хирургического материала",
+    "authors": null,
+    "coauthors": [
+      "Фомов Г.В.",
+      "Звягинцев В.В.",
+      "Додул А.П.",
+      "Акшонова В.А."
+    ],
+    "venue": "Фундаментальные и прикладные научные исследования: инноватика в современном мире (X Международная научно-практическая конференция, Уфа)",
+    "details": "Ч. 3, С. 7–12",
+    "type": "proceedings",
+    "topics": [
+      "other"
+    ],
+    "index": [],
+    "lang": "ru",
+    "abstract": ""
+  },
+  {
+    "id": "toxicological-chemistry-2023",
+    "year": 2023,
+    "title": "Общая токсикологическая химия",
+    "authors": null,
+    "coauthors": [
+      "Люленова В.В."
+    ],
+    "venue": "Учебное пособие. ПГУ им. Т.Г. Шевченко, медицинский факультет, Тирасполь",
+    "details": "4,0 п. л.",
+    "type": "textbook",
+    "topics": [
+      "teaching"
+    ],
+    "index": [],
+    "lang": "ru",
+    "abstract": ""
+  },
+  {
+    "id": "hdac1-predictor-2022",
+    "year": 2022,
+    "title": "HDAC1 PREDICTOR: a simple and transparent application for virtual screening of histone deacetylase 1 inhibitors",
+    "authors": [
+      "Tinkov O.V.",
+      "Grigorev V.Y.",
+      "Grigoreva L.D.",
+      "Osipov V.N."
+    ],
+    "venue": "SAR and QSAR in Environmental Research",
+    "details": "33(12), 915–931",
+    "type": "article",
+    "doi": "10.1080/1062936X.2022.2147996",
+    "topics": [
+      "hdac"
+    ],
+    "app": {
+      "name": "HDAC1 Predictor",
+      "url": "https://ovttiras-hdac1-inhibitors-hdac1-predictor-app-z3mrbr.streamlit.app/"
+    },
+    "abstract": "",
+    "index": [
+      "vak",
+      "scopus",
+      "wos"
+    ],
+    "featured": true,
+    "lang": "en"
+  },
+  {
+    "id": "hdac6-quinazoline-2022",
+    "year": 2022,
+    "title": "QSAR analysis and experimental evaluation of new quinazoline-containing hydroxamic acids as histone deacetylase 6 inhibitors",
+    "authors": [
+      "Tinkov O.V.",
+      "Grigorev V.Y.",
+      "Grigoreva L.D.",
+      "Osipov V.N.",
+      "Kolotaev A.V.",
+      "Khachatryan D.S."
+    ],
+    "venue": "SAR and QSAR in Environmental Research",
+    "details": "33(7), 513–532",
+    "type": "article",
+    "doi": "10.1080/1062936X.2022.2092210",
+    "topics": [
+      "hdac"
+    ],
+    "abstract": "",
+    "index": [
+      "vak",
+      "scopus",
+      "wos"
+    ],
+    "featured": true,
+    "lang": "en"
+  },
+  {
+    "id": "ache-fractal-2022",
+    "year": 2022,
+    "title": "Structural fractal analysis of the active sites of acetylcholinesterase from various organisms",
+    "authors": [
+      "Grigorev V.",
+      "Tinkov O.",
+      "Grigoreva L.",
+      "Rasdolsky A."
+    ],
+    "venue": "Journal of Molecular Graphics and Modelling",
+    "details": "116, 108265",
+    "type": "article",
+    "doi": "10.1016/j.jmgm.2022.108265",
+    "topics": [
+      "methods"
+    ],
+    "abstract": "",
+    "index": [
+      "vak",
+      "scopus",
+      "wos"
+    ],
+    "featured": true,
+    "lang": "en"
+  },
+  {
+    "id": "hdac6-qsar-2022",
+    "year": 2022,
+    "title": "QSAR Analysis of HDAC6 Inhibitors",
+    "authors": [
+      "Tinkov O.V.",
+      "Grigorev V.Y.",
+      "Grigoreva L.D."
+    ],
+    "venue": "Moscow University Chemistry Bulletin",
+    "details": "77(Suppl 1), S25–S35",
+    "type": "article",
+    "doi": "10.3103/S0027131422070100",
+    "topics": [
+      "hdac"
+    ],
+    "abstract": "",
+    "index": [
+      "vak",
+      "scopus"
+    ],
+    "featured": true,
+    "lang": "en"
+  },
+  {
+    "id": "avermectins-biotransformation-2022",
+    "year": 2022,
+    "title": "Исследование биотрансформации индивидуальных авермектинов",
+    "authors": null,
+    "coauthors": [
+      "Григорьев В.Ю.",
+      "Новик Т.С.",
+      "Стерлина Т.С.",
+      "Тихомирова О.И.",
+      "Дриняев В.А."
+    ],
+    "venue": "Биофармацевтический журнал",
+    "details": "Т. 14, № 3, С. 30–39",
+    "type": "article",
+    "topics": [
+      "toxicity"
+    ],
+    "index": [
+      "vak",
+      "scopus"
+    ],
+    "lang": "ru",
+    "abstract": ""
+  },
+  {
+    "id": "avermectins-2021",
+    "year": 2021,
+    "title": "QSAR analysis of the acute toxicity of avermectins towards Tetrahymena pyriformis",
+    "authors": [
+      "Tinkov O.V.",
+      "Grigorev V.Y.",
+      "Grigoryeva L.D."
+    ],
+    "venue": "SAR and QSAR in Environmental Research",
+    "details": "32(7), 541–571",
+    "type": "article",
+    "doi": "10.1080/1062936X.2021.1932583",
+    "topics": [
+      "toxicity"
+    ],
+    "abstract": "",
+    "index": [
+      "vak",
+      "scopus",
+      "wos"
+    ],
+    "featured": true,
+    "lang": "en"
+  },
+  {
+    "id": "sars-cov-2-2021",
+    "year": 2021,
+    "title": "Virtual Screening and Molecular Design of Potential SARS-COV-2 Inhibitors",
+    "authors": [
+      "Tinkov O.V.",
+      "Grigorev V.Y.",
+      "Grigoryeva L.D."
+    ],
+    "venue": "Moscow University Chemistry Bulletin",
+    "details": "76(2), 95–113",
+    "type": "article",
+    "doi": "10.3103/S0027131421020127",
+    "topics": [
+      "antiviral"
+    ],
+    "abstract": "",
+    "index": [
+      "vak",
+      "scopus"
+    ],
+    "featured": true,
+    "lang": "en"
+  },
+  {
+    "id": "ache-huperzine-2021",
+    "year": 2021,
+    "title": "Structural Fractal Analysis of the Active Site of Acetylcholinesterase in Complexes with Huperzine A, Galantamine, and Donepezil",
+    "authors": null,
+    "coauthors": [
+      "Grigorev V.Y.",
+      "Rasdolsky A.N.",
+      "Grigoreva L.D."
+    ],
+    "venue": "Molecular Informatics",
+    "details": "40(11), e2100127",
+    "type": "article",
+    "doi": "10.1002/minf.202100127",
+    "topics": [
+      "methods"
+    ],
+    "index": [
+      "vak",
+      "scopus",
+      "wos"
+    ],
+    "lang": "en",
+    "abstract": ""
+  },
+  {
+    "id": "avermectins-biotransformation-time-2021",
+    "year": 2021,
+    "title": "Prediction of an Organic Compound’s Biotransformation Time: A Study Using Avermectins",
+    "authors": null,
+    "coauthors": [
+      "Grigorev V.Y.",
+      "Grigoreva L.D."
+    ],
+    "venue": "Moscow University Chemistry Bulletin",
+    "details": "76, 231–247",
+    "type": "article",
+    "doi": "10.3103/S0027131421040088",
+    "topics": [
+      "toxicity"
+    ],
+    "index": [
+      "vak",
+      "scopus"
+    ],
+    "lang": "en",
+    "abstract": ""
+  },
+  {
+    "id": "molecular-design-2021",
+    "year": 2021,
+    "title": "Молекулярный дизайн биологически активных соединений в контексте создания лекарственных средств",
+    "authors": null,
+    "coauthors": [
+      "Люленова В.В."
+    ],
+    "venue": "Учебно-методическое пособие. ПГУ им. Т.Г. Шевченко, медицинский факультет, Тирасполь",
+    "details": "4,0 п. л.",
+    "type": "textbook",
+    "topics": [
+      "teaching"
+    ],
+    "index": [],
+    "lang": "ru",
+    "abstract": ""
+  },
+  {
+    "id": "aquatic-toxicity-2020",
+    "year": 2020,
+    "title": "The influence of structural patterns on acute aquatic toxicity of organic compounds",
+    "authors": [
+      "Tinkov O.",
+      "Polishchuk P.",
+      "Matveieva M.",
+      "Grigorev V.",
+      "Grigoreva L.",
+      "Porozov Y."
+    ],
+    "venue": "Molecular Informatics",
+    "details": "39, 2000209",
+    "type": "article",
+    "doi": "10.1002/minf.202000209",
+    "topics": [
+      "toxicity"
+    ],
+    "abstract": "",
+    "index": [
+      "vak",
+      "scopus",
+      "wos"
+    ],
+    "featured": true,
+    "lang": "en"
+  },
+  {
+    "id": "daphnia-2020",
+    "year": 2020,
+    "title": "Effect of the structural factors of organic compounds on the acute toxicity toward Daphnia magna",
+    "authors": [
+      "Tinkov O.V.",
+      "Grigorev V.Y.",
+      "Razdolsky A.N.",
+      "Grigoryeva L.D.",
+      "Dearden J.C."
+    ],
+    "venue": "SAR and QSAR in Environmental Research",
+    "details": "31(8), 615–641",
+    "type": "article",
+    "doi": "10.1080/1062936X.2020.1791250",
+    "topics": [
+      "toxicity"
+    ],
+    "abstract": "",
+    "index": [
+      "vak",
+      "scopus",
+      "wos"
+    ],
+    "featured": true,
+    "lang": "en"
+  },
+  {
+    "id": "crossinterpretation-2020",
+    "year": 2020,
+    "title": "The CrossInterpretation of QSAR Toxicological Models",
+    "authors": [
+      "Tinkov O.",
+      "Polishchuk P.",
+      "Grigorev V.",
+      "Porozov Y."
+    ],
+    "venue": "Bioinformatics Research and Applications (ISBRA 2020), Lecture Notes in Computer Science",
+    "details": "vol. 12304, pp. 262–273, Springer, Cham",
+    "type": "conference",
+    "doi": "10.1007/978-3-030-57821-3_23",
+    "topics": [
+      "toxicity"
+    ],
+    "abstract": "",
+    "index": [
+      "vak",
+      "scopus"
+    ],
+    "featured": true,
+    "lang": "en"
+  },
+  {
+    "id": "hybrid-antitumor-2020",
+    "year": 2020,
+    "title": "Разработка гибридных противоопухолевых лекарственных средств",
+    "authors": null,
+    "coauthors": [
+      "Люленова В.В.",
+      "Григорьев В.Ю."
+    ],
+    "venue": "Вестник Приднестровского университета. Серия: Медико-биологические и химические науки",
+    "details": "№ 2 (65), С. 77–85",
+    "type": "article",
+    "topics": [
+      "hdac"
+    ],
+    "index": [
+      "rinc"
+    ],
+    "lang": "ru",
+    "abstract": ""
+  },
+  {
+    "id": "avermectins-bioconcentration-2020",
+    "year": 2020,
+    "title": "QSPR анализ способности индивидуальных авермектинов к биоконцентрированию",
+    "authors": null,
+    "coauthors": [
+      "Григорьев В.Ю.",
+      "Григорьева Л.Д."
+    ],
+    "venue": "Химическая безопасность",
+    "details": "Т. 4, № 2, С. 8–23",
+    "type": "article",
+    "doi": "10.25514/CHS.2020.2.18001",
+    "topics": [
+      "toxicity"
+    ],
+    "index": [
+      "vak"
+    ],
+    "lang": "ru",
+    "abstract": ""
+  },
+  {
+    "id": "oral-toxicity-mice-2019",
+    "year": 2019,
+    "title": "QSAR анализ острой токсичности органических соединений при пероральном введении мышам",
+    "authors": null,
+    "coauthors": [
+      "Григорьев В.Ю.",
+      "Полищук П.Г.",
+      "Ярков А.В.",
+      "Раевский О.А."
+    ],
+    "venue": "Биомедицинская химия",
+    "details": "Т. 65, вып. 2, С. 123–132",
+    "type": "article",
+    "doi": "10.18097/PBMC20196502123",
+    "topics": [
+      "toxicity"
+    ],
+    "index": [
+      "vak",
+      "scopus"
+    ],
+    "lang": "ru",
+    "abstract": ""
+  },
+  {
+    "id": "vegfr2-hdac-2019",
+    "year": 2019,
+    "title": "Количественный анализ «структура – противоопухолевая активность» и рациональный молекулярный дизайн бифункциональных VEGFR-2/HDAC-ингибиторов",
+    "authors": null,
+    "coauthors": [
+      "Полищук П.Г.",
+      "Хачатрян Д.С.",
+      "Колотаев А.В.",
+      "Балаев А.Н.",
+      "и др. (всего 6 авторов)"
+    ],
+    "venue": "Компьютерные исследования и моделирование",
+    "details": "Т. 11, № 5, С. 911–930",
+    "type": "article",
+    "doi": "10.20537/2076-7633-2019-11-5-911-930",
+    "topics": [
+      "hdac"
+    ],
+    "index": [
+      "vak",
+      "scopus"
+    ],
+    "lang": "ru",
+    "abstract": ""
+  },
+  {
+    "id": "oral-toxicity-mammals-2018",
+    "year": 2018,
+    "title": "QSAR моделирование острой оральной токсичности млекопитающих",
+    "authors": null,
+    "coauthors": [
+      "Раевский О.А.",
+      "Григорьев В.Ю.",
+      "Ярков А.В."
+    ],
+    "venue": "Biomedical Chemistry: Research and Methods",
+    "details": "1(3), e00066",
+    "type": "article",
+    "doi": "10.18097/bmcrm00066",
+    "topics": [
+      "toxicity"
+    ],
+    "index": [
+      "vak"
+    ],
+    "lang": "ru",
+    "abstract": ""
+  },
+  {
+    "id": "spci-2016",
+    "year": 2016,
+    "title": "Structural and Physico-Chemical Interpretation (SPCI) of QSAR Models and Its Comparison with Matched Molecular Pair Analysis",
+    "authors": null,
+    "coauthors": [
+      "Polishchuk P.",
+      "Khristova T.",
+      "Ognichenko L.",
+      "Kosinskaya A.",
+      "et al. (6 authors in total)"
+    ],
+    "venue": "Journal of Chemical Information and Modeling",
+    "details": "56(8), 1455–1469",
+    "type": "article",
+    "doi": "10.1021/acs.jcim.6b00371",
+    "topics": [
+      "methods"
+    ],
+    "index": [
+      "vak",
+      "scopus",
+      "wos"
+    ],
+    "lang": "en",
+    "abstract": ""
+  },
+  {
+    "id": "nitroaromatics-2016",
+    "year": 2016,
+    "title": "Computational Assessment of Environmental Hazards of Nitroaromatic Compounds: Influence of the Type and Position of Aromatic Ring Substituents on Toxicity",
+    "authors": null,
+    "coauthors": [
+      "Ognichenko L.N.",
+      "Kuz'min V.E.",
+      "Gorb L.G.",
+      "Kosinskaya A.P.",
+      "et al. (8 authors in total)"
+    ],
+    "venue": "Structural Chemistry",
+    "details": "27, 191–198",
+    "type": "article",
+    "doi": "10.1007/s11224-015-0715-4",
+    "topics": [
+      "toxicity"
+    ],
+    "index": [
+      "vak",
+      "scopus",
+      "wos"
+    ],
+    "lang": "en",
+    "abstract": ""
+  },
+  {
+    "id": "organic-acids-mice-2015",
+    "year": 2015,
+    "title": "QSAR исследование острой токсичности органических кислот и их производных при внутрибрюшинном способе введения мышам",
+    "authors": null,
+    "coauthors": [
+      "Полищук П.Г.",
+      "Артеменко А.Г.",
+      "Кузьмин В.Е."
+    ],
+    "venue": "Химико-фармацевтический журнал",
+    "details": "Т. 49, № 2, С. 34–40",
+    "type": "article",
+    "topics": [
+      "toxicity"
+    ],
+    "index": [
+      "vak",
+      "scopus",
+      "wos"
+    ],
+    "lang": "ru",
+    "abstract": ""
+  },
+  {
+    "id": "reproductive-toxicity-2013",
+    "year": 2013,
+    "title": "Изучение и прогнозирование репродуктивной токсичности органических соединений различных классов на основе 2D симплексного представления молекулярной структуры",
+    "authors": null,
+    "coauthors": [
+      "Муратов Е.Н.",
+      "Артеменко А.Г.",
+      "Кузьмин В.Е."
+    ],
+    "venue": "Химико-фармацевтический журнал",
+    "details": "Т. 47, № 8, С. 30–36",
+    "type": "article",
+    "topics": [
+      "toxicity"
+    ],
+    "index": [
+      "vak",
+      "scopus",
+      "wos"
+    ],
+    "lang": "ru",
+    "abstract": ""
+  },
+  {
+    "id": "esters-toxicity-2013",
+    "year": 2013,
+    "title": "Исследование острой токсичности сложных эфиров на основе 2D-симплексного представления молекулярной структуры",
+    "authors": null,
+    "coauthors": [
+      "Полищук П.Г.",
+      "Артеменко А.Г.",
+      "Кузьмин В.Е.",
+      "Огниченко Л.Н."
+    ],
+    "venue": "Журнал Сибирского федерального университета. Серия: Химия",
+    "details": "Т. 6, № 1, С. 65–75",
+    "type": "article",
+    "topics": [
+      "toxicity"
+    ],
+    "index": [
+      "vak"
+    ],
+    "lang": "ru",
+    "abstract": ""
+  },
+  {
+    "id": "organic-acids-2012",
+    "year": 2012,
+    "title": "Анализ влияния структурных факторов на острую токсичность органических кислот",
+    "authors": null,
+    "coauthors": [
+      "Полищук П.Г.",
+      "Артеменко А.Г.",
+      "Огниченко Л.Н.",
+      "Кузьмин В.Е."
+    ],
+    "venue": "Вестник Кемеровского государственного университета",
+    "details": "№ 4 (52), Т. 1, С. 280–283",
+    "type": "article",
+    "topics": [
+      "toxicity"
+    ],
+    "index": [
+      "vak"
+    ],
+    "lang": "ru",
+    "abstract": ""
+  },
+  {
+    "id": "hydrocarbons-2012",
+    "year": 2012,
+    "title": "Изучение и прогнозирование острой токсичности углеводородов и их галогенпроизводных с помощью метода QSAR",
+    "authors": null,
+    "coauthors": [
+      "Полищук П.Г.",
+      "Кузьмин В.Е."
+    ],
+    "venue": "Химия в интересах устойчивого развития",
+    "details": "№ 20, С. 497–502",
+    "type": "article",
+    "topics": [
+      "toxicity"
+    ],
+    "index": [
+      "vak"
+    ],
+    "lang": "ru",
+    "abstract": ""
+  },
+  {
+    "id": "acute-toxicity-sfu-2012",
+    "year": 2012,
+    "title": "Исследование острой токсичности и физико-химических свойств органических соединений",
+    "authors": null,
+    "coauthors": [
+      "Полищук П.Г.",
+      "Артеменко А.Г.",
+      "Кузьмин В.Е."
+    ],
+    "venue": "Журнал Сибирского федерального университета. Серия: Химия",
+    "details": "Т. 5, № 1, С. 95–104",
+    "type": "article",
+    "topics": [
+      "toxicity"
+    ],
+    "index": [
+      "vak"
+    ],
+    "lang": "ru",
+    "abstract": ""
+  },
+  {
+    "id": "reproductive-qsar-2012",
+    "year": 2012,
+    "title": "Применение QSAR методов для изучения и прогнозирования репродуктивной токсичности",
+    "authors": null,
+    "coauthors": [
+      "Муратов Е.Н.",
+      "Кузьмин В.Е."
+    ],
+    "venue": "Новые химико-фармацевтические технологии: сборник научных трудов (РХТУ им. Д. И. Менделеева)",
+    "details": "Вып. 184, С. 258–262",
+    "type": "proceedings",
+    "topics": [
+      "toxicity"
+    ],
+    "index": [],
+    "lang": "ru",
+    "abstract": ""
+  },
+  {
+    "id": "graph-invariants-2011",
+    "year": 2011,
+    "title": "Инварианты молекулярных графов как дескрипторы для прогнозирования токсичности органических соединений",
+    "authors": null,
+    "coauthors": [
+      "Полищук П.Г.",
+      "Артеменко А.Г.",
+      "Муратов Е.Н.",
+      "Кузьмин В.Е."
+    ],
+    "venue": "Доклады Одесского семинара по дискретной математике",
+    "details": "№ 11, С. 62–65",
+    "type": "article",
+    "topics": [
+      "methods",
+      "toxicity"
+    ],
+    "index": [],
+    "lang": "ru",
+    "abstract": ""
+  },
+  {
+    "id": "alternative-methods-2011",
+    "year": 2011,
+    "title": "Альтернативные методы изучения и прогнозирования токсичности органических соединений",
+    "authors": null,
+    "coauthors": [
+      "Полищук П.Г.",
+      "Артеменко А.Г.",
+      "Огниченко Л.Н.",
+      "Кузьмин В.Е."
+    ],
+    "venue": "Вестник Приднестровского государственного университета",
+    "details": "№ 2, С. 112–118",
+    "type": "article",
+    "topics": [
+      "toxicity"
+    ],
+    "index": [],
+    "lang": "ru",
+    "abstract": ""
+  }
+]

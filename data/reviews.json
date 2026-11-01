@@ -1,0 +1,176 @@
+{
+  "since": 2020,
+  "source": {
+    "name": "Web of Science",
+    "url": "https://www.webofscience.com/wos/author/record/Q-4699-2017"
+  },
+  "journals": [
+    {
+      "name": "SAR and QSAR in Environmental Research",
+      "count": 11,
+      "url": "https://www.tandfonline.com/journals/gsar20",
+      "if": null,
+      "quartile": "Q2",
+      "if5": 2.3
+    },
+    {
+      "name": "Bioinformatics and Biology Insights",
+      "count": 5,
+      "url": "https://journals.sagepub.com/home/bbi",
+      "if": null,
+      "quartile": "Q2",
+      "if5": 3.7
+    },
+    {
+      "name": "Molecular Diversity",
+      "count": 5,
+      "url": "https://link.springer.com/journal/11030",
+      "if": null,
+      "quartile": "Q2",
+      "if5": 3.5
+    },
+    {
+      "name": "Scientific Reports",
+      "count": 5,
+      "url": "https://www.nature.com/srep/",
+      "if": null,
+      "quartile": "Q1",
+      "if5": 4.3
+    },
+    {
+      "name": "Archives of Environmental Contamination and Toxicology",
+      "count": 3,
+      "url": "https://link.springer.com/journal/244",
+      "if": null,
+      "quartile": "Q2",
+      "if5": 3.3
+    },
+    {
+      "name": "BMC Chemistry",
+      "count": 2,
+      "url": "https://bmcchem.biomedcentral.com/",
+      "if": null,
+      "quartile": "Q2",
+      "if5": 4.4
+    },
+    {
+      "name": "Discover Chemistry",
+      "count": 2,
+      "url": "https://link.springer.com/journal/44371",
+      "if": null,
+      "quartile": null,
+      "if5": null,
+      "ifNote": {
+        "ru": "первый IF ожидается в 2026",
+        "en": "first IF expected in 2026"
+      }
+    },
+    {
+      "name": "In Silico Pharmacology",
+      "count": 2,
+      "url": "https://link.springer.com/journal/40203",
+      "if": 4.0,
+      "quartile": "Q3",
+      "if5": null
+    },
+    {
+      "name": "Toxicology Letters",
+      "count": 2,
+      "url": "https://www.sciencedirect.com/journal/toxicology-letters",
+      "if": null,
+      "quartile": "Q2",
+      "if5": 3.2
+    },
+    {
+      "name": "BMC Bioinformatics",
+      "count": 1,
+      "url": "https://bmcbioinformatics.biomedcentral.com/",
+      "if": null,
+      "quartile": "Q1",
+      "if5": 3.6
+    },
+    {
+      "name": "Chemical Papers",
+      "count": 1,
+      "url": "https://link.springer.com/journal/11696",
+      "if": null,
+      "quartile": null,
+      "if5": null
+    },
+    {
+      "name": "ChemistrySelect",
+      "count": 1,
+      "url": "https://chemistry-europe.onlinelibrary.wiley.com/journal/23656549",
+      "if": null,
+      "quartile": "Q3",
+      "if5": null
+    },
+    {
+      "name": "Environmental Pollution",
+      "count": 1,
+      "url": "https://www.sciencedirect.com/journal/environmental-pollution",
+      "if": 7.6,
+      "quartile": "Q1",
+      "if5": null
+    },
+    {
+      "name": "Frontiers in Chemistry",
+      "count": 1,
+      "url": "https://www.frontiersin.org/journals/chemistry",
+      "if": 3.8,
+      "quartile": "Q1",
+      "if5": null
+    },
+    {
+      "name": "Journal of Cheminformatics",
+      "count": 1,
+      "url": "https://jcheminf.biomedcentral.com/",
+      "if": null,
+      "quartile": "Q1",
+      "if5": 9.3
+    },
+    {
+      "name": "Journal of Mathematical Chemistry",
+      "count": 1,
+      "url": "https://link.springer.com/journal/10910",
+      "if": null,
+      "quartile": "Q3",
+      "if5": null
+    },
+    {
+      "name": "Journal of Nanobiotechnology",
+      "count": 1,
+      "url": "https://jnanobiotechnology.biomedcentral.com/",
+      "if": null,
+      "quartile": "Q1",
+      "if5": 11.4
+    },
+    {
+      "name": "Molecular Cancer",
+      "count": 1,
+      "url": "https://molecular-cancer.biomedcentral.com/",
+      "if": null,
+      "quartile": "Q1",
+      "if5": 31.3
+    },
+    {
+      "name": "Process Safety and Environmental Protection",
+      "count": 1,
+      "url": "https://www.sciencedirect.com/journal/process-safety-and-environmental-protection",
+      "if": null,
+      "quartile": null,
+      "if5": null
+    },
+    {
+      "name": "Russian Journal of General Chemistry",
+      "count": 1,
+      "url": "https://link.springer.com/journal/11176",
+      "if": null,
+      "quartile": null,
+      "if5": null
+    }
+  ],
+  "metrics": {
+    "source": "Journal Citation Reports (Clarivate)"
+  }
+}

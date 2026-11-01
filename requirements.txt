@@ -1,0 +1,2 @@
+# Зависимости для Vercel (serverless-функция api/index.py) — те же, что у бэкенда в rag/
+-r rag/requirements.txt
