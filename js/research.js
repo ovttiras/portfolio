@@ -38,7 +38,8 @@
             revIntro: "Peer reviewer for international journals in cheminformatics, QSAR modelling, toxicology, bioinformatics and drug discovery.",
             revCount: (n) => `${n} ${n === 1 ? "review" : "reviews"}`,
             revSource: "Verified in",
-            metricsNote: (src, year) => `Quartile (Q) and impact factor (IF): ${src}, ${year}.`,
+            metricsNote: (src) => `Quartile (Q) and impact factor: ${src}. IF — two-year, IF₅ — five-year impact factor.`,
+            if5Title: "Five-year impact factor",
             site: "Journal website",
             talkIntro: "Talks and abstracts at scientific conferences.",
             talkSearch: "Search by topic, conference or city…",
@@ -77,7 +78,8 @@
             revIntro: "Рецензент международных журналов по хемоинформатике, QSAR-моделированию, токсикологии, биоинформатике и разработке лекарств.",
             revCount: (n) => `${n} ${plural(n, "рецензия", "рецензии", "рецензий")}`,
             revSource: "Подтверждено в",
-            metricsNote: (src, year) => `Квартиль (Q) и импакт-фактор (IF): ${src}, ${year}.`,
+            metricsNote: (src) => `Квартиль (Q) и импакт-фактор: ${src}. IF — двухлетний, IF₅ — пятилетний импакт-фактор.`,
+            if5Title: "Пятилетний импакт-фактор",
             site: "Сайт журнала",
             talkIntro: "Доклады и тезисы на научных конференциях.",
             talkSearch: "Поиск по теме, конференции или городу…",
@@ -301,7 +303,9 @@
                     : `<span class="rev-name">${escapeHtml(j.name)}</span>`;
                 const metrics = [
                     j.quartile ? `<span class="rev-q rev-${escapeHtml(j.quartile.toLowerCase())}">${escapeHtml(j.quartile)}</span>` : "",
-                    j.if != null ? `<span class="rev-if">IF ${escapeHtml(j.if)}</span>` : ""
+                    j.if != null ? `<span class="rev-if">IF ${escapeHtml(j.if)}</span>` : "",
+                    j.if5 != null ? `<span class="rev-if" title="${escapeHtml(t("if5Title"))}">IF₅ ${escapeHtml(j.if5)}</span>` : "",
+                    j.ifNote ? `<span class="rev-if-note">${escapeHtml(loc(j.ifNote))}</span>` : ""
                 ].join("");
                 return `<li class="rev-item">
                     <div class="rev-row"><div class="rev-head">${name}${metrics ? `<span class="rev-metrics">${metrics}</span>` : ""}</div><span class="rev-count">${escapeHtml(t("revCount")(j.count))}</span></div>
@@ -309,9 +313,9 @@
                 </li>`;
             })
             .join("");
-        const hasMetrics = journals.some((j) => j.quartile || j.if != null);
+        const hasMetrics = journals.some((j) => j.quartile || j.if != null || j.if5 != null);
         $(".rev-source").innerHTML = `<i class="fas fa-circle-check"></i>${escapeHtml(t("revSource"))} <a href="${escapeHtml(reviews.source.url)}" target="_blank" rel="noopener">${escapeHtml(reviews.source.name)}</a>`
-            + (hasMetrics && reviews.metrics ? `<span class="rev-metrics-note">${escapeHtml(t("metricsNote")(reviews.metrics.source, reviews.metrics.year))}</span>` : "");
+            + (hasMetrics && reviews.metrics ? `<span class="rev-metrics-note">${escapeHtml(t("metricsNote")(reviews.metrics.source))}</span>` : "");
         section.querySelector('[data-count="reviews"]').textContent = total;
     }
 

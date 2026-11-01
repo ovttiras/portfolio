@@ -366,7 +366,11 @@ def load_reviews(json_path: Path, site_url: str) -> list[Document]:
         "Журналы и число рецензий / Journals and number of reviews:",
         *(
             f"- {j['name']}: {j['count']}"
-            + "".join(f", {k} {j[key]}" for k, key in (("Q", "quartile"), ("IF", "if")) if j.get(key) is not None)
+            + "".join(
+                f", {k} {j[key]}"
+                for k, key in (("Q", "quartile"), ("IF", "if"), ("5-летний IF", "if5"))
+                if j.get(key) is not None
+            )
             + (f" ({j['url']})" if j.get("url") else "")
             for j in journals
         ),

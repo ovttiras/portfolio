@@ -632,3 +632,9 @@ a.rev-name:hover {
     font-size: 12px;
     opacity: 0.8;
 }
+
+.rev-if-note {
+    font-size: 11px;
+    font-style: italic;
+    color: var(--text-black-700);
+}
