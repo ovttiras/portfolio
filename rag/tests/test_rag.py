@@ -113,6 +113,34 @@ def test_talks_summary():
     assert len(docs) > 5 and "Курск" in text and "ToxAI".lower() in text.lower()
 
 
+def test_embeddings_retry_on_rate_limit(test_settings):
+    from langchain_core.vectorstores import InMemoryVectorStore
+
+    from langchain_core.embeddings import Embeddings
+
+    class FlakyEmbeddings(Embeddings):
+        """Второй вызов отвечает как API при превышении лимита."""
+
+        def __init__(self):
+            self.inner = DeterministicFakeEmbedding(size=8)
+            self.calls = 0
+
+        def embed_documents(self, texts):
+            self.calls += 1
+            if self.calls == 2:
+                raise RuntimeError("429 RESOURCE_EXHAUSTED. Please retry in 5.4s.")
+            return self.inner.embed_documents(texts)
+
+        def embed_query(self, text):
+            return self.inner.embed_query(text)
+
+    docs = load_markdown_posts(test_settings.blog_dir) * 5
+    store = InMemoryVectorStore(FlakyEmbeddings())
+    pauses = []
+    ingest.add_in_batches(store, ingest.split_documents(docs, test_settings), replace(test_settings, embed_batch_size=3), sleep=pauses.append)
+    assert pauses == [15.0] and len(store.store) == len(ingest.split_documents(docs, test_settings))
+
+
 def test_build_and_reload_index(test_settings, fake_providers):
     ingest.build_index(test_settings)
     meta = json.loads(ingest.meta_path(test_settings).read_text(encoding="utf-8"))

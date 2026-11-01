@@ -89,6 +89,10 @@ class Settings:
     chunk_overlap: int = field(default_factory=lambda: int(_env("CHUNK_OVERLAP", "150")))
     retriever_k: int = field(default_factory=lambda: int(_env("RETRIEVER_K", "6")))
     retriever_fetch_k: int = field(default_factory=lambda: int(_env("RETRIEVER_FETCH_K", "25")))
+    # Бесплатный тариф Gemini: 100 запросов эмбеддингов в минуту (каждый фрагмент — запрос),
+    # поэтому индексируем порциями и при 429 ждём, сколько просит API
+    embed_batch_size: int = field(default_factory=lambda: int(_env("EMBED_BATCH_SIZE", "50")))
+    embed_max_retries: int = field(default_factory=lambda: int(_env("EMBED_MAX_RETRIES", "8")))
 
     # --- HTTP API -----------------------------------------------------------
     allowed_origins: list[str] = field(

@@ -8,6 +8,8 @@ from __future__ import annotations
 import argparse
 import json
 import logging
+import re
+import time
 from datetime import datetime, timezone
 
 from langchain_core.documents import Document
@@ -37,6 +39,36 @@ def split_documents(docs: list[Document], s: Settings) -> list[Document]:
     return chunks
 
 
+def _is_rate_limit(exc: Exception) -> bool:
+    text = str(exc)
+    return "429" in text or "RESOURCE_EXHAUSTED" in text or "rate limit" in text.lower()
+
+
+def _retry_delay(exc: Exception, attempt: int) -> float:
+    """Пауза перед повтором: подсказка API («retry in 5.4s») или растущая пауза, но не меньше 15 с."""
+    hint = re.search(r"retry in ([\d.]+)s", str(exc), flags=re.I)
+    suggested = float(hint.group(1)) if hint else 0.0
+    return max(suggested + 1, 15.0 * (attempt + 1))
+
+
+def add_in_batches(store: InMemoryVectorStore, chunks: list[Document], s: Settings, sleep=time.sleep) -> None:
+    """Добавляет фрагменты в индекс порциями, переживая лимиты частоты запросов (HTTP 429)."""
+    size = max(1, s.embed_batch_size)
+    for start in range(0, len(chunks), size):
+        batch = chunks[start : start + size]
+        for attempt in range(s.embed_max_retries + 1):
+            try:
+                store.add_documents(batch)
+                break
+            except Exception as exc:
+                if not _is_rate_limit(exc) or attempt == s.embed_max_retries:
+                    raise
+                delay = _retry_delay(exc, attempt)
+                log.warning("Лимит запросов к API эмбеддингов, ждём %.0f с и повторяем…", delay)
+                sleep(delay)
+        log.info("Проиндексировано %d из %d фрагментов", min(start + size, len(chunks)), len(chunks))
+
+
 def meta_path(s: Settings):
     return s.index_path.with_suffix(".meta.json")
 
@@ -51,7 +83,7 @@ def build_index(s: Settings = settings) -> InMemoryVectorStore:
     log.info("Документов: %d, чанков: %d", len(docs), len(chunks))
 
     store = InMemoryVectorStore(get_embeddings(s))
-    store.add_documents(chunks)
+    add_in_batches(store, chunks, s)
 
     s.index_path.parent.mkdir(parents=True, exist_ok=True)
     store.dump(str(s.index_path))
