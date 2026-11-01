@@ -1,0 +1,14 @@
+{
+  "built_at": "2026-11-01T18:04:09+00:00",
+  "embeddings_provider": "google",
+  "embeddings_model": "gemini-embedding-001",
+  "embeddings_dim": 768,
+  "documents": 89,
+  "chunks": 105,
+  "by_type": {
+    "blog": 0,
+    "site": 48,
+    "cv": 1,
+    "publication": 40
+  }
+}
