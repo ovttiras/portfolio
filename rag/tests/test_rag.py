@@ -13,7 +13,7 @@ from langchain_core.language_models.fake_chat_models import FakeListChatModel
 from app import ingest, main
 from app.chain import RagAssistant, format_context
 from app.config import settings
-from app.loaders import load_cv, load_markdown_posts, load_profile, load_site_sections
+from app.loaders import load_cv, load_markdown_posts, load_profile, load_publications, load_reviews, load_site_sections, load_talks
 
 POST = """---
 title: Как я построил RAG для банка
@@ -90,6 +90,24 @@ async def test_profile_is_always_in_context(test_settings, fake_providers):
     # обе языковые версии справки — один источник, и он первый
     assert sources[0]["title"] == profile[0].metadata["title"]
     assert sum(s["title"] == profile[1].metadata["title"] for s in sources) == 0
+
+
+def test_publications_become_separate_sources():
+    docs = load_publications(settings.publications_json)
+    assert len(docs) == len({d.metadata["doc_id"] for d in docs}) > 10
+    krasava = next(d for d in docs if "KRASAVA" in d.page_content)
+    assert krasava.metadata["url"] == "https://doi.org/10.3390/ijms27010120"
+    assert "Tinkov O.V." in krasava.page_content
+
+
+def test_reviews_summary():
+    [doc] = load_reviews(settings.reviews_json, settings.site_url)
+    assert "48" in doc.page_content and "Scientific Reports: 5" in doc.page_content
+
+
+def test_talks_summary():
+    [doc] = load_talks(settings.talks_json, settings.site_url)
+    assert "Курск" in doc.page_content and "Kursk" in doc.page_content
 
 
 def test_build_and_reload_index(test_settings, fake_providers):

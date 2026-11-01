@@ -74,6 +74,11 @@ class Settings:
     # Страница сайта и резюме — чтобы ассистент знал опыт, навыки и проекты
     site_html: Path = field(default_factory=lambda: _env_path("SITE_HTML", REPO_ROOT / "index.html"))
     cv_pdf: Path = field(default_factory=lambda: _env_path("CV_PDF", REPO_ROOT / "doc" / "CV_Tinkov.pdf"))
+    publications_json: Path = field(
+        default_factory=lambda: _env_path("PUBLICATIONS_JSON", REPO_ROOT / "data" / "publications.json")
+    )
+    reviews_json: Path = field(default_factory=lambda: _env_path("REVIEWS_JSON", REPO_ROOT / "data" / "reviews.json"))
+    talks_json: Path = field(default_factory=lambda: _env_path("TALKS_JSON", REPO_ROOT / "data" / "talks.json"))
     site_url: str = field(default_factory=lambda: _env("SITE_URL", "https://ovttiras.github.io/portfolio/"))
 
     # --- Индекс и поиск -----------------------------------------------------

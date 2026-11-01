@@ -305,6 +305,104 @@ def load_cv(pdf_path: Path, site_url: str) -> list[Document]:
     ]
 
 
+def load_publications(json_path: Path) -> list[Document]:
+    """Научные публикации из data/publications.json — по документу на статью, источник — ссылка на DOI."""
+    if not json_path.is_file():
+        return []
+    import json
+
+    docs: list[Document] = []
+    for pub in json.loads(json_path.read_text(encoding="utf-8")):
+        venue = ", ".join(part for part in (pub["venue"], pub.get("details", "")) if part)
+        lines = [
+            pub["title"],
+            f"Авторы / Authors: {', '.join(pub['authors'])}",
+            f"Издание / Venue: {venue} ({pub['year']})",
+            f"DOI: {pub['doi']}",
+        ]
+        if pub.get("app"):
+            lines.append(f"Веб-приложение / Web app: {pub['app']['name']} — {pub['app']['url']}")
+        if pub.get("abstract"):
+            lines.append(f"Abstract: {pub['abstract']}")
+        docs.append(
+            Document(
+                page_content="\n".join(lines),
+                metadata={
+                    "source_type": "publication",
+                    "title": pub["title"],
+                    "url": f"https://doi.org/{pub['doi']}",
+                    "date": str(pub["year"]),
+                    "tags": ", ".join(pub.get("topics", [])),
+                    "doc_id": f"pub:{pub['id']}",
+                    "source": json_path.name,
+                },
+            )
+        )
+    log.info("Публикации: %d", len(docs))
+    return docs
+
+
+def load_reviews(json_path: Path, site_url: str) -> list[Document]:
+    """Рецензирование: один документ со списком журналов и числом рецензий."""
+    if not json_path.is_file():
+        return []
+    import json
+
+    data = json.loads(json_path.read_text(encoding="utf-8"))
+    journals = sorted(data["journals"], key=lambda j: -j["count"])
+    total = sum(j["count"] for j in journals)
+    lines = [
+        "Рецензирование в научных журналах / Peer review",
+        f"Олег Тиньков рецензирует статьи с {data['since']} года: {total} подтверждённых рецензий "
+        f"в {len(journals)} международных журналах (подтверждено в {data['source']['name']}).",
+        f"Oleg Tinkov has been a peer reviewer since {data['since']}: {total} verified reviews "
+        f"for {len(journals)} international journals.",
+        "Журналы и число рецензий / Journals and number of reviews:",
+        *(f"- {j['name']}: {j['count']}" for j in journals),
+    ]
+    return [
+        Document(
+            page_content="\n".join(lines),
+            metadata={
+                "source_type": "site",
+                "title": "Научная работа — Рецензии",
+                "url": f"{site_url.rstrip('/')}/#research",
+                "date": "",
+                "tags": "",
+                "doc_id": "site:reviews",
+                "source": json_path.name,
+            },
+        )
+    ]
+
+
+def load_talks(json_path: Path, site_url: str) -> list[Document]:
+    """Доклады на конференциях: один документ со списком последних выступлений."""
+    if not json_path.is_file():
+        return []
+    import json
+
+    lines = ["Доклады на научных конференциях (последние) / Recent conference talks:"]
+    for talk in json.loads(json_path.read_text(encoding="utf-8")):
+        for lang in ("ru", "en"):
+            when = ", ".join(part for part in (talk["place"][lang], talk["date"][lang]) if part)
+            lines.append(f"- {talk['name'][lang]}" + (f" ({when})" if when else ""))
+    return [
+        Document(
+            page_content="\n".join(lines),
+            metadata={
+                "source_type": "site",
+                "title": "Научная работа — Доклады",
+                "url": f"{site_url.rstrip('/')}/#research",
+                "date": "",
+                "tags": "",
+                "doc_id": "site:talks",
+                "source": json_path.name,
+            },
+        )
+    ]
+
+
 def load_all(s: Settings) -> list[Document]:
     return [
         *load_markdown_posts(s.blog_dir),
@@ -312,4 +410,7 @@ def load_all(s: Settings) -> list[Document]:
         *load_page_posts(s.blog_page_urls),
         *load_site_sections(s.site_html, s.site_url),
         *load_cv(s.cv_pdf, s.site_url),
+        *load_publications(s.publications_json),
+        *load_reviews(s.reviews_json, s.site_url),
+        *load_talks(s.talks_json, s.site_url),
     ]

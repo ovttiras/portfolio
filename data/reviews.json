@@ -1,0 +1,29 @@
+{
+  "since": 2020,
+  "source": {
+    "name": "Web of Science",
+    "url": "https://www.webofscience.com/wos/author/record/Q-4699-2017"
+  },
+  "journals": [
+    {"name": "SAR and QSAR in Environmental Research", "count": 11},
+    {"name": "Bioinformatics and Biology Insights", "count": 5},
+    {"name": "Molecular Diversity", "count": 5},
+    {"name": "Scientific Reports", "count": 5},
+    {"name": "Archives of Environmental Contamination and Toxicology", "count": 3},
+    {"name": "BMC Chemistry", "count": 2},
+    {"name": "Discover Chemistry", "count": 2},
+    {"name": "In Silico Pharmacology", "count": 2},
+    {"name": "Toxicology Letters", "count": 2},
+    {"name": "BMC Bioinformatics", "count": 1},
+    {"name": "Chemical Papers", "count": 1},
+    {"name": "ChemistrySelect", "count": 1},
+    {"name": "Environmental Pollution", "count": 1},
+    {"name": "Frontiers in Chemistry", "count": 1},
+    {"name": "Journal of Cheminformatics", "count": 1},
+    {"name": "Journal of Mathematical Chemistry", "count": 1},
+    {"name": "Journal of Nanobiotechnology", "count": 1},
+    {"name": "Molecular Cancer", "count": 1},
+    {"name": "Process Safety and Environmental Protection", "count": 1},
+    {"name": "Russian Journal of General Chemistry", "count": 1}
+  ]
+}

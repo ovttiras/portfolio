@@ -1,0 +1,53 @@
+[
+  {
+    "id": "pharm-science-vi",
+    "name": {
+      "ru": "VI Всероссийская научно-практическая конференция с международным участием «Актуальные проблемы и перспективы фармацевтической науки и практики»",
+      "en": "VI All-Russian Scientific and Practical Conference with International Participation “Current Problems and Prospects of Pharmaceutical Science and Practice”"
+    },
+    "scope": "national-intl",
+    "place": {
+      "ru": "",
+      "en": ""
+    },
+    "date": {
+      "ru": "",
+      "en": ""
+    },
+    "year": null
+  },
+  {
+    "id": "bioinformatics-cadd-xxxi",
+    "name": {
+      "ru": "XXXI симпозиум «Биоинформатика и компьютерное конструирование лекарств»",
+      "en": "The XXXI Symposium “Bioinformatics and Computer-Aided Drug Discovery”"
+    },
+    "scope": "",
+    "place": {
+      "ru": "Москва",
+      "en": "Moscow"
+    },
+    "date": {
+      "ru": "20–22 октября 2025",
+      "en": "October 20–22, 2025"
+    },
+    "year": 2025
+  },
+  {
+    "id": "pharmacology-countries-2025",
+    "name": {
+      "ru": "Международная научно-практическая конференция «Фармакология разных стран»",
+      "en": "International Scientific and Practical Conference “Pharmacology of Different Countries”"
+    },
+    "scope": "international",
+    "place": {
+      "ru": "Курск",
+      "en": "Kursk"
+    },
+    "date": {
+      "ru": "19–20 мая 2025",
+      "en": "May 19–20, 2025"
+    },
+    "year": 2025
+  }
+]

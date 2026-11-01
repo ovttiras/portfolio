@@ -10,6 +10,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Сайт и резюме тоже индексируются
 COPY index.html /app/index.html
 COPY doc/ /app/doc/
+COPY data/ /app/data/
 COPY rag/ /app/rag/
 
 EXPOSE 8000

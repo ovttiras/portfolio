@@ -63,7 +63,7 @@ def build_index(s: Settings = settings) -> InMemoryVectorStore:
         "documents": len(docs),
         "chunks": len(chunks),
         "by_type": {
-            t: sum(1 for d in docs if d.metadata["source_type"] == t) for t in ("blog", "site", "cv")
+            t: sum(1 for d in docs if d.metadata["source_type"] == t) for t in ("blog", "site", "cv", "publication")
         },
     }
     meta_path(s).write_text(json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8")
