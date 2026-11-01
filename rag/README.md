@@ -90,7 +90,7 @@ GitHub Pages отдаёт только статику, поэтому бэкен
 ```bash
 pip install huggingface_hub
 huggingface-cli login                       # токен с правом write
-python deploy/hf_space.py --space <логин>/portfolio-rag
+python deploy/hf_space.py              # Space <ваш_логин>/portfolio-rag
 ```
 
 Скрипт создаёт Docker-Space, загружает код, данные и готовый индекс, передаёт `GOOGLE_API_KEY`

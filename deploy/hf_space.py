@@ -3,7 +3,7 @@
 Из корня репозитория:
     pip install huggingface_hub
     huggingface-cli login                      # токен с правом write: https://huggingface.co/settings/tokens
-    python deploy/hf_space.py --space <ваш_логин>/portfolio-rag
+    python deploy/hf_space.py --space portfolio-rag      # логин подставится автоматически
 
 Скрипт создаёт Space (Docker), загружает rag/, index.html, doc/, data/ и готовый индекс
 rag/data/index/, а также передаёт GOOGLE_API_KEY (секрет) и ALLOWED_ORIGINS из rag/.env.
@@ -45,7 +45,7 @@ def stage(target: Path) -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Деплой RAG-бэкенда на Hugging Face Spaces")
-    parser.add_argument("--space", required=True, help="логин/имя Space, например ovttiras/portfolio-rag")
+    parser.add_argument("--space", default="portfolio-rag", help="имя Space или логин/имя (логин по умолчанию — ваш)")
     parser.add_argument("--origins", default="https://ovttiras.github.io", help="ALLOWED_ORIGINS для CORS")
     args = parser.parse_args()
 
@@ -56,6 +56,25 @@ def main() -> None:
 
     env = read_env(ROOT / "rag" / ".env")
     api = HfApi()
+
+    # Проверяем токен и подставляем логин: частые причины ошибки 403 — чужой логин или токен только на чтение
+    try:
+        me = api.whoami()
+    except Exception:
+        sys.exit("Не удалось авторизоваться. Выполните: python -c \"from huggingface_hub import login; login()\"")
+    user = me["name"]
+    orgs = {org["name"] for org in me.get("orgs", [])}
+    role = me.get("auth", {}).get("accessToken", {}).get("role", "")
+    print(f"Вы вошли как: {user}" + (f" (организации: {', '.join(sorted(orgs))})" if orgs else ""))
+    if role == "read":
+        sys.exit("У токена право только на чтение. Создайте токен с правом Write: https://huggingface.co/settings/tokens")
+    if "/" not in args.space:
+        args.space = f"{user}/{args.space}"
+    namespace = args.space.split("/")[0]
+    if namespace != user and namespace not in orgs:
+        sys.exit(f"Нельзя создать Space в «{namespace}»: ваш логин — «{user}». "
+                 f"Запустите: python deploy/hf_space.py --space {user}/portfolio-rag")
+
     api.create_repo(args.space, repo_type="space", space_sdk="docker", exist_ok=True)
 
     with tempfile.TemporaryDirectory() as tmp:
