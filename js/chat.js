@@ -243,7 +243,7 @@
                 const resp = await fetch(`${API_URL}/api/chat/stream`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ question, history: payloadHistory })
+                    body: JSON.stringify({ question, history: payloadHistory, lang: lang() })
                 });
                 if (resp.status === 429) throw new Error("rate");
                 if (!resp.ok || !resp.body) throw new Error(`HTTP ${resp.status}`);
@@ -273,7 +273,7 @@
                 const resp = await fetch(`${API_URL}/api/chat`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ question, history: payloadHistory })
+                    body: JSON.stringify({ question, history: payloadHistory, lang: lang() })
                 });
                 if (resp.status === 429) throw new Error("rate");
                 if (!resp.ok) throw new Error(`HTTP ${resp.status}`);

@@ -39,6 +39,7 @@ class ChatTurn(BaseModel):
 class ChatRequest(BaseModel):
     question: str = Field(min_length=1)
     history: list[ChatTurn] = Field(default_factory=list, max_length=40)
+    lang: Literal["ru", "en"] | None = None  # язык интерфейса сайта
 
 
 class RateLimiter:
@@ -120,7 +121,7 @@ async def health():
 async def chat(request: Request, body: ChatRequest):
     question, history = _validate(request, body)
     try:
-        return await get_assistant(request.app).ainvoke(question, history)
+        return await get_assistant(request.app).ainvoke(question, history, body.lang)
     except Exception:
         log.exception("Ошибка генерации ответа")
         raise HTTPException(502, "Модель временно недоступна, попробуйте позже")
@@ -133,7 +134,7 @@ async def chat_stream(request: Request, body: ChatRequest):
 
     async def events():
         try:
-            async for event in assistant.astream(question, history):
+            async for event in assistant.astream(question, history, body.lang):
                 yield f"data: {json.dumps(event, ensure_ascii=False)}\n\n"
         except Exception:
             log.exception("Ошибка генерации ответа")

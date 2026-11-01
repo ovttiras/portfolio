@@ -11,7 +11,7 @@ from langchain_core.embeddings import DeterministicFakeEmbedding
 from langchain_core.language_models.fake_chat_models import FakeListChatModel
 
 from app import ingest, main
-from app.chain import RagAssistant, format_context
+from app.chain import RagAssistant, detect_language, format_context
 from app.config import settings
 from app.loaders import load_cv, load_markdown_posts, load_profile, load_publications, load_reviews, load_site_sections, load_talks
 
@@ -151,6 +151,35 @@ def test_api_without_lifespan(test_settings, fake_providers, monkeypatch):
     client = TestClient(main.app)  # без with — lifespan не запускается
     resp = client.post("/api/chat", json={"question": "Что за RAG?"})
     assert resp.status_code == 200 and resp.json()["answer"]
+
+
+def test_detect_language():
+    assert detect_language("How long does he work in bank?") == "en"
+    assert detect_language("Сколько лет Олегу?") == "ru"
+    assert detect_language("Какой опыт с RAG и LLM?") == "ru"  # кириллицы больше
+    assert detect_language("RAG?") == "en"
+    assert detect_language("2025?", fallback="ru") == "ru"  # по тексту не понять — язык интерфейса
+
+
+async def test_answer_language_follows_question(test_settings, fake_providers):
+    from langchain_core.messages import AIMessage
+    from langchain_core.runnables import RunnableLambda
+
+    store = ingest.build_index(test_settings)
+    prompts = []
+
+    def llm(prompt_value):
+        prompts.append(prompt_value.to_messages())
+        return AIMessage("ok")
+
+    assistant = RagAssistant(store, RunnableLambda(llm), test_settings)
+    # английский вопрос при русском интерфейсе — ответ всё равно по-английски
+    await assistant.ainvoke("How long does he work in bank?", lang="ru")
+    system, human = prompts[-1][0].content, prompts[-1][-1].content
+    assert "Write the ENTIRE answer in English" in system and "(Answer in English.)" in human
+
+    await assistant.ainvoke("Где работает Олег?", lang="en")
+    assert "Пиши ВЕСЬ ответ на русском" in prompts[-1][0].content
 
 
 def test_build_and_reload_index(test_settings, fake_providers):
