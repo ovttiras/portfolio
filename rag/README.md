@@ -85,18 +85,21 @@ GitHub Pages отдаёт только статику, поэтому бэкен
 построить локально и закоммитить `rag/data/index/`: тогда сервер стартует без пересчёта
 эмбеддингов (если файла нет, индекс строится при запуске).
 
-**Hugging Face Spaces** — бесплатно и без банковской карты (рекомендуется):
+**Koyeb** — бесплатный веб-сервис, сборка по `rag/Dockerfile` прямо из GitHub (рекомендуется):
 
-```bash
-pip install huggingface_hub
-huggingface-cli login                       # токен с правом write
-python deploy/hf_space.py              # Space <ваш_логин>/portfolio-rag
-```
+1. Закоммитьте готовый индекс, чтобы сервер не пересчитывал эмбеддинги при каждом запуске:
+   `git add rag/data/index && git commit -m "Add vector index" && git push`.
+2. https://app.koyeb.com → вход через GitHub → **Create Web Service** → **GitHub** →
+   репозиторий `ovttiras/portfolio`, нужная ветка.
+3. **Builder: Dockerfile**, Dockerfile location `rag/Dockerfile`, Work directory — пусто (корень репозитория).
+4. **Instance: Free**, порт **8000**, health check `/api/health`.
+5. Переменные окружения: `GOOGLE_API_KEY` (как Secret) и `ALLOWED_ORIGINS=https://ovttiras.github.io`.
+6. **Deploy**. Адрес вида `https://<имя>-<аккаунт>.koyeb.app` впишите в `data-api-url` в `index.html`.
 
-Скрипт создаёт Docker-Space, загружает код, данные и готовый индекс, передаёт `GOOGLE_API_KEY`
-(секретом) и `ALLOWED_ORIGINS`. Через 2–5 минут API доступен по адресу
-`https://<логин>-portfolio-rag.hf.space`. Бесплатный Space засыпает после 48 часов без запросов
-и просыпается при первом обращении (около минуты).
+Бесплатный сервис засыпает без запросов и просыпается при первом обращении.
+
+**Hugging Face Spaces** — Docker-Spaces теперь требуют подписки PRO; если она есть,
+деплой одной командой: `python deploy/hf_space.py`.
 
 **Render** (бесплатный план, засыпает без трафика):
 New → Web Service → репозиторий `ovttiras/portfolio` → Runtime *Docker*,
