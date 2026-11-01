@@ -8,6 +8,7 @@ from __future__ import annotations
 import argparse
 import json
 import logging
+import os
 import re
 import time
 from datetime import datetime, timezone
@@ -106,6 +107,9 @@ def build_index(s: Settings = settings) -> InMemoryVectorStore:
 def load_index(s: Settings = settings) -> InMemoryVectorStore:
     """Загружает индекс с диска; если его нет — строит заново."""
     if not s.index_path.is_file():
+        if os.getenv("VERCEL"):
+            # файловая система serverless-функции только для чтения — индекс должен быть в репозитории
+            raise RuntimeError(f"Нет индекса {s.index_path}: выполните python -m app.ingest и закоммитьте rag/data/index")
         log.info("Индекс не найден, строим: %s", s.index_path)
         return build_index(s)
 

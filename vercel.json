@@ -1,0 +1,11 @@
+{
+  "functions": {
+    "api/index.py": {
+      "maxDuration": 60,
+      "includeFiles": "{rag/app/**,rag/data/index/**,data/**,index.html}"
+    }
+  },
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "/api/index" }
+  ]
+}

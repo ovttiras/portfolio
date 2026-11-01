@@ -2,7 +2,10 @@
 // Адрес бэкенда задаётся атрибутом data-api-url у тега <script>.
 (function () {
     const script = document.currentScript;
-    const API_URL = ((script && script.dataset.apiUrl) || "http://localhost:8000").replace(/\/$/, "");
+    // data-api-url="auto": локально — сервер на :8000, на хостинге (Vercel) — API на том же домене
+    const configured = ((script && script.dataset.apiUrl) || "auto").replace(/\/$/, "");
+    const isLocal = location.protocol === "file:" || ["localhost", "127.0.0.1"].includes(location.hostname);
+    const API_URL = configured !== "auto" ? configured : isLocal ? "http://localhost:8000" : "";
     const STORAGE_KEY = "rag-chat-history";
     const MAX_HISTORY = 12;
 
@@ -236,33 +239,49 @@
         answerEl.scrollIntoView({ behavior: "smooth", block: "nearest" });
 
         try {
-            const resp = await fetch(`${API_URL}/api/chat/stream`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ question, history: payloadHistory })
-            });
-            if (resp.status === 429) throw new Error("rate");
-            if (!resp.ok || !resp.body) throw new Error(`HTTP ${resp.status}`);
+            try {
+                const resp = await fetch(`${API_URL}/api/chat/stream`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ question, history: payloadHistory })
+                });
+                if (resp.status === 429) throw new Error("rate");
+                if (!resp.ok || !resp.body) throw new Error(`HTTP ${resp.status}`);
 
-            const reader = resp.body.getReader();
-            const decoder = new TextDecoder();
-            let buffer = "";
-            for (;;) {
-                const { value, done } = await reader.read();
-                if (done) break;
-                buffer += decoder.decode(value, { stream: true });
-                const events = buffer.split("\n\n");
-                buffer = events.pop();
-                for (const raw of events) {
-                    if (!raw.startsWith("data: ")) continue;
-                    const event = JSON.parse(raw.slice(6));
-                    if (event.type === "sources") reply.sources = event.sources;
-                    else if (event.type === "token") reply.content += event.content;
-                    else if (event.type === "error") throw new Error(event.message);
+                const reader = resp.body.getReader();
+                const decoder = new TextDecoder();
+                let buffer = "";
+                for (;;) {
+                    const { value, done } = await reader.read();
+                    if (done) break;
+                    buffer += decoder.decode(value, { stream: true });
+                    const events = buffer.split("\n\n");
+                    buffer = events.pop();
+                    for (const raw of events) {
+                        if (!raw.startsWith("data: ")) continue;
+                        const event = JSON.parse(raw.slice(6));
+                        if (event.type === "sources") reply.sources = event.sources;
+                        else if (event.type === "token") reply.content += event.content;
+                        else if (event.type === "error") throw Object.assign(new Error(event.message), { fromServer: true });
+                    }
+                    renderAnswer(question, reply.content, reply.sources);
                 }
-                renderAnswer(question, reply.content, reply.sources);
+                if (!reply.content) throw new Error("empty");
+            } catch (streamErr) {
+                // если потоковый ответ не прошёл (прокси, serverless), пробуем обычный запрос
+                if (streamErr.message === "rate" || streamErr.fromServer || reply.content) throw streamErr;
+                const resp = await fetch(`${API_URL}/api/chat`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ question, history: payloadHistory })
+                });
+                if (resp.status === 429) throw new Error("rate");
+                if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+                const data = await resp.json();
+                reply.content = data.answer || "";
+                reply.sources = data.sources || [];
+                if (!reply.content) throw new Error("empty");
             }
-            if (!reply.content) throw new Error("empty");
         } catch (err) {
             console.warn("AI assistant:", err);
             reply.content = err.message === "rate" ? t("rateLimit") : t("error");

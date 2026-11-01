@@ -50,6 +50,8 @@ def fake_providers(monkeypatch):
     monkeypatch.setattr(ingest, "get_embeddings", lambda s: DeterministicFakeEmbedding(size=64))
     llm = FakeListChatModel(responses=["Олег строил RAG-бота для банка [1]."])
     monkeypatch.setattr(main, "get_llm", lambda s: llm)
+    # ассистент кешируется в app.state — каждый тест начинает с чистого состояния
+    monkeypatch.delattr(main.app.state, "assistant", raising=False)
 
 
 def test_markdown_posts(test_settings):
@@ -139,6 +141,16 @@ def test_embeddings_retry_on_rate_limit(test_settings):
     pauses = []
     ingest.add_in_batches(store, ingest.split_documents(docs, test_settings), replace(test_settings, embed_batch_size=3), sleep=pauses.append)
     assert pauses == [15.0] and len(store.store) == len(ingest.split_documents(docs, test_settings))
+
+
+def test_api_without_lifespan(test_settings, fake_providers, monkeypatch):
+    """На Vercel lifespan может не вызываться — ассистент создаётся при первом запросе."""
+    monkeypatch.setattr(main, "settings", test_settings)
+    monkeypatch.setattr(main, "limiter", main.RateLimiter(0))
+    ingest.build_index(test_settings)
+    client = TestClient(main.app)  # без with — lifespan не запускается
+    resp = client.post("/api/chat", json={"question": "Что за RAG?"})
+    assert resp.status_code == 200 and resp.json()["answer"]
 
 
 def test_build_and_reload_index(test_settings, fake_providers):

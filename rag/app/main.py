@@ -60,12 +60,20 @@ class RateLimiter:
         window.append(now)
 
 
+def get_assistant(app: FastAPI) -> RagAssistant:
+    """Создаёт ассистента при первом обращении: serverless-платформы (Vercel) могут не вызывать lifespan."""
+    assistant = getattr(app.state, "assistant", None)
+    if assistant is None:
+        store = load_index(settings)
+        profile = load_profile(settings.site_html, settings.site_url)
+        assistant = app.state.assistant = RagAssistant(store, get_llm(settings), settings, pinned_docs=profile)
+        log.info("RAG-ассистент готов: LLM=%s/%s", settings.llm_provider, settings.llm_model)
+    return assistant
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    store = load_index(settings)
-    profile = load_profile(settings.site_html, settings.site_url)
-    app.state.assistant = RagAssistant(store, get_llm(settings), settings, pinned_docs=profile)
-    log.info("RAG-ассистент готов: LLM=%s/%s", settings.llm_provider, settings.llm_model)
+    get_assistant(app)
     yield
 
 
@@ -112,7 +120,7 @@ async def health():
 async def chat(request: Request, body: ChatRequest):
     question, history = _validate(request, body)
     try:
-        return await request.app.state.assistant.ainvoke(question, history)
+        return await get_assistant(request.app).ainvoke(question, history)
     except Exception:
         log.exception("Ошибка генерации ответа")
         raise HTTPException(502, "Модель временно недоступна, попробуйте позже")
@@ -121,7 +129,7 @@ async def chat(request: Request, body: ChatRequest):
 @app.post("/api/chat/stream")
 async def chat_stream(request: Request, body: ChatRequest):
     question, history = _validate(request, body)
-    assistant: RagAssistant = request.app.state.assistant
+    assistant = get_assistant(request.app)
 
     async def events():
         try:

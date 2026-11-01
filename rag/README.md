@@ -85,6 +85,19 @@ GitHub Pages отдаёт только статику, поэтому бэкен
 построить локально и закоммитить `rag/data/index/`: тогда сервер стартует без пересчёта
 эмбеддингов (если файла нет, индекс строится при запуске).
 
+**Vercel** (тариф Hobby: бесплатно, без карты, для некоммерческого личного использования) —
+сайт и API на одном домене, конфигурация уже в репозитории (`vercel.json`, `api/index.py`, `requirements.txt`):
+
+1. Закоммитьте индекс: `git add rag/data/index && git commit -m "Add vector index" && git push`.
+2. https://vercel.com → вход через GitHub → **Add New… → Project** → импорт `ovttiras/portfolio`.
+   Framework Preset: **Other**, остальные настройки по умолчанию.
+3. **Environment Variables:** `GOOGLE_API_KEY` = ваш ключ → **Deploy**.
+4. Откройте `https://<проект>.vercel.app` — сайт и чат работают сразу (`data-api-url="auto"`
+   отправляет запросы на тот же домен). Проверка API: `https://<проект>.vercel.app/api/health`.
+
+Если сайт остаётся на GitHub Pages, а на Vercel только API: в `index.html` укажите
+`data-api-url="https://<проект>.vercel.app"`, а в Vercel добавьте `ALLOWED_ORIGINS=https://ovttiras.github.io`.
+
 **Koyeb** — бесплатный веб-сервис, сборка по `rag/Dockerfile` прямо из GitHub (рекомендуется):
 
 1. Закоммитьте готовый индекс, чтобы сервер не пересчитывал эмбеддинги при каждом запуске:
