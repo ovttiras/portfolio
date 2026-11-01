@@ -20,7 +20,11 @@
       "wos"
     ],
     "featured": true,
-    "lang": "en"
+    "lang": "en",
+    "app": {
+      "name": "HDAC8 Assistant",
+      "url": "https://hdac8-assistant.streamlit.app/"
+    }
   },
   {
     "id": "krasava-2025",
@@ -158,7 +162,11 @@
       "wos"
     ],
     "featured": true,
-    "lang": "en"
+    "lang": "en",
+    "app": {
+      "name": "HT_PREDICT",
+      "url": "https://htpredict.streamlit.app/"
+    }
   },
   {
     "id": "hdac2-scan-2023",

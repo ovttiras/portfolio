@@ -127,18 +127,6 @@
         return String(text).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
     }
 
-    // ---------------------------------------------------------------- Подвкладки
-    section.querySelectorAll(".research-tab").forEach((tab) => {
-        tab.addEventListener("click", () => {
-            section.querySelectorAll(".research-tab").forEach((other) => {
-                const active = other === tab;
-                other.classList.toggle("active", active);
-                other.setAttribute("aria-selected", String(active));
-                document.getElementById(`research-${other.dataset.panel}`).hidden = !active;
-            });
-        });
-    });
-
     // ---------------------------------------------------------------- BibTeX
     function bibtex(pub) {
         const list = authorList(pub).filter((a) => !/^(и др|et al)/.test(a));

@@ -1,5 +1,6 @@
 /* ================================ Научная работа */
-.research.section {
+.research.section,
+.portfolio.section {
     --r-font: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
     --r-line: var(--bg-black-50);
     --r-surface: var(--bg-black-100);
@@ -388,7 +389,8 @@
 @media (max-width: 767px) {
     .research-tabs {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-auto-flow: column;
+        grid-auto-columns: 1fr;
     }
 
     .research-tab {
@@ -637,4 +639,106 @@ a.rev-name:hover {
     font-size: 11px;
     font-style: italic;
     color: var(--text-black-700);
+}
+
+/* ---------- Портфолио: карточки приложений */
+.app-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 14px;
+}
+
+.app-card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 20px;
+    border: 1px solid var(--r-line);
+    border-radius: 16px;
+    background: var(--r-surface);
+    transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.app-card:hover {
+    border-color: color-mix(in srgb, var(--skin-color) 45%, var(--r-line));
+    transform: translateY(-2px);
+}
+
+.app-head {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.app-head > div {
+    flex: 1;
+    min-width: 0;
+}
+
+.app-icon {
+    flex: 0 0 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--r-accent-soft);
+    color: var(--skin-color);
+    font-size: 16px;
+}
+
+.app-title {
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--text-black-900);
+}
+
+.research-body .app-sub {
+    font-size: 13px;
+    color: var(--text-black-700);
+}
+
+.research-body .app-desc {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-black-700);
+}
+
+.app-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 14px;
+    margin-top: auto;
+    padding-top: 12px;
+    border-top: 1px solid var(--r-line);
+}
+
+.app-paper {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 7px;
+    font-size: 13px;
+    color: var(--text-black-700);
+    transition: color 0.2s ease;
+}
+
+.app-paper > i {
+    font-size: 11px;
+    color: var(--skin-color);
+}
+
+.app-paper:hover {
+    color: var(--skin-color);
+}
+
+.app-paper-label {
+    font-weight: 600;
+}
+
+@media (max-width: 767px) {
+    .app-grid {
+        grid-template-columns: 1fr;
+    }
 }

@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="css/style-switcher.css?v=3">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
     <link rel="stylesheet" href="css/chat.css?v=10">
-    <link rel="stylesheet" href="css/research.css?v=8">
+    <link rel="stylesheet" href="css/research.css?v=10">
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <!-- Замените G-XXXXXXXXXX на ваш Google Analytics ID -->
@@ -106,7 +106,7 @@
                                 <div class="duo-stats">
                                     <div><b>35+</b><span data-ru="научных статей" data-en="scientific papers">scientific papers</span></div>
                                     <div><b>40+</b><span data-ru="рецензий" data-en="peer reviews">peer reviews</span></div>
-                                    <div><b>8</b><span data-ru="веб-приложений" data-en="web applications">web applications</span></div>
+                                    <div><b>7</b><span data-ru="веб-приложений" data-en="web applications">web applications</span></div>
                                 </div>
                             </article>
                             <div class="duo-join" aria-hidden="true">+</div>
@@ -377,7 +377,7 @@
                         </div>
                     </div>
                     <div class="research-body">
-                        <div class="research-tabs" role="tablist">
+                        <div class="research-tabs" role="tablist" data-prefix="research">
                             <button type="button" class="research-tab active" role="tab" aria-selected="true" data-panel="publications"><i class="fas fa-file-lines"></i><span data-ru="Публикации" data-en="Publications">Publications</span><b class="research-count" data-count="publications"></b></button>
                             <button type="button" class="research-tab" role="tab" aria-selected="false" data-panel="talks"><i class="fas fa-person-chalkboard"></i><span data-ru="Доклады" data-en="Talks">Talks</span><b class="research-count" data-count="talks"></b></button>
                             <button type="button" class="research-tab" role="tab" aria-selected="false" data-panel="reviews"><i class="fas fa-magnifying-glass-chart"></i><span data-ru="Рецензии" data-en="Peer review">Peer review</span><b class="research-count" data-count="reviews"></b></button>
@@ -656,164 +656,100 @@
                             <h2><span data-ru="Портфолио" data-en="Portfolio">Portfolio</span></h2>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="portfolio-heading padd-15">
-                            <h2><span data-ru="Мои проекты :" data-en="My Projects:">My Projects:</span></h2>
+                    <div class="research-body">
+                        <div class="research-tabs" role="tablist" data-prefix="portfolio">
+                            <button type="button" class="research-tab active" role="tab" aria-selected="true" data-panel="fintech"><i class="fas fa-building-columns"></i><span data-ru="Финтех" data-en="Fintech">Fintech</span><b class="research-count">2</b></button>
+                            <button type="button" class="research-tab" role="tab" aria-selected="false" data-panel="chem"><i class="fas fa-flask"></i><span data-ru="Хемоинформатика" data-en="Cheminformatics">Cheminformatics</span><b class="research-count">7</b></button>
                         </div>
-                    </div>
-                    <div class="row">
-                        <!-- portfolio item start -->
-                        <div class="portfolio-item padd-15">
-                            <div class="portfolio-item-inner shadow-dark">
-                                <div class="portfolio-number">01</div>
-                                <div class="portfolio-img">
-                                    <img src="img/portfolio/signature_verification.png" alt="">
-                                </div>
-                                <div class="portfolio-content">
-                                    <h4><i class="fas fa-signature"></i> Signature Verification System</h4>
-                                    <p><span data-ru="Система верификации подписей с использованием машинного обучения. TensorFlow модель для распознавания подлинных и поддельных подписей." data-en="Signature verification system using machine learning. TensorFlow model for recognizing authentic and forged signatures.">Signature verification system using machine learning. TensorFlow model for recognizing authentic and forged signatures.</span></p>
-                                    <div class="portfolio-features">
-                                        <span class="feature-tag"><span data-ru="Машинное обучение" data-en="Machine Learning">Machine Learning</span></span>
-                                        <span class="feature-tag">TensorFlow</span>
-                                        <span class="feature-tag"><span data-ru="Компьютерное зрение" data-en="Computer Vision">Computer Vision</span></span>
-                                        <span class="feature-tag"><span data-ru="Верификация" data-en="Verification">Verification</span></span>
+
+                        <div class="research-panel" id="portfolio-fintech" role="tabpanel">
+                            <p class="rev-intro"><span data-ru="Публичные демо-приложения по ML в финансах. Корпоративные AI-решения для банка работают в закрытом контуре и в открытый доступ не выкладываются." data-en="Public demo apps for ML in finance. Enterprise AI solutions for the bank run on-premise and are not publicly available.">Public demo apps for ML in finance. Enterprise AI solutions for the bank run on-premise and are not publicly available.</span></p>
+                            <div class="app-grid">
+                                <article class="app-card">
+                                    <div class="app-head"><span class="app-icon"><i class="fas fa-signature"></i></span><div><h3 class="app-title">DeepSign</h3><p class="app-sub" data-ru="Верификация подписей" data-en="Signature verification">Signature verification</p></div></div>
+                                    <p class="app-desc" data-ru="Система верификации подписей с использованием машинного обучения. TensorFlow-модель распознаёт подлинные и поддельные подписи." data-en="Signature verification system using machine learning. A TensorFlow model distinguishes authentic and forged signatures.">Signature verification system using machine learning. A TensorFlow model distinguishes authentic and forged signatures.</p>
+                                    <div class="pub-topics"><span class="pub-topic" data-ru="Машинное обучение" data-en="Machine Learning">Machine Learning</span><span class="pub-topic">TensorFlow</span><span class="pub-topic" data-ru="Компьютерное зрение" data-en="Computer Vision">Computer Vision</span><span class="pub-topic" data-ru="Верификация" data-en="Verification">Verification</span></div>
+                                    <div class="app-actions">
+                                        <a class="pub-action pub-action-accent" href="https://deepsign.streamlit.app/" target="_blank" rel="noopener"><i class="fas fa-arrow-up-right-from-square"></i><span data-ru="Открыть приложение" data-en="Open app">Open app</span></a>
                                     </div>
-                                    <div class="portfolio-link">
-                                        <a href="https://deepsign.streamlit.app/" target="_blank"><span data-ru="🌐 Веб-приложение: DeepSign" data-en="🌐 Web Application: DeepSign">🌐 Web Application: DeepSign</span></a>
+                                </article>
+                                <article class="app-card">
+                                    <div class="app-head"><span class="app-icon"><i class="fas fa-chart-line"></i></span><div><h3 class="app-title">Credit AI Assistant</h3><p class="app-sub" data-ru="Кредитный скоринг" data-en="Credit scoring">Credit scoring</p></div></div>
+                                    <p class="app-desc" data-ru="Система кредитного скоринга на основе машинного обучения: модель градиентного бустинга предсказывает кредитный риск заёмщика." data-en="Machine learning credit scoring system: a gradient boosting model predicts borrower credit risk.">Machine learning credit scoring system: a gradient boosting model predicts borrower credit risk.</p>
+                                    <div class="pub-topics"><span class="pub-topic">Gradient Boosting</span><span class="pub-topic" data-ru="Кредитный скоринг" data-en="Credit Scoring">Credit Scoring</span><span class="pub-topic" data-ru="Финансовая аналитика" data-en="Financial Analytics">Financial Analytics</span><span class="pub-topic">AUC-ROC 0.7826</span></div>
+                                    <div class="app-actions">
+                                        <a class="pub-action pub-action-accent" href="https://credit-ai-assistant.streamlit.app/" target="_blank" rel="noopener"><i class="fas fa-arrow-up-right-from-square"></i><span data-ru="Открыть приложение" data-en="Open app">Open app</span></a>
                                     </div>
-                                </div>
+                                </article>
                             </div>
                         </div>
-                        <!-- portfolio item start -->
-                        <div class="portfolio-item padd-15">
-                            <div class="portfolio-item-inner shadow-dark">
-                                <div class="portfolio-number">02</div>
-                                <div class="portfolio-img">
-                                    <img src="img/portfolio/credit_scoring.png" alt="">
-                                </div>
-                                <div class="portfolio-content">
-                                    <h4><i class="fas fa-chart-line"></i> Credit AI Assistant</h4>
-                                    <p><span data-ru="Система кредитного скоринга с использованием машинного обучения. Gradient Boosting модель для предсказания кредитного риска с высокой точностью." data-en="Credit scoring system using machine learning. Gradient Boosting model for predicting credit risk with high accuracy.">Credit scoring system using machine learning. Gradient Boosting model for predicting credit risk with high accuracy.</span></p>
-                                    <div class="portfolio-features">
-                                        <span class="feature-tag">Gradient Boosting</span>
-                                        <span class="feature-tag"><span data-ru="Кредитный скоринг" data-en="Credit Scoring">Credit Scoring</span></span>
-                                        <span class="feature-tag"><span data-ru="Финансовая аналитика" data-en="Financial Analytics">Financial Analytics</span></span>
-                                        <span class="feature-tag">AUC-ROC: 0.7826</span>
+
+                        <div class="research-panel" id="portfolio-chem" role="tabpanel" hidden>
+                            <p class="rev-intro"><span data-ru="Открытые веб-приложения для разработки лекарств. Каждое описано в рецензируемой статье." data-en="Open web applications for drug discovery, each described in a peer-reviewed paper.">Open web applications for drug discovery, each described in a peer-reviewed paper.</span></p>
+                            <div class="app-grid">
+                                <article class="app-card">
+                                    <div class="app-head"><span class="app-icon"><i class="fas fa-wand-magic-sparkles"></i></span><div><h3 class="app-title">HDAC8 Assistant</h3><p class="app-sub" data-ru="Генерация и скрининг ингибиторов HDAC8" data-en="HDAC8 inhibitor generation &amp; screening">HDAC8 inhibitor generation &amp; screening</p></div><span class="pub-badge">2026</span></div>
+                                    <p class="app-desc" data-ru="QSAR-управляемая платформа молекулярной генерации для de novo дизайна и виртуального скрининга ингибиторов HDAC8." data-en="QSAR-guided molecular generation platform for de novo design and virtual screening of HDAC8 inhibitors.">QSAR-guided molecular generation platform for de novo design and virtual screening of HDAC8 inhibitors.</p>
+                                    <div class="pub-topics"><span class="pub-topic" data-ru="De novo дизайн" data-en="De novo design">De novo design</span><span class="pub-topic" data-ru="Молекулярная генерация" data-en="Molecular generation">Molecular generation</span><span class="pub-topic">QSAR</span><span class="pub-topic">HDAC8</span></div>
+                                    <div class="app-actions">
+                                        <a class="pub-action pub-action-accent" href="https://hdac8-assistant.streamlit.app/" target="_blank" rel="noopener"><i class="fas fa-arrow-up-right-from-square"></i><span data-ru="Открыть приложение" data-en="Open app">Open app</span></a>
+                                        <a class="app-paper" href="https://doi.org/10.1080/1062936X.2026.2741359" target="_blank" rel="noopener"><i class="fas fa-file-lines"></i><span><span class="app-paper-label" data-ru="Статья:" data-en="Paper:">Paper:</span> <i class="app-paper-venue">SAR and QSAR in Environmental Research</i>, 2026</span></a>
                                     </div>
-                                    <div class="portfolio-link">
-                                        <a href="https://credit-ai-assistant.streamlit.app/" target="_blank"><span data-ru="🌐 Веб-приложение: Credit AI Assistant" data-en="🌐 Web Application: Credit AI Assistant">🌐 Web Application: Credit AI Assistant</span></a>
+                                </article>
+                                <article class="app-card">
+                                    <div class="app-head"><span class="app-icon"><i class="fas fa-skull-crossbones"></i></span><div><h3 class="app-title">ToxAI Assistant</h3><p class="app-sub" data-ru="Острая токсичность" data-en="Acute toxicity">Acute toxicity</p></div><span class="pub-badge">2025</span></div>
+                                    <p class="app-desc" data-ru="Оценка острой токсичности ксенобиотиков при пероральном и внутривенном введении крысам: поиск соединения в базе данных или прогноз класса опасности QSAR-моделями." data-en="Acute toxicity of xenobiotics after oral and intravenous administration in rats: database lookup or hazard class prediction with QSAR models.">Acute toxicity of xenobiotics after oral and intravenous administration in rats: database lookup or hazard class prediction with QSAR models.</p>
+                                    <div class="pub-topics"><span class="pub-topic" data-ru="Токсикология" data-en="Toxicology">Toxicology</span><span class="pub-topic">QSAR</span><span class="pub-topic" data-ru="Острая токсичность" data-en="Acute toxicity">Acute toxicity</span><span class="pub-topic" data-ru="База данных" data-en="Database">Database</span></div>
+                                    <div class="app-actions">
+                                        <a class="pub-action pub-action-accent" href="https://tox-ai-assistant.streamlit.app/" target="_blank" rel="noopener"><i class="fas fa-arrow-up-right-from-square"></i><span data-ru="Открыть приложение" data-en="Open app">Open app</span></a>
+                                        <a class="app-paper" href="https://doi.org/10.1080/1062936X.2025.2535606" target="_blank" rel="noopener"><i class="fas fa-file-lines"></i><span><span class="app-paper-label" data-ru="Статья:" data-en="Paper:">Paper:</span> <i class="app-paper-venue">SAR and QSAR in Environmental Research</i>, 2025</span></a>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- portfolio item start -->
-                        <div class="portfolio-item padd-15">
-                            <div class="portfolio-item-inner shadow-dark">
-                                <div class="portfolio-number">03</div>
-                                <div class="portfolio-img">
-                                    <img src="img/portfolio/credit_scoring.png" alt="">
-                                </div>
-                                <div class="portfolio-content">
-                                    <h4><i class="fas fa-dna"></i> ToxAI_assistant</h4>
-                                    <p><span data-ru="Оценка острой токсичности ксенобиотиков при пероральном и внутривенном введении крысам. Поиск токсичности соединения в базе данных или предсказание уровня опасности с использованием QSAR моделей." data-en="Assessment of acute toxicity of xenobiotics following oral and intravenous administration in rats. Search for compound toxicity in database or prediction of hazard level using QSAR models.">Assessment of acute toxicity of xenobiotics following oral and intravenous administration in rats. Search for compound toxicity in database or prediction of hazard level using QSAR models.</span></p>
-                                    <div class="portfolio-features">
-                                        <span class="feature-tag"><span data-ru="Токсикология" data-en="Toxicology">Toxicology</span></span>
-                                        <span class="feature-tag"><span data-ru="ML модели" data-en="ML Models">ML Models</span></span>
-                                        <span class="feature-tag"><span data-ru="Острая токсичность" data-en="Acute Toxicity">Acute Toxicity</span></span>
-                                        <span class="feature-tag"><span data-ru="Веб-приложение" data-en="Web Application">Web Application</span></span>
+                                </article>
+                                <article class="app-card">
+                                    <div class="app-head"><span class="app-icon"><i class="fas fa-flask"></i></span><div><h3 class="app-title">HDAC3 VS Assistant</h3><p class="app-sub" data-ru="Ингибиторы HDAC3" data-en="HDAC3 inhibitors">HDAC3 inhibitors</p></div><span class="pub-badge">2025</span></div>
+                                    <p class="app-desc" data-ru="Комплексный анализ ингибиторов HDAC3 с оценкой острой токсичности соединений: детальная оценка лекарственного потенциала кандидатов." data-en="Comprehensive analysis of HDAC3 inhibitors with acute toxicity assessment: a detailed view of each candidate&#x27;s drug potential.">Comprehensive analysis of HDAC3 inhibitors with acute toxicity assessment: a detailed view of each candidate&#x27;s drug potential.</p>
+                                    <div class="pub-topics"><span class="pub-topic" data-ru="Виртуальный скрининг" data-en="Virtual screening">Virtual screening</span><span class="pub-topic">HDAC3</span><span class="pub-topic" data-ru="Острая токсичность" data-en="Acute toxicity">Acute toxicity</span><span class="pub-topic" data-ru="Лекарственный потенциал" data-en="Drug potential">Drug potential</span></div>
+                                    <div class="app-actions">
+                                        <a class="pub-action pub-action-accent" href="https://hdac3-vs-assistant-v2.streamlit.app/" target="_blank" rel="noopener"><i class="fas fa-arrow-up-right-from-square"></i><span data-ru="Открыть приложение" data-en="Open app">Open app</span></a>
+                                        <a class="app-paper" href="https://doi.org/10.1007/s11030-024-11066-6" target="_blank" rel="noopener"><i class="fas fa-file-lines"></i><span><span class="app-paper-label" data-ru="Статья:" data-en="Paper:">Paper:</span> <i class="app-paper-venue">Molecular Diversity</i>, 2025</span></a>
                                     </div>
-                                    <div class="portfolio-link">
-                                        <a href="https://tox-ai-assistant.streamlit.app/" target="_blank"><span data-ru="🌐 Веб-приложение: ToxAI Assistant" data-en="🌐 Web Application: ToxAI Assistant">🌐 Web Application: ToxAI Assistant</span></a>
+                                </article>
+                                <article class="app-card">
+                                    <div class="app-head"><span class="app-icon"><i class="fas fa-code-branch"></i></span><div><h3 class="app-title">HT_PREDICT</h3><p class="app-sub" data-ru="Скрининг ингибиторов HDAC6" data-en="HDAC6 inhibitor screening">HDAC6 inhibitor screening</p></div><span class="pub-badge">2024</span></div>
+                                    <p class="app-desc" data-ru="Open-source инструмент на основе машинного обучения для скрининга ингибиторов HDAC6." data-en="Open-source machine learning tool for screening HDAC6 inhibitors.">Open-source machine learning tool for screening HDAC6 inhibitors.</p>
+                                    <div class="pub-topics"><span class="pub-topic">Open source</span><span class="pub-topic" data-ru="Машинное обучение" data-en="Machine Learning">Machine Learning</span><span class="pub-topic">HDAC6</span><span class="pub-topic" data-ru="Виртуальный скрининг" data-en="Virtual screening">Virtual screening</span></div>
+                                    <div class="app-actions">
+                                        <a class="pub-action pub-action-accent" href="https://htpredict.streamlit.app/" target="_blank" rel="noopener"><i class="fas fa-arrow-up-right-from-square"></i><span data-ru="Открыть приложение" data-en="Open app">Open app</span></a>
+                                        <a class="app-paper" href="https://doi.org/10.1080/1062936X.2024.2371155" target="_blank" rel="noopener"><i class="fas fa-file-lines"></i><span><span class="app-paper-label" data-ru="Статья:" data-en="Paper:">Paper:</span> <i class="app-paper-venue">SAR and QSAR in Environmental Research</i>, 2024</span></a>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- portfolio item start -->
-                        <div class="portfolio-item padd-15">
-                            <div class="portfolio-item-inner shadow-dark">
-                                <div class="portfolio-number">04</div>
-                                <div class="portfolio-img">
-                                    <img src="img/portfolio/qsar_lp.png" alt="">
-                                </div>
-                                <div class="portfolio-content">
-                                    <h4><i class="fas fa-pills"></i> HDAC1 Predictor</h4>
-                                    <p><span data-ru="Интеллектуальная платформа для идентификации перспективных HDAC1 ингибиторов. Комбинирует передовые алгоритмы машинного обучения с глубоким пониманием эпигенетических механизмов для ускорения разработки противоопухолевых препаратов." data-en="Intelligent platform for identifying promising HDAC1 inhibitors. Combines advanced machine learning algorithms with deep understanding of epigenetic mechanisms to accelerate anticancer drug development.">Intelligent platform for identifying promising HDAC1 inhibitors. Combines advanced machine learning algorithms with deep understanding of epigenetic mechanisms to accelerate anticancer drug development.</span></p>
-                                    <div class="portfolio-features">
-                                        <span class="feature-tag"><span data-ru="Эпигенетика" data-en="Epigenetics">Epigenetics</span></span>
-                                        <span class="feature-tag"><span data-ru="Онкология" data-en="Oncology">Oncology</span></span>
-                                        <span class="feature-tag">Drug Discovery</span>
-                                        <span class="feature-tag"><span data-ru="QSAR модели" data-en="QSAR Models">QSAR Models</span></span>
+                                </article>
+                                <article class="app-card">
+                                    <div class="app-head"><span class="app-icon"><i class="fas fa-magnifying-glass"></i></span><div><h3 class="app-title">HDAC6 Detector</h3><p class="app-sub" data-ru="Селективные ингибиторы HDAC6" data-en="Selective HDAC6 inhibitors">Selective HDAC6 inhibitors</p></div><span class="pub-badge">2023</span></div>
+                                    <p class="app-desc" data-ru="Онлайн-приложение для оценки соединений как потенциальных селективных ингибиторов HDAC6." data-en="Online application for evaluating compounds as potential selective HDAC6 inhibitors.">Online application for evaluating compounds as potential selective HDAC6 inhibitors.</p>
+                                    <div class="pub-topics"><span class="pub-topic" data-ru="Селективность" data-en="Selectivity">Selectivity</span><span class="pub-topic">HDAC6</span><span class="pub-topic">QSAR</span><span class="pub-topic" data-ru="Веб-приложение" data-en="Web app">Web app</span></div>
+                                    <div class="app-actions">
+                                        <a class="pub-action pub-action-accent" href="https://ovttiras-hdac6-detector-hdac6-detector-app-yzh8y5.streamlit.app/" target="_blank" rel="noopener"><i class="fas fa-arrow-up-right-from-square"></i><span data-ru="Открыть приложение" data-en="Open app">Open app</span></a>
+                                        <a class="app-paper" href="https://doi.org/10.1080/1062936X.2023.2244419" target="_blank" rel="noopener"><i class="fas fa-file-lines"></i><span><span class="app-paper-label" data-ru="Статья:" data-en="Paper:">Paper:</span> <i class="app-paper-venue">SAR and QSAR in Environmental Research</i>, 2023</span></a>
                                     </div>
-                                    <div class="portfolio-link">
-                                        <a href="https://ovttiras-hdac1-inhibitors-hdac1-predictor-app-z3mrbr.streamlit.app/" target="_blank"><span data-ru="🌐 Веб-приложение: HDAC1 Predictor" data-en="🌐 Web Application: HDAC1 Predictor">🌐 Web Application: HDAC1 Predictor</span></a>
+                                </article>
+                                <article class="app-card">
+                                    <div class="app-head"><span class="app-icon"><i class="fas fa-database"></i></span><div><h3 class="app-title">HDAC2 Scanner</h3><p class="app-sub" data-ru="Скрининг библиотек на HDAC2" data-en="HDAC2 library screening">HDAC2 library screening</p></div><span class="pub-badge">2023</span></div>
+                                    <p class="app-desc" data-ru="Экспертная система для быстрого виртуального скрининга химических библиотек на ингибирующую активность в отношении HDAC2." data-en="Expert system for rapid virtual screening of chemical libraries for HDAC2 inhibitory activity.">Expert system for rapid virtual screening of chemical libraries for HDAC2 inhibitory activity.</p>
+                                    <div class="pub-topics"><span class="pub-topic" data-ru="Виртуальный скрининг" data-en="Virtual screening">Virtual screening</span><span class="pub-topic" data-ru="Химические библиотеки" data-en="Chemical libraries">Chemical libraries</span><span class="pub-topic">HDAC2</span><span class="pub-topic" data-ru="Экспертная система" data-en="Expert system">Expert system</span></div>
+                                    <div class="app-actions">
+                                        <a class="pub-action pub-action-accent" href="https://hdac2scan.streamlit.app/" target="_blank" rel="noopener"><i class="fas fa-arrow-up-right-from-square"></i><span data-ru="Открыть приложение" data-en="Open app">Open app</span></a>
+                                        <a class="app-paper" href="https://doi.org/10.1134/S1070363223150021" target="_blank" rel="noopener"><i class="fas fa-file-lines"></i><span><span class="app-paper-label" data-ru="Статья:" data-en="Paper:">Paper:</span> <i class="app-paper-venue">Russian Journal of General Chemistry</i>, 2023</span></a>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- portfolio item start -->
-                        <div class="portfolio-item padd-15">
-                            <div class="portfolio-item-inner shadow-dark">
-                                <div class="portfolio-number">05</div>
-                                <div class="portfolio-img">
-                                    <img src="img/portfolio/syntelly.png" alt="">
-                                </div>
-                                <div class="portfolio-content">
-                                    <h4><i class="fas fa-database"></i> HDAC2 Scanner</h4>
-                                    <p><span data-ru="Высокоскоростной сканер для быстрого скрининга химических библиотек на предмет HDAC2 ингибирующей активности. Использует инновационные методы виртуального скрининга для эффективного отбора кандидатных соединений." data-en="High-speed scanner for rapid screening of chemical libraries for HDAC2 inhibitory activity. Uses innovative virtual screening methods for efficient selection of candidate compounds.">High-speed scanner for rapid screening of chemical libraries for HDAC2 inhibitory activity. Uses innovative virtual screening methods for efficient selection of candidate compounds.</span></p>
-                                    <div class="portfolio-features">
-                                        <span class="feature-tag"><span data-ru="Виртуальный скрининг" data-en="Virtual Screening">Virtual Screening</span></span>
-                                        <span class="feature-tag"><span data-ru="Химические библиотеки" data-en="Chemical Libraries">Chemical Libraries</span></span>
-                                        <span class="feature-tag"><span data-ru="Быстрый отбор" data-en="Rapid Selection">Rapid Selection</span></span>
-                                        <span class="feature-tag"><span data-ru="Инновации" data-en="Innovation">Innovation</span></span>
+                                </article>
+                                <article class="app-card">
+                                    <div class="app-head"><span class="app-icon"><i class="fas fa-pills"></i></span><div><h3 class="app-title">HDAC1 Predictor</h3><p class="app-sub" data-ru="Ингибиторы HDAC1" data-en="HDAC1 inhibitors">HDAC1 inhibitors</p></div><span class="pub-badge">2022</span></div>
+                                    <p class="app-desc" data-ru="Простое и прозрачное приложение для виртуального скрининга ингибиторов HDAC1 в разработке противоопухолевых препаратов." data-en="Simple and transparent application for virtual screening of HDAC1 inhibitors in anticancer drug development.">Simple and transparent application for virtual screening of HDAC1 inhibitors in anticancer drug development.</p>
+                                    <div class="pub-topics"><span class="pub-topic" data-ru="Онкология" data-en="Oncology">Oncology</span><span class="pub-topic" data-ru="Эпигенетика" data-en="Epigenetics">Epigenetics</span><span class="pub-topic">HDAC1</span><span class="pub-topic">QSAR</span></div>
+                                    <div class="app-actions">
+                                        <a class="pub-action pub-action-accent" href="https://ovttiras-hdac1-inhibitors-hdac1-predictor-app-z3mrbr.streamlit.app/" target="_blank" rel="noopener"><i class="fas fa-arrow-up-right-from-square"></i><span data-ru="Открыть приложение" data-en="Open app">Open app</span></a>
+                                        <a class="app-paper" href="https://doi.org/10.1080/1062936X.2022.2147996" target="_blank" rel="noopener"><i class="fas fa-file-lines"></i><span><span class="app-paper-label" data-ru="Статья:" data-en="Paper:">Paper:</span> <i class="app-paper-venue">SAR and QSAR in Environmental Research</i>, 2022</span></a>
                                     </div>
-                                    <div class="portfolio-link">
-                                        <a href="https://hdac2scan.streamlit.app/" target="_blank"><span data-ru="🌐 Веб-приложение: HDAC2 Scanner" data-en="🌐 Web Application: HDAC2 Scanner">🌐 Web Application: HDAC2 Scanner</span></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- portfolio item start -->
-                        <div class="portfolio-item padd-15">
-                            <div class="portfolio-item-inner shadow-dark">
-                                <div class="portfolio-number">06</div>
-                                <div class="portfolio-img">
-                                    <img src="img/portfolio/ligand_pro.png" alt="">
-                                </div>
-                                <div class="portfolio-content">
-                                    <h4><i class="fas fa-flask"></i> HDAC3 VS Assistant</h4>
-                                    <p><span data-ru="Умный ассистент для комплексного анализа HDAC3 ингибиторов с интеграцией определения острой токсичности исследуемых соединений. Предоставляет детальную оценку лекарственного потенциала соединений." data-en="Smart assistant for comprehensive analysis of HDAC3 inhibitors with integration of acute toxicity determination of studied compounds. Provides detailed assessment of drug potential of compounds.">Smart assistant for comprehensive analysis of HDAC3 inhibitors with integration of acute toxicity determination of studied compounds. Provides detailed assessment of drug potential of compounds.</span></p>
-                                    <div class="portfolio-features">
-                                        <span class="feature-tag"><span data-ru="Острая токсичность" data-en="Acute Toxicity">Acute Toxicity</span></span>
-                                        <span class="feature-tag"><span data-ru="HDAC3 ингибиторы" data-en="HDAC3 Inhibitors">HDAC3 Inhibitors</span></span>
-                                        <span class="feature-tag"><span data-ru="Комплексный анализ" data-en="Comprehensive Analysis">Comprehensive Analysis</span></span>
-                                        <span class="feature-tag"><span data-ru="Лекарственный потенциал" data-en="Drug Potential">Drug Potential</span></span>
-                                    </div>
-                                    <div class="portfolio-link">
-                                        <a href="https://hdac3-vs-assistant-v2.streamlit.app/" target="_blank"><span data-ru="🌐 Веб-приложение: HDAC3 VS Assistant" data-en="🌐 Web Application: HDAC3 VS Assistant">🌐 Web Application: HDAC3 VS Assistant</span></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- portfolio item start -->
-                        <div class="portfolio-item padd-15">
-                            <div class="portfolio-item-inner shadow-dark">
-                                <div class="portfolio-number">07</div>
-                                <div class="portfolio-img">
-                                    <img src="img/portfolio/credit_scoring.png" alt="">
-                                </div>
-                                <div class="portfolio-content">
-                                    <h4><i class="fas fa-search"></i> HDAC6 Detector</h4>
-                                    <p><span data-ru="Точный детектор для выявления селективных HDAC6 ингибиторов с использованием продвинутых алгоритмов распознавания паттернов. Специализируется на обнаружении соединений с высокой специфичностью к HDAC6 изоформе." data-en="Precise detector for identifying selective HDAC6 inhibitors using advanced pattern recognition algorithms. Specializes in detecting compounds with high specificity to HDAC6 isoform.">Precise detector for identifying selective HDAC6 inhibitors using advanced pattern recognition algorithms. Specializes in detecting compounds with high specificity to HDAC6 isoform.</span></p>
-                                    <div class="portfolio-features">
-                                        <span class="feature-tag"><span data-ru="Селективность" data-en="Selectivity">Selectivity</span></span>
-                                        <span class="feature-tag"><span data-ru="Паттерн-анализ" data-en="Pattern Analysis">Pattern Analysis</span></span>
-                                        <span class="feature-tag"><span data-ru="Изоформа HDAC6" data-en="HDAC6 Isoform">HDAC6 Isoform</span></span>
-                                        <span class="feature-tag"><span data-ru="Точность" data-en="Accuracy">Accuracy</span></span>
-                                    </div>
-                                    <div class="portfolio-link">
-                                        <a href="https://ovttiras-hdac6-detector-hdac6-detector-app-yzh8y5.streamlit.app/" target="_blank"><span data-ru="🌐 Веб-приложение: HDAC6 Detector" data-en="🌐 Web Application: HDAC6 Detector">🌐 Web Application: HDAC6 Detector</span></a>
-                                    </div>
-                                </div>
+                                </article>
                             </div>
                         </div>
                     </div>
@@ -932,7 +868,8 @@
     <script src="js/script.js?v=4"></script>
     <script src="js/style-switcher.js?v=2"></script>
     <!-- AI-ассистент: укажите в data-api-url адрес развернутого бэкенда из папки rag/ -->
-    <script src="js/research.js?v=7"></script>
+    <script src="js/tabs.js?v=1"></script>
+    <script src="js/research.js?v=8"></script>
     <script src="js/chat.js?v=5" data-api-url="http://localhost:8000"></script>
     <script>
         // Make setActiveStyle function globally available

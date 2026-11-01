@@ -166,7 +166,7 @@ def load_page_posts(urls: list[str]) -> list[Document]:
 
 # Смысловые блоки страницы: каждый индексируется отдельным документом, чтобы короткие факты
 # не растворялись в длинных чанках со списком навыков.
-SITE_BLOCKS = ".home-info, .about-text, .skills, .education, .experience, .portfolio-item"
+SITE_BLOCKS = ".home-info, .about-text, .skills, .education, .experience, .app-card"
 # Подписи для блоков без собственного заголовка: (ru, en)
 BLOCK_LABELS = {
     "home": ("Главная", "Home"),
