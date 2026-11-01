@@ -38,6 +38,8 @@
             revIntro: "Peer reviewer for international journals in cheminformatics, QSAR modelling, toxicology, bioinformatics and drug discovery.",
             revCount: (n) => `${n} ${n === 1 ? "review" : "reviews"}`,
             revSource: "Verified in",
+            metricsNote: (src, year) => `Quartile (Q) and impact factor (IF): ${src}, ${year}.`,
+            site: "Journal website",
             talkIntro: "Talks and abstracts at scientific conferences.",
             talkSearch: "Search by topic, conference or city…",
             talkStats: [["talks", "talks & abstracts"], ["intl", "international or with international participation"], ["cities", "cities"], ["years", "years"]],
@@ -75,6 +77,8 @@
             revIntro: "Рецензент международных журналов по хемоинформатике, QSAR-моделированию, токсикологии, биоинформатике и разработке лекарств.",
             revCount: (n) => `${n} ${plural(n, "рецензия", "рецензии", "рецензий")}`,
             revSource: "Подтверждено в",
+            metricsNote: (src, year) => `Квартиль (Q) и импакт-фактор (IF): ${src}, ${year}.`,
+            site: "Сайт журнала",
             talkIntro: "Доклады и тезисы на научных конференциях.",
             talkSearch: "Поиск по теме, конференции или городу…",
             talkStats: [["talks", "докладов и тезисов"], ["intl", "международных и с международным участием"], ["cities", "городов"], ["years", "годы"]],
@@ -291,12 +295,23 @@
             .join("");
         $(".rev-intro").textContent = t("revIntro");
         $(".rev-list").innerHTML = journals
-            .map((j) => `<li class="rev-item">
-                    <div class="rev-row"><span class="rev-name">${escapeHtml(j.name)}</span><span class="rev-count">${escapeHtml(t("revCount")(j.count))}</span></div>
+            .map((j) => {
+                const name = j.url
+                    ? `<a class="rev-name" href="${escapeHtml(j.url)}" target="_blank" rel="noopener" title="${escapeHtml(t("site"))}">${escapeHtml(j.name)}<i class="fas fa-arrow-up-right-from-square"></i></a>`
+                    : `<span class="rev-name">${escapeHtml(j.name)}</span>`;
+                const metrics = [
+                    j.quartile ? `<span class="rev-q rev-${escapeHtml(j.quartile.toLowerCase())}">${escapeHtml(j.quartile)}</span>` : "",
+                    j.if != null ? `<span class="rev-if">IF ${escapeHtml(j.if)}</span>` : ""
+                ].join("");
+                return `<li class="rev-item">
+                    <div class="rev-row"><div class="rev-head">${name}${metrics ? `<span class="rev-metrics">${metrics}</span>` : ""}</div><span class="rev-count">${escapeHtml(t("revCount")(j.count))}</span></div>
                     <div class="rev-bar"><i style="width:${Math.max(4, (j.count / max) * 100)}%"></i></div>
-                </li>`)
+                </li>`;
+            })
             .join("");
-        $(".rev-source").innerHTML = `<i class="fas fa-circle-check"></i>${escapeHtml(t("revSource"))} <a href="${escapeHtml(reviews.source.url)}" target="_blank" rel="noopener">${escapeHtml(reviews.source.name)}</a>`;
+        const hasMetrics = journals.some((j) => j.quartile || j.if != null);
+        $(".rev-source").innerHTML = `<i class="fas fa-circle-check"></i>${escapeHtml(t("revSource"))} <a href="${escapeHtml(reviews.source.url)}" target="_blank" rel="noopener">${escapeHtml(reviews.source.name)}</a>`
+            + (hasMetrics && reviews.metrics ? `<span class="rev-metrics-note">${escapeHtml(t("metricsNote")(reviews.metrics.source, reviews.metrics.year))}</span>` : "");
         section.querySelector('[data-count="reviews"]').textContent = total;
     }
 

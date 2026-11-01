@@ -566,3 +566,69 @@
 .pub-coauth {
     color: var(--text-black-700);
 }
+
+/* ---------- Рецензии: ссылка на журнал, квартиль и импакт-фактор */
+.rev-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 10px;
+    min-width: 0;
+}
+
+a.rev-name {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 6px;
+    transition: color 0.2s ease;
+}
+
+a.rev-name i {
+    font-size: 10px;
+    font-style: normal;
+    opacity: 0.5;
+}
+
+a.rev-name:hover {
+    color: var(--skin-color);
+}
+
+.rev-metrics {
+    display: inline-flex;
+    gap: 6px;
+}
+
+.rev-q,
+.rev-if {
+    padding: 1px 7px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    font-style: normal;
+}
+
+.rev-q {
+    color: #ffffff;
+    background: #6b7280;
+}
+
+.rev-q1 { background: #16a34a; }
+.rev-q2 { background: #65a30d; }
+.rev-q3 { background: #d97706; }
+.rev-q4 { background: #dc2626; }
+
+.rev-if {
+    border: 1px solid var(--r-line);
+    color: var(--text-black-900);
+}
+
+.research-body .rev-source {
+    flex-wrap: wrap;
+}
+
+.rev-metrics-note {
+    flex-basis: 100%;
+    margin-left: 22px;
+    font-size: 12px;
+    opacity: 0.8;
+}

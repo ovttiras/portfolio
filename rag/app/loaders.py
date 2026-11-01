@@ -364,7 +364,12 @@ def load_reviews(json_path: Path, site_url: str) -> list[Document]:
         f"Oleg Tinkov has been a peer reviewer since {data['since']}: {total} verified reviews "
         f"for {len(journals)} international journals.",
         "Журналы и число рецензий / Journals and number of reviews:",
-        *(f"- {j['name']}: {j['count']}" for j in journals),
+        *(
+            f"- {j['name']}: {j['count']}"
+            + "".join(f", {k} {j[key]}" for k, key in (("Q", "quartile"), ("IF", "if")) if j.get(key) is not None)
+            + (f" ({j['url']})" if j.get("url") else "")
+            for j in journals
+        ),
     ]
     return [
         Document(
