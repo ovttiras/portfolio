@@ -1,12 +1,15 @@
 [
   {
     "year": 2026,
-    "title": "",
+    "title": "Комплексная внеэкспериментальная оценка ингибиторов HDAC8",
     "event": {
       "ru": "VI Всероссийская научно-практическая конференция с международным участием «Актуальные проблемы и перспективы фармацевтической науки и практики»",
       "en": "VI All-Russian Scientific and Practical Conference with International Participation “Current Problems and Prospects of Pharmaceutical Science and Practice”"
     },
-    "place": "",
+    "place": {
+      "ru": "Курск",
+      "en": "Kursk"
+    },
     "date": {
       "ru": "21 мая 2026",
       "en": "May 21, 2026"
