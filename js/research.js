@@ -276,9 +276,13 @@
 
     function renderReviews() {
         if (!reviews) return;
-        const journals = reviews.journals.slice().sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
+        // сверху самые сильные журналы: по импакт-фактору (5-летнему, если указан), затем по квартилю
+        const impact = (j) => (j.if5 != null ? j.if5 : j.if != null ? j.if : -1);
+        const quartile = (j) => (j.quartile ? Number(j.quartile.slice(1)) : 9);
+        const journals = reviews.journals.slice().sort((a, b) =>
+            impact(b) - impact(a) || quartile(a) - quartile(b) || b.count - a.count || a.name.localeCompare(b.name));
         const total = journals.reduce((sum, j) => sum + j.count, 0);
-        const max = journals[0].count;
+        const max = Math.max(...journals.map((j) => j.count));
         const values = { reviews: total, journals: journals.length, top: max, since: reviews.since };
         $(".rev-stats").innerHTML = t("revStats")
             .map(([key, label]) => `<div class="pub-stat"><b>${values[key]}</b><span>${escapeHtml(label)}</span></div>`)
